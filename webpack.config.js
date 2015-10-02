@@ -6,10 +6,12 @@ var babelConfig = {
 
 module.exports = {
     context: __dirname + '/src/',
-    entry: ['./entry.js'],
+    entry: {
+        home: './home/entry.js'
+    },
     output: {
         path: __dirname + '/public/javascripts/',
-        filename: 'bundle.js'
+        filename: '[name]-bundle.js'
     },
     resolve: {
         extensions: ['', '.js', '.json', '.jsx'],
