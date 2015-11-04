@@ -19,12 +19,6 @@ Wrapper = React.createClass({
         return (
             <div className="wrapper">
                 <Navigation {...this.props} />
-                <div className="container">
-                    <br />
-                    <Well>
-                        Welcome to the website!
-                    </Well>
-                </div>
             </div>
         );
     }
