@@ -55295,7 +55295,7 @@
 													{ className: "row navbar-cust1" },
 													React.createElement(
 																	"div",
-																	{ className: "navbar-header col-xs-offset-3 col-xs-6" },
+																	{ className: "navbar-header col-xs-offset-2 col-xs-8" },
 																	React.createElement(
 																					"a",
 																					{ className: "navbar-brand navbar-center mybrand" },
@@ -55304,7 +55304,7 @@
 													),
 													React.createElement(
 																	"div",
-																	{ className: "col-xs-3 nav-user" },
+																	{ className: "col-xs-2 nav-user" },
 																	React.createElement(
 																					"div",
 																					{ className: "pull-right" },
@@ -55594,7 +55594,7 @@
 	                React.createElement(
 	                    Button,
 	                    { bsStyle: "default", className: "navbar-btn" },
-	                    "New Post"
+	                    React.createElement("span", { className: "glyphicon glyphicon-plus" })
 	                )
 	            )
 	        );

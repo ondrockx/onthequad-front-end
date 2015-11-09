@@ -49,7 +49,7 @@ module.exports = NavFilters = React.createClass({
                 
                 <div className="col-lg-3 col-xs-3 navbar-content">
                     <Button bsStyle="default" className="navbar-btn">
-                        New Post
+                        <span className="glyphicon glyphicon-plus" />
                     </Button>   
                 </div> 
            </Row>
