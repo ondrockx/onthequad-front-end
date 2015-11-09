@@ -29,25 +29,25 @@ module.exports = NavFilters = React.createClass({
         }
         return (
             <Row>
-                <div className="col-lg-4 col-xs-2 navbar-content">
+                <div className="col-lg-6 col-xs-3 navbar-content">
                     {searchBox}
                 </div> 
                 
-                <div className="col-lg-6 col-xs-8 navbar-content">
+                <div className="col-lg-3 col-xs-6 navbar-content">
                     <ButtonGroup>
                         <Button bsStyle="default" className="navbar-btn" active>
-                            Newest
+                            <span className="glyphicon glyphicon-calendar" />
                         </Button>
                         <Button bsStyle="default" className="navbar-btn">
-                            Price (L-H)
+                            <span className="glyphicon glyphicon-sort-by-attributes" />
                         </Button>
                         <Button bsStyle="default" className="navbar-btn">
-                            Price (H-L)
+                            <span className="glyphicon glyphicon-sort-by-attributes-alt" />
                         </Button>
                     </ButtonGroup>
                 </div>
                 
-                <div className="col-lg-2 col-xs-2 navbar-content">
+                <div className="col-lg-3 col-xs-3 navbar-content">
                     <Button bsStyle="default" className="navbar-btn">
                         New Post
                     </Button>   
