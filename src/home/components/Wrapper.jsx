@@ -8,6 +8,7 @@ var Store = require('../Store');
 var config = require ('../config');
 var actions = require('../Actions');
 var Navigation = require('./Navigation');
+var MobileBottomNav = require('./Nav/MobileBottomNav');
 var Wrapper;
 
 Wrapper = React.createClass({
@@ -19,6 +20,7 @@ Wrapper = React.createClass({
         return (
             <div className="wrapper">
                 <Navigation {...this.props} />
+                <MobileBottomNav {...this.props} />
             </div>
         );
     }

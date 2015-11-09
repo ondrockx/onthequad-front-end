@@ -57,7 +57,7 @@
 	router = new Router({ context: context.getComponentContext() });
 	router.history.start({ pushState: true });
 	
-	ReactDOM.render(__webpack_require__(559).createElementWithContext(context), document.getElementById("main"));
+	ReactDOM.render(__webpack_require__(563).createElementWithContext(context), document.getElementById("main"));
 
 /***/ },
 /* 1 */
@@ -19425,6 +19425,7 @@
 	var config = __webpack_require__(147);
 	var actions = __webpack_require__(149);
 	var Navigation = __webpack_require__(554);
+	var MobileBottomNav = __webpack_require__(562);
 	var Wrapper;
 	
 	Wrapper = React.createClass({
@@ -19438,7 +19439,8 @@
 	        return React.createElement(
 	            "div",
 	            { className: "wrapper" },
-	            React.createElement(Navigation, this.props)
+	            React.createElement(Navigation, this.props),
+	            React.createElement(MobileBottomNav, this.props)
 	        );
 	    }
 	});
@@ -54829,7 +54831,9 @@
 	"use strict";
 	
 	var React = __webpack_require__(166);
-	var DesktopNav = __webpack_require__(555);
+	var NavBanner = __webpack_require__(555);
+	var DesktopNav = __webpack_require__(556);
+	var MobileNav = __webpack_require__(560);
 	var Navigation;
 	
 	module.exports = Navigation = React.createClass({
@@ -54842,7 +54846,9 @@
 	            React.createElement(
 	                "div",
 	                { className: "container-fluid" },
-	                React.createElement(DesktopNav, this.props)
+	                React.createElement(NavBanner, this.props),
+	                React.createElement(DesktopNav, this.props),
+	                React.createElement(MobileNav, this.props)
 	            )
 	        );
 	    }
@@ -54855,23 +54861,44 @@
 	"use strict";
 	
 	var React = __webpack_require__(166);
-	var NavBanner = __webpack_require__(556);
-	var NavCategories = __webpack_require__(557);
-	var NavFilters = __webpack_require__(558);
-	var DesktopNav;
 	
-	module.exports = DesktopNav = React.createClass({
-	    displayName: "DesktopNav",
+	var _require = __webpack_require__(324);
 	
-	    render: function render() {
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(NavBanner, this.props),
-	            React.createElement(NavCategories, this.props),
-	            React.createElement(NavFilters, this.props)
-	        );
-	    }
+	var Button = _require.Button;
+	
+	var NavBanner;
+	
+	module.exports = NavBanner = React.createClass({
+					displayName: "NavBanner",
+	
+					render: function render() {
+									return React.createElement(
+													"div",
+													{ className: "row navbar-cust1" },
+													React.createElement(
+																	"div",
+																	{ className: "navbar-header col-xs-offset-3 col-xs-6" },
+																	React.createElement(
+																					"a",
+																					{ className: "navbar-brand navbar-center mybrand" },
+																					"on the quad"
+																	)
+													),
+													React.createElement(
+																	"div",
+																	{ className: "col-xs-3 nav-user" },
+																	React.createElement(
+																					"div",
+																					{ className: "pull-right" },
+																					React.createElement(
+																									Button,
+																									{ className: "navbar-btn btn-user" },
+																									React.createElement("span", { className: "glyphicon glyphicon-user", "aria-hidden": "true" })
+																					)
+																	)
+													)
+									);
+					}
 	});
 
 /***/ },
@@ -54881,61 +54908,21 @@
 	"use strict";
 	
 	var React = __webpack_require__(166);
-	var NavBanner;
+	var NavCategories = __webpack_require__(557);
+	var DesktopNavFilters = __webpack_require__(558);
+	var DesktopNav;
 	
-	module.exports = NavBanner = React.createClass({
-					displayName: "NavBanner",
+	module.exports = DesktopNav = React.createClass({
+	    displayName: "DesktopNav",
 	
-					render: function render() {
-									return React.createElement(
-													"div",
-													{ className: "row hidden-md hidden-sm hidden-xs navbar-cust1" },
-													React.createElement(
-																	"div",
-																	{ className: "col-lg-3" },
-																	React.createElement(
-																					"div",
-																					{ className: "navbar-content" },
-																					React.createElement(
-																									"p",
-																									null,
-																									"Location"
-																					)
-																	)
-													),
-													React.createElement(
-																	"div",
-																	{ className: "navbar-header col-lg-6" },
-																	React.createElement(
-																					"a",
-																					{ className: "navbar-brand navbar-center mybrand" },
-																					"on the quad"
-																	)
-													),
-													React.createElement(
-																	"div",
-																	{ className: "col-lg-3 nav-user" },
-																	React.createElement(
-																					"div",
-																					{ className: "pull-right" },
-																					React.createElement(
-																									"span",
-																									null,
-																									React.createElement(
-																													"p",
-																													{ className: "navbar-text nav-usertext" },
-																													"Welcome Back USER"
-																									),
-																									React.createElement(
-																													"button",
-																													{ type: "button", className: "btn btn-inverse navbar-btn btn-user" },
-																													React.createElement("span", { className: "glyphicon glyphicon-user", "aria-hidden": "true" })
-																									)
-																					)
-																	)
-													)
-									);
-					}
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(NavCategories, this.props),
+	            React.createElement(DesktopNavFilters, this.props)
+	        );
+	    }
 	});
 
 /***/ },
@@ -55062,107 +55049,36 @@
 
 	"use strict";
 	
-	var React = __webpack_require__(166);
-	var NavFilters;
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	module.exports = NavFilters = React.createClass({
-	    displayName: "NavFilters",
+	var React = __webpack_require__(166);
+	var NavFilters = __webpack_require__(559);
+	var DesktopNavFilters;
+	
+	module.exports = DesktopNavFilters = React.createClass({
+	    displayName: "DesktopNavFilters",
 	
 	    render: function render() {
 	        return React.createElement(
 	            "div",
-	            { className: "row hidden-md hidden-sm hidden-xs" },
-	            React.createElement("div", { className: "col-lg-2 navbar-content" }),
+	            { className: "hidden-md hidden-sm hidden-xs" },
 	            React.createElement(
 	                "div",
-	                { className: "col-lg-2 navbar-brand" },
+	                { className: "col-lg-offset-2 col-lg-2" },
 	                React.createElement(
-	                    "p",
-	                    { className: "category-title" },
-	                    "All Posts"
+	                    "div",
+	                    { className: "navbar-brand" },
+	                    React.createElement(
+	                        "p",
+	                        { className: "category-title" },
+	                        "CATEGORY_FILLER"
+	                    )
 	                )
 	            ),
-	            React.createElement("div", { className: "col-lg-2 navbar-content" }),
 	            React.createElement(
 	                "div",
-	                { className: "col-lg-6 pull-left nav navbar-nav" },
-	                React.createElement(
-	                    "li",
-	                    null,
-	                    React.createElement(
-	                        "form",
-	                        { className: "navbar-form", role: "search" },
-	                        React.createElement(
-	                            "div",
-	                            { className: "input-group" },
-	                            React.createElement("input", { type: "text", className: "form-control", placeholder: "Search", name: "srch-term", id: "srch-term" }),
-	                            React.createElement(
-	                                "div",
-	                                { className: "input-group-btn" },
-	                                React.createElement(
-	                                    "button",
-	                                    { className: "btn btn-default", type: "submit" },
-	                                    React.createElement("i", { className: "glyphicon glyphicon-search" })
-	                                )
-	                            )
-	                        )
-	                    )
-	                ),
-	                React.createElement(
-	                    "li",
-	                    null,
-	                    React.createElement(
-	                        "span",
-	                        { className: "btn-group", "data-toggle": "buttons", role: "group" },
-	                        React.createElement(
-	                            "span",
-	                            { type: "button", className: "btn btn-default navbar-btn active btn-custom" },
-	                            React.createElement("input", { type: "radio", name: "options" }),
-	                            "newest"
-	                        ),
-	                        React.createElement(
-	                            "span",
-	                            { type: "button", className: "btn btn-default navbar-btn smchar btn-custom" },
-	                            React.createElement("input", { type: "radio", name: "options" }),
-	                            "$",
-	                            React.createElement(
-	                                "span",
-	                                { className: "arrow" },
-	                                "▶"
-	                            ),
-	                            React.createElement(
-	                                "span",
-	                                { className: "lgchar" },
-	                                "$"
-	                            )
-	                        ),
-	                        React.createElement(
-	                            "span",
-	                            { type: "button", className: "btn btn-default navbar-btn lgchar btn-custom" },
-	                            React.createElement("input", { type: "radio", name: "options" }),
-	                            "$",
-	                            React.createElement(
-	                                "span",
-	                                { className: "arrow" },
-	                                "▶"
-	                            ),
-	                            React.createElement(
-	                                "span",
-	                                { className: "smchar" },
-	                                "$"
-	                            )
-	                        )
-	                    )
-	                ),
-	                React.createElement(
-	                    "li",
-	                    null,
-	                    React.createElement(
-	                        "button",
-	                        { type: "button", className: "btn btn-default navbar-btn btn-createpost" },
-	                        "create post"
-	                    )
-	                )
+	                { className: "col-lg-offset-2 col-lg-6" },
+	                React.createElement(NavFilters, _extends({ desktop: true }, this.props))
 	            )
 	        );
 	    }
@@ -55172,6 +55088,176 @@
 /* 559 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	var React = __webpack_require__(166);
+	
+	var _require = __webpack_require__(324);
+	
+	var Row = _require.Row;
+	var ButtonGroup = _require.ButtonGroup;
+	var Button = _require.Button;
+	
+	var NavFilters;
+	
+	module.exports = NavFilters = React.createClass({
+	    displayName: "NavFilters",
+	
+	    render: function render() {
+	        var searchBox;
+	        if (this.props.desktop) {
+	            searchBox = React.createElement(
+	                "form",
+	                { className: "navbar-form", role: "search" },
+	                React.createElement(
+	                    "div",
+	                    { className: "input-group" },
+	                    React.createElement("input", { type: "text", className: "form-control", placeholder: "Search", name: "srch-term", id: "srch-term" }),
+	                    React.createElement(
+	                        "div",
+	                        { className: "input-group-btn" },
+	                        React.createElement(
+	                            Button,
+	                            null,
+	                            React.createElement("span", { className: "glyphicon glyphicon-search" })
+	                        )
+	                    )
+	                )
+	            );
+	        } else {
+	            searchBox = React.createElement(
+	                "div",
+	                { className: "col-xs-2 navbar-content" },
+	                React.createElement(
+	                    Button,
+	                    { className: "navbar-btn" },
+	                    React.createElement("span", { className: "glyphicon glyphicon-search" })
+	                )
+	            );
+	        }
+	        return React.createElement(
+	            Row,
+	            null,
+	            React.createElement(
+	                "div",
+	                { className: "col-lg-4 col-xs-2 navbar-content" },
+	                searchBox
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "col-lg-6 col-xs-8 navbar-content" },
+	                React.createElement(
+	                    ButtonGroup,
+	                    null,
+	                    React.createElement(
+	                        Button,
+	                        { bsStyle: "default", className: "navbar-btn", active: true },
+	                        "Newest"
+	                    ),
+	                    React.createElement(
+	                        Button,
+	                        { bsStyle: "default", className: "navbar-btn" },
+	                        "Price (L-H)"
+	                    ),
+	                    React.createElement(
+	                        Button,
+	                        { bsStyle: "default", className: "navbar-btn" },
+	                        "Price (H-L)"
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                "div",
+	                { className: "col-lg-2 col-xs-2 navbar-content" },
+	                React.createElement(
+	                    Button,
+	                    { bsStyle: "default", className: "navbar-btn" },
+	                    "New Post"
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+/* 560 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(166);
+	var MobileNavCategories = __webpack_require__(561);
+	var MobileNav;
+	
+	module.exports = MobileNav = React.createClass({
+	    displayName: "MobileNav",
+	
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(MobileNavCategories, this.props)
+	        );
+	    }
+	});
+
+/***/ },
+/* 561 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(166);
+	var MobileNavCategories;
+	
+	module.exports = MobileNavCategories = React.createClass({
+	    displayName: "MobileNavCategories",
+	
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "row hidden-lg" },
+	            React.createElement(
+	                "div",
+	                { className: "col-xs-offset-2 col-xs-8 navbar-content" },
+	                React.createElement(
+	                    "p",
+	                    { className: "category-title" },
+	                    "CATEGORY_FILLER"
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+/* 562 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var React = __webpack_require__(166);
+	var NavFilters = __webpack_require__(559);
+	var MobileBottomNav;
+	
+	module.exports = MobileBottomNav = React.createClass({
+	    displayName: "MobileBottomNav",
+	
+	    render: function render() {
+	        return React.createElement(
+	            "nav",
+	            { className: "navbar navbar-inverse navbar-fixed-bottom navbar-center hidden-lg", role: "navigation" },
+	            React.createElement(NavFilters, _extends({ mobile: true }, this.props))
+	        );
+	    }
+	});
+
+/***/ },
+/* 563 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/**
 	 * Copyright 2015, Yahoo Inc.
 	 * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
@@ -55179,17 +55265,17 @@
 	'use strict';
 	
 	module.exports = {
-	    batchedUpdatePlugin: __webpack_require__(560),
+	    batchedUpdatePlugin: __webpack_require__(564),
 	    connectToStores: __webpack_require__(322),
-	    createElementWithContext: __webpack_require__(561),
-	    FluxibleComponent: __webpack_require__(562),
-	    FluxibleMixin: __webpack_require__(563),
-	    provideContext: __webpack_require__(564)
+	    createElementWithContext: __webpack_require__(565),
+	    FluxibleComponent: __webpack_require__(566),
+	    FluxibleMixin: __webpack_require__(567),
+	    provideContext: __webpack_require__(568)
 	};
 
 
 /***/ },
-/* 560 */
+/* 564 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -55232,7 +55318,7 @@
 
 
 /***/ },
-/* 561 */
+/* 565 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -55242,7 +55328,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(166);
-	var FluxibleComponent = __webpack_require__(562);
+	var FluxibleComponent = __webpack_require__(566);
 	
 	/**
 	 * Creates an instance of the app level component with given props and a proper component
@@ -55270,7 +55356,7 @@
 
 
 /***/ },
-/* 562 */
+/* 566 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -55314,7 +55400,7 @@
 
 
 /***/ },
-/* 563 */
+/* 567 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -55524,7 +55610,7 @@
 
 
 /***/ },
-/* 564 */
+/* 568 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**

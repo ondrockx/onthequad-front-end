@@ -1,57 +1,58 @@
 'use strict';
 
 var React = require('react');
+var {Row, ButtonGroup, Button} = require('react-bootstrap');
 var NavFilters;
 
 module.exports = NavFilters = React.createClass({
     render: function () {
-        return (
-            <div className="row hidden-md hidden-sm hidden-xs">
-                <div className="col-lg-2 navbar-content">       
-                </div>
-                    
-                <div className="col-lg-2 navbar-brand">
-                    <p className="category-title">All Posts</p>
-                </div>
-                
-                <div className="col-lg-2 navbar-content">
-                    
-                </div>
-                
-                <div className="col-lg-6 pull-left nav navbar-nav">
-                    <li>
-                    <form className="navbar-form" role="search">
+        var searchBox;
+        if(this.props.desktop) {
+            searchBox = (
+                <form className="navbar-form" role="search">
                     <div className="input-group">
                         <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
                         <div className="input-group-btn">
-                            <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                            <Button><span className="glyphicon glyphicon-search" /></Button>
                         </div>
                     </div>
-                    </form>
-                    </li>
-                    
-                    <li>
-                        <span className="btn-group" data-toggle="buttons" role="group">
-                          <span type="button" className="btn btn-default navbar-btn active btn-custom">
-                            <input type="radio" name="options" />newest
-                          </span>
-                          <span type="button" className="btn btn-default navbar-btn smchar btn-custom">
-                            <input type="radio" name="options" />$
-                            <span className="arrow">▶</span>
-                            <span className="lgchar">$</span>
-                          </span>
-                          <span type="button" className="btn btn-default navbar-btn lgchar btn-custom">
-                            <input type="radio" name="options" />$
-                            <span className="arrow">▶</span>
-                            <span className="smchar">$</span>
-                          </span>
-                        </span>
-                    </li>
-                   
-                    <li><button type="button" className="btn btn-default navbar-btn btn-createpost">create post</button></li>
-                    
+                </form>
+            );
+        } else {
+            searchBox = (
+                <div className="col-xs-2 navbar-content">
+                    <Button className="navbar-btn">
+                        <span className="glyphicon glyphicon-search"></span>
+                    </Button>       
                 </div>
-            </div>
+            );
+        }
+        return (
+            <Row>
+                <div className="col-lg-4 col-xs-2 navbar-content">
+                    {searchBox}
+                </div> 
+                
+                <div className="col-lg-6 col-xs-8 navbar-content">
+                    <ButtonGroup>
+                        <Button bsStyle="default" className="navbar-btn" active>
+                            Newest
+                        </Button>
+                        <Button bsStyle="default" className="navbar-btn">
+                            Price (L-H)
+                        </Button>
+                        <Button bsStyle="default" className="navbar-btn">
+                            Price (H-L)
+                        </Button>
+                    </ButtonGroup>
+                </div>
+                
+                <div className="col-lg-2 col-xs-2 navbar-content">
+                    <Button bsStyle="default" className="navbar-btn">
+                        New Post
+                    </Button>   
+                </div> 
+           </Row>
         );
     }
 });
