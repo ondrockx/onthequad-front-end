@@ -1,27 +1,34 @@
 'use strict';
 
 var React = require('react');
+var _ = require('underscore');
+var {Nav, NavItem} = require('react-bootstrap');
+var config = require('../../config');
+var actions = require('../../Actions');
 var NavCategories;
 
 module.exports = NavCategories = React.createClass({
+    changeCategory: function (id, e) {
+        if (e) {
+            e.preventDefault();
+        }
+        this.props.context.executeAction(actions.set, {category: id});
+    },
     render: function () {
         return (
-        <div className="row hidden-md hidden-sm hidden-xs">
             <div className="container">
                 <ul className="nav navbar-nav">
-                    <li className="active"><a href="#">All Posts</a></li>
-                    <li><a href="#">Textbooks</a></li>
-                    <li><a href="#">UConn Tickets</a></li>
-                    <li><a href="#">Lost and Found</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Vehicles</a></li>
-                    <li><a href="#">School Supplies</a></li>
-                    <li><a href="#">Movies and Games</a></li>
-                    <li><a href="#">Other</a></li>
+                    {_.map(config.categories, (itemName, id)=>{
+                        return (
+                            <li key={id} className={this.props.model.category == id ? "active" : ""}>
+                                <a href="#" onClick={_.partial(this.changeCategory, id)}>
+                                    {itemName}
+                                </a>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
-        </div>
         );
     }
 });

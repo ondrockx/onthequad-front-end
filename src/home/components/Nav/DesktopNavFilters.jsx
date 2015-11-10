@@ -2,6 +2,7 @@
 
 var React = require('react');
 var NavFilters = require('./NavFilters');
+var config = require('../../config');
 var DesktopNavFilters;
 
 module.exports = DesktopNavFilters = React.createClass({
@@ -11,7 +12,7 @@ module.exports = DesktopNavFilters = React.createClass({
             	<div className="container">
 	                <div className="col-lg-4">
 	                    <div className="navbar-brand">
-	                        <p className="category-title">CATEGORY_FILLER</p>
+	                        <p className="category-title">{config.categories[this.props.model.category]}</p>
 	                    </div>
 	                </div>
 	                <div className="col-lg-8">
