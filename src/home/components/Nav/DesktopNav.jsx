@@ -8,8 +8,8 @@ var DesktopNav;
 module.exports = DesktopNav = React.createClass({
     render: function () {
         return (
-            <div>
-                <NavCategories {...this.props} />
+            <div className="hidden-md hidden-sm hidden-xs">
+            	<NavCategories {...this.props} />
                 <DesktopNavFilters {...this.props} />
             </div>
         );

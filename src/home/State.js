@@ -1,18 +1,20 @@
 'use strict';
 
 var AmpersandState = require('ampersand-state');
+var config = require('./config');
 
 module.exports = AmpersandState.extend({
     extraProperties: 'reject',
     props: {
-        page: {
+        category: {
             'type': 'string',
-            'required': false
+            'default': config.primaryCategory,
+            'required': true
         }
     },
     toUrlString() {
-		if (this.page) {
-			return `/${this.page}/`;
+		if (this.category) {
+			return `/browse/${this.category}/`;
 		}
         return `/`;
     }

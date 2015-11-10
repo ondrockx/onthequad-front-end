@@ -26,7 +26,8 @@
 	-webkit-text-stroke: 1px #FFFFFF;
 	margin: auto;
 	text-align: center;
-	}
+	float: none;
+}
 	
 .navbar-center
 {
