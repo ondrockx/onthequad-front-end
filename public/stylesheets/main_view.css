@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/*Navigation Bar Components*/
+.mybrand {
+	font-family: modak;
+	color: black !important;
+	font-size: 36px;
+}
+
+.btn-user {
+	background-color: white;
+}
+
+.mybrand-sm {
+	font-family: modak;
+	color: black !important;
+	font-size: 30px;
+	/* [disabled]-webkit-text-stroke: 1px grey; */
+	padding-top: 10px !important;
+}
+
+.category-title {
+	font-family: modak;
+	color: black !important;
+	font-size: 28px;
+	-webkit-text-stroke: 1px #FFFFFF;
+	margin: auto;
+	text-align: center;
+	}
+	
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.nav-usertext {
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	font-size: 12px;
+	color: white
+!important;
+}
+
+
+.navbar-content {
+	color: white;
+	text-align: center;
+}
+
+.dropdownMenu1 {
+	padding: 0px;
+	margin: 0px;
+}
+
+.navbar-cust1 {
+	background-color:#48C9CB;
+}
+
+
+.arrow {
+	font-size: 9px;
+}
+
+.smchar {
+	font-size: 10px;
+}
+
+.lgchar {
+	font-size: 14px;	
+}
+
+.btn-custom.active {
+	background-color:#48C9CB !important;
+}
+
+.btn-createpost {
+	margin-left: 15px;
+}
+
+
+
+body {background-color:#973939;}
