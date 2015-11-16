@@ -2,13 +2,11 @@
 
 var React = require('react');
 var connectToStores = require('fluxible-addons-react/connectToStores');
-var _ = require('underscore');
-var {Well} = require('react-bootstrap');
 var Store = require('../Store');
 var config = require ('../config');
 var actions = require('../Actions');
 var Navigation = require('./Navigation');
-var MobileBottomNav = require('./Nav/MobileBottomNav');
+var MobileBottomNav = require('./nav/MobileBottomNav');
 var Wrapper;
 
 Wrapper = React.createClass({

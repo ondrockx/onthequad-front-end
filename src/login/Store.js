@@ -2,7 +2,6 @@
 
 var BaseStore = require('fluxible/addons/BaseStore');
 var State = require('./State');
-var config = require('./config');
 
 class Store extends BaseStore {
     constructor(dispatcher) {

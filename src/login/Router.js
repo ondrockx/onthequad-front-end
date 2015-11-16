@@ -3,12 +3,10 @@
 var Router = require('ampersand-router');
 var Store = require('./Store');
 var actions = require('./Actions');
-var config = require('./config');
 
 module.exports = Router.extend({
     routes: {
-        'browse/(:category)(/)' : 'goToUrl',
-        '(/)' : 'goToUrl'
+        'login(/)' : 'loadLogin'
     },
     initialize(options) {
         options = options || {};
@@ -18,9 +16,6 @@ module.exports = Router.extend({
             this.navigate(store.getModel().toUrlString());
         })
     },
-    goToUrl(category) {
-        var payload = {};
-		payload.category = category || config.primaryCategory;
-        this.context.executeAction(actions.set, payload);
+    loadLogin() {
     }
 });

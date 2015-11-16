@@ -2,9 +2,13 @@
 
 var React = require('react');
 var {Button} = require('react-bootstrap');
-var NavBanner;
+var config = require('../config');
+var Banner;
 
-module.exports = NavBanner = React.createClass({
+module.exports = Banner = React.createClass({
+	goToLogin: function () {
+		window.location = config.loginURL;
+	},
     render: function () {
         return (
             <div className="row navbar-cust1">
@@ -14,7 +18,7 @@ module.exports = NavBanner = React.createClass({
 	            
 	            <div className="col-xs-2 nav-user">
 	            	<div className="pull-right">
-                        <Button className="navbar-btn btn-user">
+                        <Button onClick={this.goToLogin} className="navbar-btn btn-user">
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Button>
 	              	</div>

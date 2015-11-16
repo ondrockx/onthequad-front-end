@@ -3,16 +3,12 @@
 var React = require('react');
 var _ = require('underscore');
 var {Nav, NavItem} = require('react-bootstrap');
-var config = require('../../config');
-var actions = require('../../Actions');
+var config = require('../config');
 var NavCategories;
 
 module.exports = NavCategories = React.createClass({
-    changeCategory: function (id, e) {
-        if (e) {
-            e.preventDefault();
-        }
-        this.props.context.executeAction(actions.set, {category: id});
+    propTypes: {
+        changeCategory: React.PropTypes.func.isRequired
     },
     render: function () {
         return (
@@ -21,7 +17,7 @@ module.exports = NavCategories = React.createClass({
                     {_.map(config.categories, (itemName, id)=>{
                         return (
                             <li key={id} className={this.props.model.category == id ? "active" : ""}>
-                                <a href="#" onClick={_.partial(this.changeCategory, id)}>
+                                <a href="#" onClick={_.partial(this.props.changeCategory, id)}>
                                     {itemName}
                                 </a>
                             </li>
