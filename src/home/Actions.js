@@ -2,6 +2,6 @@
 
 module.exports = {
     set(actionContext, payload) {
-    	actionContext.dispatch('set', payload);
+    	actionContext.dispatch('setCategory', payload);
     }
 };
