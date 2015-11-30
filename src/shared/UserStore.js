@@ -26,9 +26,10 @@ class UserStore extends BaseStore {
                     });
                     $.ajax({
                         type: 'POST',
-                        xhrFields: {
-                            withCredentials: true
-                        },
+                        // Add this when back-end origin fixed
+                        // xhrFields: {
+                        //     withCredentials: true
+                        // },
                         url: config.backendURL + '/api/auth/',
                         data: {id_token}
                     })
