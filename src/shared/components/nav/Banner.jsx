@@ -1,14 +1,10 @@
 'use strict';
 
 var React = require('react');
-var {Button} = require('react-bootstrap');
-var config = require('../config');
+var LoginButton = require('../LoginButton');
 var Banner;
 
 module.exports = Banner = React.createClass({
-	goToLogin: function () {
-		window.location = config.loginURL;
-	},
     render: function () {
         return (
             <div className="row navbar-cust1">
@@ -18,9 +14,7 @@ module.exports = Banner = React.createClass({
 	            
 	            <div className="col-xs-2 nav-user">
 	            	<div className="pull-right">
-                        <Button onClick={this.goToLogin} className="navbar-btn btn-user">
-                            <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        </Button>
+                        <LoginButton {...this.props} />
 	              	</div>
 	            </div>
 	        </div>

@@ -2,7 +2,7 @@
 
 var React = require('react');
 var actions = require('../../Actions');
-var NavCategories = require('../../../shared/nav/NavCategories');
+var NavCategories = require('../../../shared/components/nav/NavCategories');
 var DesktopNavFilters = require('./DesktopNavFilters');
 var DesktopNav;
 

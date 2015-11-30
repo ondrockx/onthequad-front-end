@@ -3,7 +3,7 @@
 var React = require('react');
 var _ = require('underscore');
 var {Nav, NavItem} = require('react-bootstrap');
-var config = require('../config');
+var config = require('../../config');
 var NavCategories;
 
 module.exports = NavCategories = React.createClass({

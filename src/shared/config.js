@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+	backendURL: 'http://onthequad-backend.herokuapp.com',
 	loginURL: '/login',
 	browseURL: '/browse',
 	categories: {

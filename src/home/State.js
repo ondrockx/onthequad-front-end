@@ -10,6 +10,10 @@ module.exports = AmpersandState.extend({
             'type': 'string',
             'default': config.primaryCategory,
             'required': true
+        },
+        postings: {
+            'type': 'array',
+            'required': false
         }
     },
     toUrlString() {

@@ -8,6 +8,15 @@ class Store extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
         this.model = new State();
+        $.ajax({
+            type: 'GET',
+            url: config.backendURL + '/api/postings/',
+            success: (responseBody)=>{
+                if (responseBody.data) {
+                    this.set({postings: responseBody.data});
+                }
+            }
+        })
         this.model.on('change', this.emitChange, this);
     }
 

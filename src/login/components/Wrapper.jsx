@@ -2,10 +2,13 @@
 
 var React = require('react');
 var connectToStores = require('fluxible-addons-react/connectToStores');
+var $ = require('jquery');
 var Store = require('../Store');
+var UserStore = require('../../shared/UserStore');
 var actions = require('../Actions');
-var Banner = require('../../shared/nav/Banner');
-var NavCategories = require('../../shared/nav/NavCategories');
+var Banner = require('../../shared/components/nav/Banner');
+var {Well} = require('react-bootstrap');
+var NavCategories = require('../../shared/components/nav/NavCategories');
 var config = require('../config');
 var Wrapper;
 
@@ -19,20 +22,31 @@ Wrapper = React.createClass({
     render: function () {
         return (
             <div className="wrapper">
-            	<nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	                <div className="container-fluid">
-	            		<Banner {...this.props} />
+                <nav className="navbar navbar-inverse" role="navigation">
+                    <div className="container-fluid">
+                        <Banner {...this.props} />
                         <NavCategories {...this.props} changeCategory={this.changeCategory} />
-	            	</div>
-            	</nav>
+                    </div>
+                </nav>
+                <Well>
+                    <div id="google-signin"></div>
+                </Well>
             </div>
         );
+    },
+    componentDidMount: function () {
+        gapi.signin2.render('google-signin', {
+            'width': 200,
+            'height': 50,
+            'theme': 'dark'
+        });
     }
 });
 
-Wrapper = connectToStores(Wrapper, [Store], function (stores) {
+Wrapper = connectToStores(Wrapper, [Store, UserStore], function (stores) {
     return {
-        model: context.getStore(Store).getModel()
+        model: context.getStore(Store).getModel(),
+        userModel: context.getStore(UserStore).getModel()
     };
 });
 
