@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react');
-var NavBanner = require('./Nav/NavBanner');
-var DesktopNav = require('./Nav/DesktopNav');
-var MobileNav = require('./Nav/MobileNav');
+var Banner = require('../../shared/components/nav/Banner');
+var DesktopNav = require('./nav/DesktopNav');
+var MobileNav = require('./nav/MobileNav');
 var Navigation;
 
 module.exports = Navigation = React.createClass({
@@ -11,7 +11,7 @@ module.exports = Navigation = React.createClass({
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div className="container-fluid">
-                    <NavBanner {...this.props} />
+                    <Banner {...this.props} />
                     <DesktopNav {...this.props} />
                     <MobileNav {...this.props} />
                 </div>
