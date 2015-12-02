@@ -2,46 +2,50 @@
 
 var React = require('react');
 var connectToStores = require('fluxible-addons-react/connectToStores');
-var GlobalStore = require('../../shared/stores/GlobalStore');
-var CategoryStore = require('../stores/CategoryStore');
+var $ = require('jquery');
+var {Well} = require('react-bootstrap');
+var Store = require('../Store');
 var UserStore = require('../../shared/stores/UserStore');
+var GlobalStore = require('../../shared/stores/GlobalStore');
 var GlobalActions = require('../../shared/actions/GlobalActions');
-var CategoryActions = require('../actions/CategoryActions');
 var Navigation = require('../../shared/components/nav/Navigation');
-var LoginMixin = require('../../shared/mixins/LoginMixin');
-var ItemDisplay = require('./ItemDisplay');
+var config = require('../config');
 var Wrapper;
 
 Wrapper = React.createClass({
-    mixins: [LoginMixin],
     componentWillMount: function () {
-        this.props.context.executeAction(GlobalActions.setApp, "home");
+        this.props.context.executeAction(GlobalActions.setApp, "login");
     },
     changeCategory: function (id, e) {
         if (e) {
             e.preventDefault();
         }
-        this.props.context.executeAction(CategoryActions.setCategory, {category: id});
+        window.location = config.browseURL + '/' + id + '/';
     },
     render: function () {
-        var body;
-		if (this.props.categoryModel.page) {
-			body = this.props.categoryModel.page
-		}
         return (
             <div className="wrapper">
                 <Navigation changeCategory={this.changeCategory} {...this.props}>
-                    <ItemDisplay {...this.props} />
+                    <Well style={{marginTop: "158px"}}>
+                        <div id="google-signin"></div>
+                    </Well>
                 </Navigation>
             </div>
         );
+    },
+    componentDidMount: function () {
+        gapi.signin2.render('google-signin', {
+            'width': 200,
+            'height': 50,
+            'theme': 'dark'
+        });
     }
 });
 
-Wrapper = connectToStores(Wrapper, [CategoryStore, UserStore], function (stores) {
+Wrapper = connectToStores(Wrapper, [Store, UserStore, GlobalStore], function (stores) {
     return {
         globalModel: context.getStore(GlobalStore).getModel(),
-        categoryModel: context.getStore(CategoryStore).getModel(),
+        model: context.getStore(Store).getModel(),
         userModel: context.getStore(UserStore).getModel()
     };
 });

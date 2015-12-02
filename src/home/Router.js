@@ -1,8 +1,8 @@
 'use strict';
 
 var Router = require('ampersand-router');
-var Store = require('./Store');
-var actions = require('./Actions');
+var CategoryStore = require('./stores/CategoryStore');
+var actions = require('./actions/CategoryActions');
 var config = require('./config');
 
 module.exports = Router.extend({
@@ -13,7 +13,7 @@ module.exports = Router.extend({
     initialize(options) {
         options = options || {};
         this.context = options.context;
-        var store = this.context.getStore(Store);
+        var store = this.context.getStore(CategoryStore);
         this.listenTo(store, 'change', () => {
             this.navigate(store.getModel().toUrlString());
         })
@@ -21,6 +21,6 @@ module.exports = Router.extend({
     goToUrl(category) {
         var payload = {};
 		payload.category = category || config.primaryCategory;
-        this.context.executeAction(actions.navigate, payload);
+        this.context.executeAction(actions.setCategory, payload);
     }
 });

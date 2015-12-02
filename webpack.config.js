@@ -7,7 +7,8 @@ var babelConfig = {
 module.exports = {
     context: __dirname + '/src/',
     entry: {
-        home: './home/entry.js'
+        home: './home/entry.js',
+        login: './login/entry.js'
     },
     output: {
         path: __dirname + '/public/javascripts/',
