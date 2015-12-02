@@ -20,7 +20,7 @@ Wrapper = React.createClass({
         if (e) {
             e.preventDefault();
         }
-        window.location = config.browseURL + '/' + id;
+        window.location = config.browseURL + '/' + id + '/';
     },
     render: function () {
         return (
