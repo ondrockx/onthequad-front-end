@@ -1,18 +1,18 @@
 'use strict';
 
 var React = require('react');
+var _ = require('underscore');
 var {Button} = require('react-bootstrap');
 var config = require('../config');
-var userActions = require('../UserActions');
-var actions = require('../GlobalActions');
+var UserActions = require('../actions/UserActions');
 var LoginButton;
 
 module.exports = LoginButton = React.createClass({
     goToLogin: function () {
-        this.props.context.executeAction(userActions.signIn);
+        this.props.context.executeAction(UserActions.signIn);
     },
     goToLogout: function () {
-        this.props.context.executeAction(userActions.signOut);
+        this.props.context.executeAction(UserActions.signOut);
     },
     render: function () {
         if(this.props.userModel.userID) {

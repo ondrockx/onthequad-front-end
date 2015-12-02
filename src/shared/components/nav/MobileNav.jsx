@@ -6,6 +6,8 @@ var MobileNav;
 
 module.exports = MobileNav = React.createClass({
     render: function () {
+    	var category = this.props.categoryModel ?
+    		config.categories[this.props.categoryModel.category] : "";
         return (
 	        <div className="row hidden-lg">
 	        	<div className="col-xs-2 navbar-content">
@@ -14,7 +16,7 @@ module.exports = MobileNav = React.createClass({
 					</button>
 	        	</div>
 	            <div className="col-xs-8 navbar-content">
-	                <div className="category-title navbar-brand">{config.categories[this.props.model.category]}</div>
+	                <div className="category-title navbar-brand">{category}</div>
 	            </div>
 	        </div>
         );

@@ -3,14 +3,19 @@
 var React = require('react');
 var connectToStores = require('fluxible-addons-react/connectToStores');
 var $ = require('jquery');
-var Store = require('../Store');
-var UserStore = require('../../shared/UserStore');
 var {Well} = require('react-bootstrap');
+var Store = require('../Store');
+var UserStore = require('../../shared/stores/UserStore');
+var GlobalStore = require('../../shared/stores/GlobalStore');
+var GlobalActions = require('../../shared/actions/GlobalActions');
 var Navigation = require('../../shared/components/nav/Navigation');
 var config = require('../config');
 var Wrapper;
 
 Wrapper = React.createClass({
+    componentWillMount: function () {
+        this.props.context.executeAction(GlobalActions.setApp, "login");
+    },
     changeCategory: function (id, e) {
         if (e) {
             e.preventDefault();
@@ -20,8 +25,8 @@ Wrapper = React.createClass({
     render: function () {
         return (
             <div className="wrapper">
-                <Navigation {...this.props}>
-                    <Well>
+                <Navigation changeCategory={this.changeCategory} {...this.props}>
+                    <Well style={{marginTop: "158px"}}>
                         <div id="google-signin"></div>
                     </Well>
                 </Navigation>
@@ -37,8 +42,9 @@ Wrapper = React.createClass({
     }
 });
 
-Wrapper = connectToStores(Wrapper, [Store, UserStore], function (stores) {
+Wrapper = connectToStores(Wrapper, [Store, UserStore, GlobalStore], function (stores) {
     return {
+        globalModel: context.getStore(GlobalStore).getModel(),
         model: context.getStore(Store).getModel(),
         userModel: context.getStore(UserStore).getModel()
     };

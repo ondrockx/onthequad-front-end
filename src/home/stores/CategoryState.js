@@ -1,7 +1,7 @@
 'use strict';
 
 var AmpersandState = require('ampersand-state');
-var config = require('./config');
+var config = require('../config');
 
 module.exports = AmpersandState.extend({
     extraProperties: 'reject',

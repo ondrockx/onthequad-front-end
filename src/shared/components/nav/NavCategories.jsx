@@ -11,12 +11,13 @@ module.exports = NavCategories = React.createClass({
         changeCategory: React.PropTypes.func.isRequired
     },
     render: function () {
+        var category = this.props.categoryModel.category ? this.props.categoryModel.category : "";
         return (
             <div className="container">
                 <ul className="nav navbar-nav">
                     {_.map(config.categories, (itemName, id)=>{
                         return (
-                            <li key={id} className={this.props.model.category == id ? "active" : ""}>
+                            <li key={id} className={category == id ? "active" : ""}>
                                 <a href="#" onClick={_.partial(this.props.changeCategory, id)}>
                                     {itemName}
                                 </a>
