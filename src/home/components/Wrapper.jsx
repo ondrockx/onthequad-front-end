@@ -5,10 +5,8 @@ var connectToStores = require('fluxible-addons-react/connectToStores');
 var Store = require('../Store');
 var UserStore = require('../../shared/UserStore');
 var config = require ('../config');
-var actions = require('../Actions');
-var Navigation = require('./Navigation');
+var Navigation = require('../../shared/components/nav/Navigation');
 var ItemDisplay = require('./ItemDisplay');
-var MobileBottomNav = require('./nav/MobileBottomNav');
 var Wrapper;
 
 Wrapper = React.createClass({
@@ -19,9 +17,9 @@ Wrapper = React.createClass({
 		}
         return (
             <div className="wrapper">
-                <Navigation {...this.props} />
-                <ItemDisplay {...this.props} />
-                <MobileBottomNav {...this.props} />
+                <Navigation {...this.props}>
+                    <ItemDisplay {...this.props} />
+                </Navigation>
             </div>
         );
     }

@@ -9,35 +9,17 @@ class UserStore extends BaseStore {
         super(dispatcher);
         this.model = new UserState();
         gapi.load('auth2', ()=>{
-            var gAuth = gapi.auth2.init({
+            this.gAuth = gapi.auth2.init({
                 client_id: '441857043088-ujkkfjr5f66e1j4qq02iueink9d5fcj8.apps.googleusercontent.com',
                 scope: 'profile email'
             });
-            gAuth.isSignedIn.listen((bool)=>{
+            this.gAuth.isSignedIn.listen((bool)=>{
                 if (bool) {
-                    var gUser = gAuth.currentUser.get();
-                    var profile = gUser.getBasicProfile();
-                    var id_token = gUser.getAuthResponse().id_token;
-                    this.set({
-                        userID: profile.getId(),
-                        name: profile.getName(),
-                        email: profile.getEmail(),
-                        id_token
-                    });
-                    $.ajax({
-                        type: 'POST',
-                        // Add this when back-end origin fixed
-                        // xhrFields: {
-                        //     withCredentials: true
-                        // },
-                        url: config.backendURL + '/api/auth/',
-                        data: {id_token}
-                    })
+                    this.signIn();
                 } else {
                     this.signOut();
                 }
             });
-            this.set({gAuth: gAuth});
         });
         this.model.on('change', this.emitChange, this);
     }
@@ -46,8 +28,46 @@ class UserStore extends BaseStore {
         return this.model;
     }
 
+    gSignIn() {
+        this.gAuth.signIn();
+    }
+
+    gSignOut() {
+        this.gAuth.signOut();
+    }
+
+    signIn() {
+        var gUser = this.gAuth.currentUser.get();
+        var profile = gUser.getBasicProfile();
+        var id_token = gUser.getAuthResponse().id_token;
+        $.ajax({
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            url: config.backendURL + '/api/auth/',
+            data: {id_token},
+            success: ()=>{
+                this.set({
+                    userID: profile.getId(),
+                    name: profile.getName(),
+                    email: profile.getEmail(),
+                });
+            }
+        });
+    }
+
     signOut() {
-        this.model.unset(['userID','name','email']);
+        $.ajax({
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            url: config.backendURL + '/api/logout/',
+            success: ()=>{
+                this.model.unset(['userID','name','email']);
+            }
+        });
     }
     
 	set(payload) {
@@ -57,8 +77,8 @@ class UserStore extends BaseStore {
 
 UserStore.storeName = 'UserStore';
 UserStore.handlers = {
-    'signIn' : 'set',
-    'signOut' : 'signOut'
+    'signIn' : 'gSignIn',
+    'signOut' : 'gSignOut'
 };
 
 module.exports = UserStore;

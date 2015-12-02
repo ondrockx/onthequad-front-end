@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react');
-var actions = require('../../Actions');
-var NavCategories = require('../../../shared/components/nav/NavCategories');
+var actions = require('../../GlobalActions');
+var NavCategories = require('./NavCategories');
 var DesktopNavFilters = require('./DesktopNavFilters');
 var DesktopNav;
 
@@ -11,7 +11,7 @@ module.exports = DesktopNav = React.createClass({
         if (e) {
             e.preventDefault();
         }
-        this.props.context.executeAction(actions.set, {category: id});
+        this.props.context.executeAction(actions.setCategory, {category: id});
     },
     render: function () {
         return (

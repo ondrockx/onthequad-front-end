@@ -2,7 +2,7 @@
 
 var Router = require('ampersand-router');
 var Store = require('./Store');
-var actions = require('./Actions');
+var actions = require('../shared/GlobalActions');
 var config = require('./config');
 
 module.exports = Router.extend({
@@ -21,6 +21,6 @@ module.exports = Router.extend({
     goToUrl(category) {
         var payload = {};
 		payload.category = category || config.primaryCategory;
-        this.context.executeAction(actions.set, payload);
+        this.context.executeAction(actions.setCategory, payload);
     }
 });
