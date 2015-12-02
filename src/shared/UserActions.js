@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-    signIn(actionContext) {
-    	actionContext.dispatch('signIn');
+    signIn(actionContext, callback) {
+    	actionContext.dispatch('signIn', callback);
     },
-    signOut(actionContext) {
-    	actionContext.dispatch('signOut');
+    signOut(actionContext, callback) {
+    	actionContext.dispatch('signOut', callback);
     }
 };

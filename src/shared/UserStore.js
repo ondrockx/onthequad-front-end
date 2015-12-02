@@ -3,41 +3,50 @@
 var BaseStore = require('fluxible/addons/BaseStore');
 var UserState = require('./UserState');
 var config = require('./config');
+var _ = require('underscore');
 
 class UserStore extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
         this.model = new UserState();
         gapi.load('auth2', ()=>{
-            this.gAuth = gapi.auth2.init({
+            var gAuth = gapi.auth2.init({
                 client_id: '441857043088-ujkkfjr5f66e1j4qq02iueink9d5fcj8.apps.googleusercontent.com',
                 scope: 'profile email'
             });
-            this.gAuth.isSignedIn.listen((bool)=>{
-                if (bool) {
+            gAuth.then(()=>{
+                if (gAuth.currentUser.get().isSignedIn()) {
                     this.signIn();
-                } else {
-                    this.signOut();
                 }
+            }, (reason)=>{
+                console.error(reason);
             });
         });
         this.model.on('change', this.emitChange, this);
+    }
+
+    isSignedIn() {
+        return this.model.userID;
     }
 
     getModel() {
         return this.model;
     }
 
-    gSignIn() {
-        this.gAuth.signIn();
+    gSignIn(callback) {
+        gapi.auth2.getAuthInstance().signIn().then(()=>{
+            this.signIn(callback);
+        });
     }
 
-    gSignOut() {
-        this.gAuth.signOut();
+    gSignOut(callback) {
+        gapi.auth2.getAuthInstance().signOut().then(()=>{
+            this.signOut(callback);
+        });
     }
 
-    signIn() {
-        var gUser = this.gAuth.currentUser.get();
+    signIn(callback) {
+        var gUser = gapi.auth2.getAuthInstance().currentUser.get();
         var profile = gUser.getBasicProfile();
         var id_token = gUser.getAuthResponse().id_token;
         $.ajax({
@@ -53,11 +62,14 @@ class UserStore extends BaseStore {
                     name: profile.getName(),
                     email: profile.getEmail(),
                 });
+                if (callback) {
+                    callback();
+                }
             }
         });
     }
 
-    signOut() {
+    signOut(callback) {
         $.ajax({
             type: 'GET',
             xhrFields: {
@@ -66,6 +78,9 @@ class UserStore extends BaseStore {
             url: config.backendURL + '/api/logout/',
             success: ()=>{
                 this.model.unset(['userID','name','email']);
+                if (callback) {
+                    callback();
+                }
             }
         });
     }

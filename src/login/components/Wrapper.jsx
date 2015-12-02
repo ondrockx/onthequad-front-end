@@ -20,8 +20,8 @@ Wrapper = React.createClass({
     render: function () {
         return (
             <div className="wrapper">
-                <Navigation {...this.props}>
-                    <Well>
+                <Navigation changeCategory={this.changeCategory} {...this.props}>
+                    <Well style={{marginTop: "158px"}}>
                         <div id="google-signin"></div>
                     </Well>
                 </Navigation>

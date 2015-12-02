@@ -26,27 +26,30 @@ class Store extends BaseStore {
     }
 
     refreshPostings() {
-        this.dispatcher.waitFor([UserStore], ()=>{
-            var catNum = config.categoryToNum(this.model.category);
-            var category = catNum > 0 ? "?category=" + catNum : "";
-            $.ajax({
-                type: 'GET',
-                xhrFields: {
-                    withCredentials: true
-                },
-                url: config.backendURL + '/api/postings/' + category,
-                success: (responseBody)=>{
-                    if (responseBody.data) {
-                        this.set({postings: responseBody.data});
+        var userStore = this.dispatcher.getStore(UserStore);
+        if (userStore.isSignedIn()) {
+            this.dispatcher.waitFor([UserStore], ()=>{
+                var catNum = config.categoryToNum(this.model.category);
+                var category = catNum > 0 ? "?category=" + catNum : "";
+                $.ajax({
+                    type: 'GET',
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    url: config.backendURL + '/api/postings/' + category,
+                    success: (responseBody)=>{
+                        if (responseBody.data) {
+                            this.set({postings: responseBody.data});
+                        }
+                    },
+                    error: (XMLHttpRequest, textStatus, errorThrown)=>{
+                        if (XMLHttpRequest.status === 403) {
+                            //Error action
+                        }
                     }
-                },
-                error: (XMLHttpRequest, textStatus, errorThrown)=>{
-                    if (XMLHttpRequest.status === 403) {
-                        //Error action
-                    }
-                }
+                });
             })
-        });
+        }
     }
 }
 
@@ -54,7 +57,7 @@ Store.storeName = 'Store';
 Store.handlers = {
     'set' : 'set',
     'setCategory' : 'setCategory',
-    'refreshPostings' : 'refreshPostings'
+    'userChanged' : 'refreshPostings'
 };
 
 module.exports = Store;

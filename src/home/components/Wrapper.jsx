@@ -4,12 +4,19 @@ var React = require('react');
 var connectToStores = require('fluxible-addons-react/connectToStores');
 var Store = require('../Store');
 var UserStore = require('../../shared/UserStore');
+var actions = require('../../shared/GlobalActions');
 var config = require ('../config');
 var Navigation = require('../../shared/components/nav/Navigation');
 var ItemDisplay = require('./ItemDisplay');
 var Wrapper;
 
 Wrapper = React.createClass({
+    changeCategory: function (id, e) {
+        if (e) {
+            e.preventDefault();
+        }
+        this.props.context.executeAction(actions.setCategory, {category: id});
+    },
     render: function () {
         var body;
 		if (this.props.model.page) {
@@ -17,7 +24,7 @@ Wrapper = React.createClass({
 		}
         return (
             <div className="wrapper">
-                <Navigation {...this.props}>
+                <Navigation changeCategory={this.changeCategory} {...this.props}>
                     <ItemDisplay {...this.props} />
                 </Navigation>
             </div>

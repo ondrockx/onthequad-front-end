@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var _ = require('underscore');
 var {Button} = require('react-bootstrap');
 var config = require('../config');
 var userActions = require('../UserActions');
@@ -9,10 +10,10 @@ var LoginButton;
 
 module.exports = LoginButton = React.createClass({
     goToLogin: function () {
-        this.props.context.executeAction(userActions.signIn);
+        this.props.context.executeAction(userActions.signIn, _.partial(this.props.context.executeAction,actions.userChanged));
     },
     goToLogout: function () {
-        this.props.context.executeAction(userActions.signOut);
+        this.props.context.executeAction(userActions.signOut, _.partial(this.props.context.executeAction,actions.userChanged));
     },
     render: function () {
         if(this.props.userModel.userID) {
