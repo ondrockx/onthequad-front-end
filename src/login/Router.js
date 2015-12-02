@@ -2,7 +2,6 @@
 
 var Router = require('ampersand-router');
 var Store = require('./Store');
-var actions = require('./Actions');
 
 module.exports = Router.extend({
     routes: {

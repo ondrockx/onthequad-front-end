@@ -5,10 +5,8 @@ var connectToStores = require('fluxible-addons-react/connectToStores');
 var $ = require('jquery');
 var Store = require('../Store');
 var UserStore = require('../../shared/UserStore');
-var actions = require('../Actions');
-var Banner = require('../../shared/components/nav/Banner');
 var {Well} = require('react-bootstrap');
-var NavCategories = require('../../shared/components/nav/NavCategories');
+var Navigation = require('../../shared/components/nav/Navigation');
 var config = require('../config');
 var Wrapper;
 
@@ -22,15 +20,11 @@ Wrapper = React.createClass({
     render: function () {
         return (
             <div className="wrapper">
-                <nav className="navbar navbar-inverse" role="navigation">
-                    <div className="container-fluid">
-                        <Banner {...this.props} />
-                        <NavCategories {...this.props} changeCategory={this.changeCategory} />
-                    </div>
-                </nav>
-                <Well>
-                    <div id="google-signin"></div>
-                </Well>
+                <Navigation {...this.props}>
+                    <Well>
+                        <div id="google-signin"></div>
+                    </Well>
+                </Navigation>
             </div>
         );
     },

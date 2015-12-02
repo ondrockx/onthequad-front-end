@@ -9,7 +9,7 @@ var webpackDevMiddleware;
 var webpack;
 
 var home = require('./routes/index');
-var login = require('./routes/login')
+var login = require('./routes/login');
 var users = require('./routes/users');
 
 var app = express();
