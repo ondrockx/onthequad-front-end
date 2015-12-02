@@ -11,7 +11,7 @@ module.exports = NavCategories = React.createClass({
         changeCategory: React.PropTypes.func.isRequired
     },
     render: function () {
-        var category = this.props.categoryModel.category ? this.props.categoryModel.category : "";
+        var category = this.props.categoryModel ? this.props.categoryModel.category : "";
         return (
             <div className="container">
                 <ul className="nav navbar-nav">
