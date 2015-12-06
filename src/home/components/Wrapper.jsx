@@ -24,10 +24,6 @@ Wrapper = React.createClass({
         this.props.context.executeAction(CategoryActions.setCategory, {category: id});
     },
     render: function () {
-        var body;
-		if (this.props.categoryModel.page) {
-			body = this.props.categoryModel.page
-		}
         return (
             <div className="wrapper">
                 <Navigation changeCategory={this.changeCategory} {...this.props}>

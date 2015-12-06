@@ -19,33 +19,6 @@ class Store extends BaseStore {
 	set(payload) {
         this.model.set(payload);
     }
-
-    refreshPostings() {
-        this.dispatcher.waitFor([UserStore], ()=>{
-            var userStore = this.dispatcher.getStore(UserStore);
-            if (userStore.isSignedIn()) {
-                var catNum = config.categoryToNum(this.model.category);
-                var category = catNum > 0 ? "?category=" + catNum : "";
-                $.ajax({
-                    type: 'GET',
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    url: config.backendURL + '/api/postings/' + category,
-                    success: (responseBody)=>{
-                        if (responseBody.data) {
-                            this.set({postings: responseBody.data});
-                        }
-                    },
-                    error: (XMLHttpRequest, textStatus, errorThrown)=>{
-                        if (XMLHttpRequest.status === 403) {
-                            //Error action
-                        }
-                    }
-                });
-            }
-        });
-    }
 }
 
 Store.storeName = 'Store';
