@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	background-color: rgba(211, 211, 211, 0.46)
+}
+
 /*Navigation Bar Components*/
 .mybrand {
 	font-family: modak;
@@ -39,19 +43,27 @@
 }
 
 .nav-usertext {
-	margin-top: 5px;
+	margin-top: 8px;
 	margin-right: 5px;
 	margin-left: 5px;
 	margin-bottom: 5px;
 	font-size: 12px;
 	color: white
-!important;
+	!important;
 }
 
 
 .navbar-content {
 	color: white;
 	text-align: center;
+}
+
+.navbar-left-button {
+	margin-left: 10px;
+}
+
+.navbar-right-button {
+	margin-right: 10px;
 }
 
 .dropdownMenu1 {
@@ -83,7 +95,3 @@
 .btn-createpost {
 	margin-left: 15px;
 }
-
-
-
-body {background-color:#973939;}

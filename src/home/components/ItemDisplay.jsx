@@ -11,7 +11,7 @@ module.exports = ItemDisplay = React.createClass({
         if (this.props.userModel.userID) {
             data = _.map(this.props.categoryModel.postings, function (item) {
                 return (
-                    <Col xs={6} md={4} key={item.id}>
+                    <Col xs={6} md={3} key={item.id}>
                         <Thumbnail src="/images/thumbnaildiv.png" alt="242x200">
                             <h3>{item.title}</h3>
                             <p>{item.description}</p>
