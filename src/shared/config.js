@@ -11,9 +11,10 @@ module.exports = {
 		lostandfound: "Lost and Found",
 		furniture: "Furniture",
 		electronics: "Electronics",
+        clothing: "Clothing",
 		vehicles: "Vehicles",
 		supplies: "School Supplies",
-		entertainment: "Entertainment",
+		media: "Movies and Games",
 		other: "Other"
 	},
 	primaryCategory: 'all',
@@ -31,11 +32,13 @@ module.exports = {
                 return 4;
             case 'electronics':
                 return 5;
+            case 'clothing':
+                return 10;
             case 'vehicles':
                 return 6;
             case 'supplies':
                 return 7;
-            case 'entertainment':
+            case 'media':
                 return 8;
             case 'other':
                 return 9;

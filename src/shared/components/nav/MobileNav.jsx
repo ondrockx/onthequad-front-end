@@ -2,6 +2,7 @@
 
 var React = require('react');
 var config = require('../../config');
+var {Row, Col} = require('react-bootstrap');
 var MobileNav;
 
 module.exports = MobileNav = React.createClass({
@@ -9,16 +10,19 @@ module.exports = MobileNav = React.createClass({
     	var category = this.props.categoryModel ?
     		config.categories[this.props.categoryModel.category] : "";
         return (
-	        <div className="row hidden-lg">
-	        	<div className="col-xs-2 navbar-content">
-	    			<button type="button" className="btn btn-default navbar-btn">
-						<span className="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-					</button>
-	        	</div>
-	            <div className="col-xs-8 navbar-content">
-	                <div className="category-title navbar-brand">{category}</div>
-	            </div>
-	        </div>
+	        <Row className="hidden-lg">
+	            <Col xs={4} className="navbar-content">  
+                    <img className="center-block" src="/images/mascot.png" height="50" />
+                </Col>
+                <Col xs={4}>
+                    <div className="text-center">
+                        <p className="category-title">{category}</p>
+                    </div>
+                </Col>
+                <Col xs={4}>
+                    <img className="center-block" src="/images/switch.png" height="50" />
+                </Col>
+	        </Row>
         );
     }
 });
