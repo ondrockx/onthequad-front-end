@@ -8,6 +8,7 @@ module.exports = {
     context: __dirname + '/src/',
     entry: {
         home: './home/entry.js',
+        posting: './posting/entry.js',
         login: './login/entry.js'
     },
     output: {
