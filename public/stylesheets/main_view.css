@@ -18,17 +18,29 @@ body {
 .mybrand-sm {
 	font-family: modak;
 	color: black !important;
-	font-size: 30px;
+	font-size: 28px;
 	/* [disabled]-webkit-text-stroke: 1px grey; */
-	padding-top: 10px !important;
+	padding-top: 20px !important;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
 }
 
 .category-title {
-	font-family: modak;
-	color: black !important;
-	font-size: 28px;
-	-webkit-text-stroke: 1px #FFFFFF;
+	font-family: permanent marker;
+	color: #E17B42;
+	font-size: 22px;
+	/*-webkit-text-stroke: 1px #FFFFFF;*/
 	margin: auto;
+	text-align: center;
+	float: none;
+}
+
+.category-title-sm {
+	font-family: permanent marker;
+	color: #E17B42;
+	font-size: 20px;
+	margin:auto;
 	text-align: center;
 	float: none;
 }
@@ -76,7 +88,7 @@ body {
 }
 
 .navbar-cust1 {
-	background-color: #245580;
+	background-color: #48C9CB;
 }
 
 
@@ -98,4 +110,9 @@ body {
 
 .btn-createpost {
 	margin-left: 15px;
+}
+
+.nopads {
+	padding-left: 0px;
+	padding-right: 0px;
 }

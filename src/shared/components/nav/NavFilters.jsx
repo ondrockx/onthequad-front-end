@@ -51,15 +51,15 @@ module.exports = NavFilters = React.createClass({
         } else {
             navbar = (
                 <Row>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={3} className="navbar-content">
                         <Button className="navbar-btn pull-left navbar-left-button">
                             <span className="glyphicon glyphicon-search"></span>
                         </Button>       
                     </Col>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={6} className="navbar-content nopads">
                         {filters}
                     </Col>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={3} className="navbar-content">
                         <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button">
                             <span className="glyphicon glyphicon-plus" />
                         </Button>
