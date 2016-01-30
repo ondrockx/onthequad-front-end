@@ -13,19 +13,16 @@ module.exports = ItemDisplay = React.createClass({
                 return (
                     <Col xs={6} md={3} key={item.id}>
                         <Thumbnail src="/images/thumbnaildiv.png" alt="242x200">
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
                             <p>
-                                <Button bsStyle="primary">${item.cost.toFixed(2)}</Button>
+                                ${item.cost.toFixed(2)}
                             </p>
-                            <small>Posted: {item.timestamp}</small>
                         </Thumbnail>
                     </Col>
                 );
             });
         }
         return (
-            <div style={{marginTop: "158px"}}>
+            <div>
                 <Grid>
                     <Row>
                         {data}

@@ -17,18 +17,35 @@ module.exports = LoginButton = React.createClass({
     render: function () {
         if(this.props.userModel.name) {
             return (
-                <span>
-                    <p className="navbar-text nav-usertext hidden-xs">Welcome back<br />{this.props.userModel.name}</p>
-                    <Button onClick={this.goToLogout} className="navbar-btn btn-user">
-                        <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    </Button>
-                </span>
+                <div>
+                    <div className="hidden-xs col-sm-2 col-md-2 col-lg-2 nopads">
+                        <div className="pull-right nopads">
+                            <p className="navbar-text nav-usertext hidden-xs">Welcome back<br />{this.props.userModel.name}</p>
+                        </div>
+                    </div>
+                    <div className="hidden-xs col-sm-1 col-md-1 col-lg-1 nopads">
+                        <div className="pull-left">
+                            <Button onClick={this.goToLogout} className="navbar-btn btn-user">
+                                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="col-xs-3 hidden-sm hidden-md hidden-lg">
+                        <div className="pull-right">
+                            <Button onClick={this.goToLogout} className="navbar-btn btn-user">
+                                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
             );
         } else {
             return (
+                <div className="col-xs-3">
                 <Button onClick={this.goToLogin} className="navbar-btn btn-user pull-right">
                     <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                 </Button>
+                </div>
             );
         }
     }
