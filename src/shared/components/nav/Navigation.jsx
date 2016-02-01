@@ -18,7 +18,9 @@ module.exports = Navigation = React.createClass({
                         <MobileNav {...this.props} />
                     </div>
                 </nav>
-                {this.props.children}
+                <div style={{marginTop: "158px"}}>
+                    {this.props.children}
+                </div>
                 <MobileBottomNav {...this.props} />
             </div>
         );

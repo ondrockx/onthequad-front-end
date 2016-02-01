@@ -7,27 +7,33 @@ var CategoryActions = module.exports = {
     makePosting(actionContext, payload) {
     	var userStore = actionContext.getStore(UserStore);
         if (userStore.isSignedIn()) {
-            $.ajax({
-                type: 'POST',
-                xhrFields: {
-                    withCredentials: true
-                },
-                url: config.backendURL + '/api/postings/',
-                data: {
-                    title: payload.title,
-                    cost: parseFloat(payload.cost),
-                    description: payload.description,
-                    category: parseInt(payload.category)
-                },
-                success: (responseBody)=>{
-                	console.log("COMPLETE");
-                },
-                error: (XMLHttpRequest, textStatus, errorThrown)=>{
-                    if (XMLHttpRequest.status === 403) {
-                        //Error action
-                    }
-                }
-            });
+            // $.ajax({
+            //     type: 'POST',
+            //     xhrFields: {
+            //         withCredentials: true
+            //     },
+            //     url: config.backendURL + '/api/postings/',
+            //     data: {
+            //         title: payload.title,
+            //         cost: payload.cost,
+            //         description: payload.description,
+            //         category: payload.category
+            //     },
+            //     success: (responseBody)=>{
+            //      console.log("COMPLETE");
+            //     },
+            //     error: (XMLHttpRequest, textStatus, errorThrown)=>{
+            //         if (XMLHttpRequest.status === 403) {
+            //             //Error action
+            //         }
+            //     }
+            // });
+            console.log("Test Posted:");
+            console.log({
+                title: payload.title,
+                cost: payload.cost,
+                description: payload.description,
+                category: payload.category});
         }
     }
 };
