@@ -3,10 +3,12 @@
 var React = require('react');
 var _ = require('underscore');
 var PostingActions = require('../actions/PostingActions');
+var PostingStore = require('../stores/PostingStore');
 var {Input, ButtonInput} = require('react-bootstrap');
+var connectToStores = require('fluxible-addons-react/connectToStores');
 var config = require('../config');
 
-module.exports = React.createClass({
+var PostingBox = React.createClass({
     submit: function (e) {
         if (e) {
             e.preventDefault();
@@ -33,10 +35,16 @@ module.exports = React.createClass({
                                 return <option value={id} key={id}>{itemName}</option>;
                             })}
                         </Input>
-                        <ButtonInput type="submit" value="Submit" onClick={this.submit} />
+                        <ButtonInput disabled={this.props.postingModel.isLoading} type="submit" value="Submit" onClick={this.submit} />
                     </form>
                 </div>
             </div>
         );
     }
+});
+
+module.exports = PostingBox = connectToStores(PostingBox, [PostingStore], function (stores) {
+    return {
+        postingModel: context.getStore(PostingStore).getModel()
+    };
 });

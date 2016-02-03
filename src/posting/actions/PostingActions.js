@@ -1,10 +1,12 @@
 'use strict';
 
+var _ = require('underscore');
 var UserStore = require('../../shared/stores/UserStore');
 var config = require('../config');
 
 var CategoryActions = module.exports = {
     makePosting(actionContext, payload) {
+        actionContext.dispatch('startPosting');
     	var userStore = actionContext.getStore(UserStore);
         if (userStore.isSignedIn()) {
             // $.ajax({
@@ -28,12 +30,15 @@ var CategoryActions = module.exports = {
             //         }
             //     }
             // });
-            console.log("Test Posted:");
-            console.log({
-                title: payload.title,
-                cost: payload.cost,
-                description: payload.description,
-                category: payload.category});
+            _.delay(function () {
+                console.log("Test Posted:");
+                console.log({
+                    title: payload.title,
+                    cost: payload.cost,
+                    description: payload.description,
+                    category: payload.category});
+                    actionContext.dispatch('endPosting');
+            }, 5000)
         }
     }
 };

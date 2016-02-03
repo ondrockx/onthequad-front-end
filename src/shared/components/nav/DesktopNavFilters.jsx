@@ -35,5 +35,3 @@ module.exports = DesktopNavFilters = React.createClass({
         );
     }
 });
-
-//
