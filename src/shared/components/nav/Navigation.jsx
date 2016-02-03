@@ -12,7 +12,7 @@ module.exports = Navigation = React.createClass({
         return (
             <div>
                 <div className="hidden-lg">
-                    <nav className="navmenu navmenu-default navmenu-fixed-left offcanvas-sm in canvas-slid" role="navigation">
+                    <nav className="navmenu navmenu-default navmenu-fixed-left offcanvas-sm canvas-slid" role="navigation">
                         <ul className="nav navmenu-nav">
                             <li className="active"><a href="#">Home</a></li>
                             <li><a href="#">Category 1</a></li>
