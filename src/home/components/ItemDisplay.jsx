@@ -25,13 +25,11 @@ module.exports = ItemDisplay = React.createClass({
             });
         }
         return (
-            <div style={{marginTop: "158px"}}>
-                <Grid>
-                    <Row>
-                        {data}
-                    </Row>
-                </Grid>
-            </div>
+            <Grid>
+                <Row>
+                    {data}
+                </Row>
+            </Grid>
         );
     }
 });

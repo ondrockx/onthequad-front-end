@@ -1,22 +1,24 @@
 'use strict';
 
-module.exports = {
+var _ = require('underscore');
+
+var config = {
 	backendURL: 'http://onthequad-backend.herokuapp.com',
 	loginURL: '/login',
 	browseURL: '/browse',
-	categories: {
-		all: "All Posts",
-		textbooks: "Textbooks",
-		tickets: "UConn Tickets",
-		lostandfound: "Lost and Found",
-		furniture: "Furniture",
-		electronics: "Electronics",
+    postingURL: '/posting',
+    submitCategories: {
+        textbooks: "Textbooks",
+        tickets: "UConn Tickets",
+        lostandfound: "Lost and Found",
+        furniture: "Furniture",
+        electronics: "Electronics",
         clothing: "Clothing",
-		vehicles: "Vehicles",
-		supplies: "School Supplies",
-		media: "Movies and Games",
-		other: "Other"
-	},
+        vehicles: "Vehicles",
+        supplies: "School Supplies",
+        media: "Movies and Games",
+        other: "Other"
+    },
 	primaryCategory: 'all',
     categoryToNum: function (category) {
         switch (category) {
@@ -45,3 +47,7 @@ module.exports = {
         }
     }
 };
+
+module.exports = _.extend(config, {
+    categories: _.extend({all: "All Posts"}, config.submitCategories),
+})
