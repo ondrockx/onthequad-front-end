@@ -7,8 +7,11 @@ var config = require('../../config');
 var NavCategories;
 
 module.exports = NavCategories = React.createClass({
-    propTypes: {
-        changeCategory: React.PropTypes.func.isRequired
+    changeCategory: function (id, e) {
+        if (e) {
+            e.preventDefault();
+        }
+        window.location = config.browseURL + '/' + id + '/';
     },
     render: function () {
         var category = this.props.categoryModel ? this.props.categoryModel.category : "";
@@ -18,7 +21,7 @@ module.exports = NavCategories = React.createClass({
                     {_.map(config.categories, (itemName, id)=>{
                         return (
                             <li key={id} className={category === id ? "active" : ""}>
-                                <a href="#" onClick={_.partial(this.props.changeCategory, id)}>
+                                <a href="#" onClick={_.partial(this.props.changeCategory || this.changeCategory, id)}>
                                     {itemName}
                                 </a>
                             </li>

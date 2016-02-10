@@ -8,7 +8,8 @@ module.exports = {
     context: __dirname + '/src/',
     entry: {
         home: './home/entry.js',
-        posting: './posting/entry.js'
+        posting: './posting/entry.js',
+        account: './account/entry.js'
     },
     output: {
         path: __dirname + '/public/javascripts/',
