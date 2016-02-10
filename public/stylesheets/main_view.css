@@ -144,3 +144,21 @@ body {
 .hamburger-menu {
 
 }
+
+.desktop-user {
+	padding-left: 12px;
+	padding-right: 12px;
+	color:black;
+	background-image: none !important;
+	text-shadow: none !important;
+	margin-right: 0px;
+	background-color: transparent !important;
+	border-color: black;
+	margin-top: 7px;
+}
+
+.desktop-user:hover {
+	color:white;
+	border-color: black !important;
+	background-color: black !important;
+}

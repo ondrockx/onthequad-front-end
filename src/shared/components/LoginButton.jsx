@@ -25,7 +25,7 @@ module.exports = LoginButton = React.createClass({
                     </div>
                     <div className="hidden-xs col-sm-1 col-md-1 col-lg-1 nopads">
                         <div className="pull-left">
-                            <Button onClick={this.goToLogout} className="navbar-toggle pull-right">
+                            <Button onClick={this.goToLogout} className="desktop-user pull-right">
                                 <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </Button>
                         </div>

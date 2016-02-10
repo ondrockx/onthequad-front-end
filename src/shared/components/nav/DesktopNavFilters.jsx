@@ -13,10 +13,8 @@ module.exports = DesktopNavFilters = React.createClass({
         return (
         	<div className="container">
                 <Row className="hidden-md hidden-sm hidden-xs">
-                    <Col lg={1} className="navbar-content">  
-                        <img className="pull-right" src="/images/mascot.png" height="50" />
-                    </Col>
-                    <Col lg={3}>
+  
+                    <Col lg={5}>
                         <div className="navbar-brand navbar-category">
                             <p className="category-title">{category}</p>
                         </div>
@@ -24,9 +22,7 @@ module.exports = DesktopNavFilters = React.createClass({
                     <Col lg={1}>
                         <img className="pull-left" src="/images/switch.png" height="50" />
                     </Col>
-                    <Col lg={1}>
-                        <img className="pull-left" src="/images/switch.png" height="50" />
-                    </Col>
+
                     <Col lg={6} className="pull-left">
                         <NavFilters desktop {...this.props} />
                     </Col>
