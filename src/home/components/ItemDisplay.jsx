@@ -13,7 +13,7 @@ module.exports = ItemDisplay = React.createClass({
                 return (
                     <Col xs={6} md={3} key={item.id}>
                         <Thumbnail src="/images/thumbnaildiv.png" alt="242x200">
-                            <p>
+                            <p className="itemprice">
                                 ${item.cost.toFixed(2)}
                             </p>
                         </Thumbnail>

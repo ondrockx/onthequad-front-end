@@ -25,14 +25,14 @@ module.exports = LoginButton = React.createClass({
                     </div>
                     <div className="hidden-xs col-sm-1 col-md-1 col-lg-1 nopads">
                         <div className="pull-left">
-                            <Button onClick={this.goToLogout} className="navbar-btn btn-user">
+                            <Button onClick={this.goToLogout} className="navbar-toggle pull-right">
                                 <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </Button>
                         </div>
                     </div>
                     <div className="col-xs-3 hidden-sm hidden-md hidden-lg">
                         <div className="pull-right">
-                            <Button onClick={this.goToLogout} className="navbar-btn btn-user">
+                            <Button onClick={this.goToLogout} className="navbar-toggle pull-right">
                                 <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </Button>
                         </div>
@@ -42,7 +42,7 @@ module.exports = LoginButton = React.createClass({
         } else {
             return (
                 <div className="col-xs-3">
-                <Button onClick={this.goToLogin} className="navbar-btn btn-user pull-right">
+                <Button onClick={this.goToLogin} className="navbar-toggle pull-right">
                     <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                 </Button>
                 </div>

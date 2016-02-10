@@ -13,10 +13,15 @@ module.exports = Navigation = React.createClass({
             <div>
                 <div className="hidden-lg">
                     <nav className="navmenu navmenu-default navmenu-fixed-left offcanvas-sm canvas-slid" role="navigation">
-                        <ul className="nav navmenu-nav">
+                        <ul className="nav navmenu-nav hamburger-menu">
                             <li className="active"><a href="#">Home</a></li>
                             <li><a href="#">Category 1</a></li>
                             <li><a href="#">Category 2</a></li>
+                            <li><a href="#">Category 3</a></li>
+                            <li><a href="#">Category 4</a></li>
+                            <li><a href="#">Category 5</a></li>
+                            <li><a href="#">Category 6</a></li>
+
                         </ul>
                     </nav>
                 </div>    
