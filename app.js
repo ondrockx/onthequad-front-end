@@ -10,7 +10,6 @@ var webpack;
 
 var home = require('./routes/index');
 var posting = require('./routes/posting');
-var login = require('./routes/login');
 var users = require('./routes/users');
 
 var app = express();
@@ -31,7 +30,6 @@ app.use('/', home);
 app.use('/browse', home);
 app.use('/browse/*', home);
 app.use('/posting', posting);
-app.use('/login', login);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
