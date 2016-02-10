@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-//if (app.get('env') === 'development') {
+if (app.get('env') === 'development') {
   webpackDevMiddleware = require('webpack-dev-middleware');
   webpack = require('webpack');
   webpackConfig.devtool = '#inline-source-map';
@@ -56,7 +56,7 @@ app.use(function(req, res, next) {
       error: err
     });
   });
-//}
+}
 
 
 module.exports = app;

@@ -26,12 +26,14 @@
     "react": "^0.14.2",
     "react-bootstrap": "^0.27.3",
     "react-dom": "^0.14.2",
+    "webpack": "^1.7.3",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
-    "webpack": "^1.7.3",
-    "webpack-dev-middleware": "^1.0.11",
     "babel-core": "^4.7.16",
     "babel-loader": "^4.2.0",
     "flightplan": "^0.6.1"
+  },
+  "dev-dependencies": {
+    "webpack-dev-middleware": "^1.0.11"
   }
 }
