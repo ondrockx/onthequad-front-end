@@ -6,6 +6,7 @@ var DesktopNav = require('./DesktopNav');
 var MobileNav = require('./MobileNav');
 var MobileBottomNav = require('./MobileBottomNav');
 var Navigation;
+var MobileNavCategories = require('./MobileNavCategories')
 
 module.exports = Navigation = React.createClass({
     render: function () {
@@ -13,16 +14,7 @@ module.exports = Navigation = React.createClass({
             <div>
                 <div className="hidden-lg">
                     <nav className="navmenu navmenu-default navmenu-fixed-left offcanvas-sm canvas-slid" role="navigation">
-                        <ul className="nav navmenu-nav hamburger-menu">
-                            <li className="active"><a href="#">Home</a></li>
-                            <li><a href="#">Category 1</a></li>
-                            <li><a href="#">Category 2</a></li>
-                            <li><a href="#">Category 3</a></li>
-                            <li><a href="#">Category 4</a></li>
-                            <li><a href="#">Category 5</a></li>
-                            <li><a href="#">Category 6</a></li>
-
-                        </ul>
+                        <MobileNavCategories {...this.props} />
                     </nav>
                 </div>    
                 <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">

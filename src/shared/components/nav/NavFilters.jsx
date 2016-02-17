@@ -9,13 +9,13 @@ module.exports = NavFilters = React.createClass({
         var navbar;
         var filters = (
             <ButtonGroup>
-                <Button bsStyle="default" className="navbar-btn" active>
+                <Button bsStyle="default" className="navbar-btn mobile-btn" active>
                     <span className="glyphicon glyphicon-calendar" />
                 </Button>
-                <Button bsStyle="default" className="navbar-btn">
+                <Button bsStyle="default" className="navbar-btn mobile-btn">
                     <span className="glyphicon glyphicon-sort-by-attributes" />
                 </Button>
-                <Button bsStyle="default" className="navbar-btn">
+                <Button bsStyle="default" className="navbar-btn mobile-btn">
                     <span className="glyphicon glyphicon-sort-by-attributes-alt" />
                 </Button>
             </ButtonGroup>
@@ -26,9 +26,9 @@ module.exports = NavFilters = React.createClass({
                     <li>
                         <form className="navbar-form" role="search">
                             <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
-                                <div className="input-group-btn">
-                                    <Button><span className="glyphicon glyphicon-search" /></Button>
+                                <input type="text" className="form-control search-bar" placeholder="Search" name="srch-term" id="srch-term" />
+                                <div className="input-group-btn mobile-btn">
+                                    <Button className="mobile-btn"><span className="glyphicon glyphicon-search" /></Button>
                                 </div>
                             </div>
                         </form>
@@ -39,7 +39,7 @@ module.exports = NavFilters = React.createClass({
                         {filters}
 
                             <ButtonGroup>
-                                <Button bsStyle="default" className="navbar-btn">
+                                <Button bsStyle="default" className="navbar-btn mobile-btn">
                                     <span>Create Post </span>
                                     <span className="glyphicon glyphicon-plus" />
                                 </Button>
@@ -52,7 +52,7 @@ module.exports = NavFilters = React.createClass({
             navbar = (
                 <Row>
                     <Col xs={3} className="navbar-content">
-                        <Button className="navbar-btn pull-left navbar-left-button">
+                        <Button className="navbar-btn pull-left navbar-left-button mobile-btn">
                             <span className="glyphicon glyphicon-search"></span>
                         </Button>       
                     </Col>
@@ -60,7 +60,7 @@ module.exports = NavFilters = React.createClass({
                         {filters}
                     </Col>
                     <Col xs={3} className="navbar-content">
-                        <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button">
+                        <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button mobile-btn">
                             <span className="glyphicon glyphicon-plus" />
                         </Button>
                     </Col>

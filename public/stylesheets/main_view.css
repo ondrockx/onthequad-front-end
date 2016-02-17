@@ -162,3 +162,48 @@ body {
 	border-color: black !important;
 	background-color: black !important;
 }
+
+@media (min-width: 1200px) {
+ 	.wrapper {
+ 		margin-top: 175px;
+ 	}
+}
+
+ .navbar-mobile {
+ 	background-color: black !important;
+ 	background-image: none;
+ 	color:#E17B42 !important;
+ 	text-shadow: none !important;
+ }
+
+ .mobile-btn {
+ 	background-color: black !important;
+ 	background-image: none;
+ 	color:#E17B42 !important;
+ 	text-shadow: none !important;
+ 	border-color: #E17B42;
+ }
+
+ .mobile-btn.active {
+ 	background-color: #E17B42 !important;
+ 	background-image: none;
+ 	color:black !important;
+ 	text-shadow: none !important;
+ 	border-color: #E17B42;
+ }
+
+ .mobile-btn:hover {
+ 	background-color: #E17B42 !important;
+ 	background-image: none;
+ 	color:black !important;
+ 	text-shadow: none !important;
+ 	border-color: #E17B42;
+ }
+
+ .search-bar {
+ 	background-color: black !important;
+ 	background-image: none;
+ 	color:#E17B42 !important;
+ 	text-shadow: none !important;
+ 	border-color: #E17B42;
+ }
