@@ -1,10 +1,18 @@
 'use strict';
 
 var React = require('react');
-var {ButtonToolbar, ButtonGroup, Row, Col, Button} = require('react-bootstrap');
+var {ButtonToolbar, ButtonGroup, Row, Col, Button, Modal} = require('react-bootstrap');
+var PostingBox = require('../../../posting/components/PostingBox');
+var PostingStore = require('../../../posting/stores/PostingStore');
+var config = require('../../config');
 var NavFilters;
 
-module.exports = NavFilters = React.createClass({
+NavFilters = React.createClass({
+    getInitialState: function () {
+        return {
+            showModal: false
+        }
+    },
     render: function () {
         var navbar;
         var filters = (
@@ -36,16 +44,23 @@ module.exports = NavFilters = React.createClass({
                     
                     <li>
                         <ButtonToolbar>
-                        {filters}
-
+                            {filters}
                             <ButtonGroup>
-                                <Button bsStyle="default" className="navbar-btn mobile-btn">
+                                <Button bsStyle="default" className="navbar-btn mobile-btn" onClick={()=>{this.setState({showModal: true});}}>
                                     <span>Create Post </span>
                                     <span className="glyphicon glyphicon-plus" />
                                 </Button>
                             </ButtonGroup>
                         </ButtonToolbar>
                     </li>
+                    <Modal show={this.state.showModal} onHide={()=>{this.setState({showModal: false});}}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>New Posting</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <PostingBox {...this.props}/>
+                        </Modal.Body>
+                    </Modal>
                 </div>
             );
         } else {
@@ -60,7 +75,9 @@ module.exports = NavFilters = React.createClass({
                         {filters}
                     </Col>
                     <Col xs={3} className="navbar-content">
-                        <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button mobile-btn">
+                        <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button mobile-btn" onClick={()=>{
+                                window.location = config.postingURL + '/';
+                        }}>
                             <span className="glyphicon glyphicon-plus" />
                         </Button>
                     </Col>
@@ -70,3 +87,5 @@ module.exports = NavFilters = React.createClass({
         return navbar;
     }
 });
+
+module.exports = NavFilters;

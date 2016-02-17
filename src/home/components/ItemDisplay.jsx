@@ -22,13 +22,11 @@ module.exports = ItemDisplay = React.createClass({
             });
         }
         return (
-            <div>
-                <Grid>
-                    <Row>
-                        {data}
-                    </Row>
-                </Grid>
-            </div>
+            <Grid>
+                <Row>
+                    {data}
+                </Row>
+            </Grid>
         );
     }
 });
