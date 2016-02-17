@@ -6,7 +6,7 @@ var config = require('../config');
 
 var CategoryActions = module.exports = {
     setCategory(actionContext, payload) {
-    	actionContext.dispatch('setCategory', payload)
+    	actionContext.dispatch('setCategory', payload);
     	actionContext.executeAction(CategoryActions.refreshPostings);
     },
     refreshPostings(actionContext) {

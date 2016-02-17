@@ -1,7 +1,14 @@
 @charset "UTF-8";
 
 body {
-	background-color: rgba(211, 211, 211, 0.46)
+	background-color: rgba(211, 211, 211, 0.46);
+	padding-top: 158px;
+}
+@media (max-width: 1199px) {
+	body {
+		padding-top: 110px;
+		padding-bottom: 50px;
+	}
 }
 
 /*Navigation Bar Components*/
@@ -9,6 +16,8 @@ body {
 	font-family: modak;
 	color: black !important;
 	font-size: 36px;
+	-webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 .btn-user {
@@ -96,6 +105,21 @@ body {
 	background-color:#48C9CB !important;
 }
 
+.mobile-nav {
+	height: 50px;
+}
+
+.itemdisplay-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .btn-createpost {
 	margin-left: 15px;
+}
+
+.thumbnail {
+	margin: auto auto 20px auto;
+	max-width: 250px;
 }

@@ -30,8 +30,8 @@ NavFilters = React.createClass({
         );
         if(this.props.desktop) {
             navbar = (
-                <div className="nav navbar-nav">
-                    <li>
+                <Row>
+                    <Col xs={6}>
                         <form className="navbar-form" role="search">
                             <div className="input-group">
                                 <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
@@ -40,9 +40,8 @@ NavFilters = React.createClass({
                                 </div>
                             </div>
                         </form>
-                    </li> 
-                    
-                    <li>
+                    </Col>
+                    <Col xs={6}>
                         <ButtonToolbar>
                             {filters}
                             <ButtonGroup>
@@ -52,7 +51,7 @@ NavFilters = React.createClass({
                                 </Button>
                             </ButtonGroup>
                         </ButtonToolbar>
-                    </li>
+                    </Col>
                     <Modal show={this.state.showModal} onHide={()=>{this.setState({showModal: false});}}>
                         <Modal.Header closeButton>
                             <Modal.Title>New Posting</Modal.Title>
@@ -61,20 +60,20 @@ NavFilters = React.createClass({
                             <PostingBox {...this.props}/>
                         </Modal.Body>
                     </Modal>
-                </div>
+                </Row>
             );
         } else {
             navbar = (
                 <Row>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={3} className="navbar-content">
                         <Button className="navbar-btn pull-left navbar-left-button">
                             <span className="glyphicon glyphicon-search"></span>
                         </Button>       
                     </Col>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={6} className="navbar-content">
                         {filters}
                     </Col>
-                    <Col xs={4} className="navbar-content">
+                    <Col xs={3} className="navbar-content">
                         <Button bsStyle="default" className="navbar-btn pull-right navbar-right-button" onClick={()=>{
                                 window.location = config.postingURL + '/';
                         }}>
