@@ -41,10 +41,10 @@ module.exports = LoginButton = React.createClass({
             );
         } else {
             return (
-                <div className="col-xs-3">
-                <Button onClick={this.goToLogin} className="navbar-toggle pull-right">
-                    <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                </Button>
+                <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <Button onClick={this.goToLogin} className="navbar-toggle pull-right navbar-togglefix">
+                        <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                    </Button>
                 </div>
             );
         }

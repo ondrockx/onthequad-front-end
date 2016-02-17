@@ -81,6 +81,7 @@ body {
 	margin-right: 10px;
 }
 
+
 .dropdownMenu1 {
 	padding: 0px;
 	margin: 0px;
@@ -88,6 +89,7 @@ body {
 
 .navbar-cust1 {
 	background-color: #48C9CB;
+	min-height: 56px !important;
 }
 
 
@@ -206,4 +208,9 @@ body {
  	color:#E17B42 !important;
  	text-shadow: none !important;
  	border-color: #E17B42;
+ }
+
+ .navbar-togglefix {
+ 	display:inline !important;
+
  }
