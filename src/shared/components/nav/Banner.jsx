@@ -9,7 +9,7 @@ module.exports = Banner = React.createClass({
         return (
             <div className="row navbar-cust1">
 				<div className="col-xs-2 col-sm-3 hidden-lg navbar-content">
-					<button type="button" className="btn btn-default navbar-btn pull-left" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+					<button type="button" className="btn btn-default navbar-btn pull-left" data-toggle="offcanvas" data-target=".navmenu">
 						<span className="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 					</button>
 	        	</div>

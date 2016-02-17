@@ -20,7 +20,7 @@ module.exports = MobileNavCategories = React.createClass({
                     {_.map(config.categories, (itemName, id)=>{
                         return (
                             <li key={id} className={category === id ? "active" : ""}>
-                                <a href="#" onClick={_.partial(this.props.changeCategory || this.changeCategory, id)} data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+                                <a href="#" onClick={_.partial(this.props.changeCategory || this.changeCategory, id)}>
                                     {itemName}
                                 </a>
                             </li>

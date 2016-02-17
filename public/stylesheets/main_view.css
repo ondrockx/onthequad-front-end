@@ -123,3 +123,7 @@ body {
 	margin: auto auto 20px auto;
 	max-width: 250px;
 }
+
+.hamburger-menu {
+	padding-top: 110px;
+}
