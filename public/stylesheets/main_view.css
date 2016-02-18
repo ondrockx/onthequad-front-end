@@ -2,16 +2,17 @@
 
 body {
 	background-color: rgba(211, 211, 211, 0.46);
-	padding-top: 158px;
+	padding-top: 110px;
+	padding-left: 150px;
 }
 @media (max-width: 1199px) {
 	body {
-		padding-top: 110px;
 		padding-bottom: 50px;
+		padding-left: 0;
 	}
 }
 
-/*Navigation Bar Components*/
+/* Navigation Bar Components */
 .mybrand {
 	font-family: modak;
 	color: black !important;
@@ -19,27 +20,29 @@ body {
 	-webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 }
+@media (max-width: 480px) {
+	.mybrand {
+		font-size: 28px;
+		padding: 15px 0 0 0;
+	}
+}
 
 .btn-user {
 	background-color: white;
 }
 
-.mybrand-sm {
-	font-family: modak;
-	color: black !important;
-	font-size: 30px;
-	/* [disabled]-webkit-text-stroke: 1px grey; */
-	padding-top: 10px !important;
-}
-
 .category-title {
-	font-family: modak;
-	color: black !important;
-	font-size: 28px;
-	-webkit-text-stroke: 1px #FFFFFF;
+	font-family: permanent marker;
+	color: white;
+	font-size: 22px;
 	margin: auto;
 	text-align: center;
 	float: none;
+}
+@media (max-width: 480px) {
+	.category-title {
+		font-size: 20px;
+	}
 }
 	
 .navbar-center
@@ -52,13 +55,12 @@ body {
 }
 
 .nav-usertext {
-	margin-top: 8px;
-	margin-right: 5px;
+	margin-top: 10px;
+	margin-right: 10px;
 	margin-left: 5px;
 	margin-bottom: 5px;
 	font-size: 12px;
-	color: white
-	!important;
+	color: white !important;
 }
 
 .navbar-category {
@@ -88,7 +90,6 @@ body {
 	background-color: #245580;
 }
 
-
 .arrow {
 	font-size: 9px;
 }
@@ -102,21 +103,37 @@ body {
 }
 
 .btn-custom.active {
-	background-color:#48C9CB !important;
+	background-color: #48C9CB;
 }
 
 .mobile-nav {
-	height: 50px;
+	height: 30px;
 }
+
+.btn-createpost {
+	margin-left: 15px;
+}
+
+.navmenu, .navbar-offcanvas {
+	width: auto;
+}
+
+/* Item Display */
 
 .itemdisplay-title {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: center;
+	margin: 0;
 }
 
-.btn-createpost {
-	margin-left: 15px;
+.itemdisplay-price {
+	position: relative;
+	float: right;
+	margin-top: -35px;
+	color: white;
+	font-size: 120%;
 }
 
 .thumbnail {
@@ -124,6 +141,10 @@ body {
 	max-width: 250px;
 }
 
+/* Sidebar Navigation */
+
+
 .hamburger-menu {
 	padding-top: 110px;
+	padding-bottom: 50px;
 }

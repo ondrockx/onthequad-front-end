@@ -7,6 +7,7 @@ var config = {
 	loginURL: '/login',
 	browseURL: '/browse',
     postingURL: '/posting',
+    accountURL: '/account',
     submitCategories: {
         textbooks: "Textbooks",
         tickets: "UConn Tickets",

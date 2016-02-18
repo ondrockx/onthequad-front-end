@@ -32,16 +32,6 @@ NavFilters = React.createClass({
             navbar = (
                 <Row>
                     <Col xs={6}>
-                        <form className="navbar-form" role="search">
-                            <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
-                                <div className="input-group-btn">
-                                    <Button><span className="glyphicon glyphicon-search" /></Button>
-                                </div>
-                            </div>
-                        </form>
-                    </Col>
-                    <Col xs={6}>
                         <ButtonToolbar>
                             {filters}
                             <ButtonGroup>
@@ -51,6 +41,16 @@ NavFilters = React.createClass({
                                 </Button>
                             </ButtonGroup>
                         </ButtonToolbar>
+                    </Col>
+                    <Col xs={6}>
+                        <form className="navbar-form" role="search">
+                            <div className="input-group">
+                                <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+                                <div className="input-group-btn">
+                                    <Button><span className="glyphicon glyphicon-search" /></Button>
+                                </div>
+                            </div>
+                        </form>
                     </Col>
                     <Modal show={this.state.showModal} onHide={()=>{this.setState({showModal: false});}}>
                         <Modal.Header closeButton>

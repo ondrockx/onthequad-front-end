@@ -6,13 +6,14 @@ var DesktopNav = require('./DesktopNav');
 var MobileNav = require('./MobileNav');
 var MobileBottomNav = require('./MobileBottomNav');
 var MobileNavCategories = require('./MobileNavCategories');
+var {Row, Col} = require('react-bootstrap');
 var Navigation;
 
 module.exports = Navigation = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+                <div className="navmenu navmenu-default navmenu-fixed-left offcanvas-md" role="navigation">
                     <MobileNavCategories {...this.props} />
                 </div>
                 <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">

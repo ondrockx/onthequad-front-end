@@ -13,17 +13,15 @@ module.exports = ItemDisplay = React.createClass({
                 return (
                     <Col xs={6} sm={4} md={3} key={item.id}>
                         <Thumbnail src="/images/thumbnaildiv.png" alt="242x200">
+                            <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
                             <p className="itemdisplay-title">{item.title}</p>
-                            <p>
-                                <Button bsStyle="primary">${item.cost.toFixed(2)}</Button>
-                            </p>
                         </Thumbnail>
                     </Col>
                 );
             });
         }
         return (
-            <Grid>
+            <Grid fluid>
                 <Row>
                     {data}
                 </Row>
