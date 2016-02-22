@@ -9,7 +9,10 @@ var DesktopNavFilters;
 
 module.exports = DesktopNavFilters = React.createClass({
     getInitialState: function() {
-        return {checked: true};
+        return {
+            checked: true,
+            id: Math.random(),
+        };
     },
     toggleCheck: function () {
         this.setState({checked: !this.state.checked});
@@ -18,8 +21,8 @@ module.exports = DesktopNavFilters = React.createClass({
         return (
 	    	<div className="onoffswitch">
 	            <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox"
-	                id="myonoffswitch" checked={this.state.checked} onChange={this.toggleCheck} />
-	            <label className="onoffswitch-label" htmlFor="myonoffswitch">
+	                id={this.state.id} checked={this.state.checked} onChange={this.toggleCheck} />
+	            <label className="onoffswitch-label" htmlFor={this.state.id}>
 	                <span className="onoffswitch-inner"></span>
 	                <span className="onoffswitch-switch"></span>
 	            </label>

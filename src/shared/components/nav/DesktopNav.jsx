@@ -7,7 +7,7 @@ var DesktopNav;
 module.exports = DesktopNav = React.createClass({
     render: function () {
         return (
-            <div className="hidden-xs hidden-sm">
+            <div className="">
                 <DesktopNavFilters {...this.props} />
             </div>
         );
