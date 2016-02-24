@@ -11,8 +11,7 @@ module.exports = AmpersandState.extend({
             'default': false
         },
         postingMessage: {
-            'type': 'string',
-            'default': ''
+            'type': 'string'
         },
         postingMessageType: {
             'type': 'string',

@@ -27,11 +27,8 @@ class PostingStore extends BaseStore {
         this.model.set({isLoading: false})
     }
 
-    setPostingMessage(payload) {
-        this.model.set({
-            postingMessage: payload.postingMessage,
-            postingMessageType: payload.postingMessageType
-        });
+    unsetPostingMessage(payload) {
+        this.model.unset(['postingMessage', 'postingMessageType']);
     }
 }
 
@@ -39,8 +36,8 @@ PostingStore.storeName = 'PostingStore';
 PostingStore.handlers = {
     'startPosting': 'setLoadingTrue',
     'endPosting' : 'setLoadingFalse',
-    'postingSuccess' : 'setPostingMessage',
-    'postingFailure' : 'setPostingMessage'
+    'setPostingMessage' : 'set',
+    'unsetPostingMessage' : 'unsetPostingMessage'
 };
 
 module.exports = PostingStore;
