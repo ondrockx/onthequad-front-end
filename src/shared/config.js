@@ -3,7 +3,7 @@
 var _ = require('underscore');
 
 var config = {
-	backendURL: 'http://onthequad-backend.herokuapp.com',
+	backendURL: 'https://onthequad-backend.herokuapp.com',
 	loginURL: '/login',
 	browseURL: '/browse',
     postingURL: '/posting',
