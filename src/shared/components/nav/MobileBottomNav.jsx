@@ -7,7 +7,7 @@ var MobileBottomNav;
 module.exports = MobileBottomNav = React.createClass({
     render: function () {
         return (
-            <nav className="navbar navbar-inverse navbar-fixed-bottom hidden-lg" role="navigation">  
+            <nav className="navbar navbar-inverse navbar-fixed-bottom hidden-md hidden-lg" role="navigation">  
 		    	<NavFilters mobile {...this.props} />
 			</nav>
         );

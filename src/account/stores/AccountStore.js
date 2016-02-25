@@ -1,12 +1,14 @@
 'use strict';
 
 var BaseStore = require('fluxible/addons/BaseStore');
-var State = require('./State');
+var AccountState = require('./AccountState');
+var UserStore = require('../../shared/stores/UserStore');
+var config = require('../config');
 
 class Store extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
-        this.model = new State();
+        this.model = new AccountState();
         this.model.on('change', this.emitChange, this);
     }
 
@@ -19,9 +21,11 @@ class Store extends BaseStore {
     }
 }
 
-Store.storeName = 'Store';
+Store.storeName = 'AccountStore';
 Store.handlers = {
-    'set' : 'set'
+    'set' : 'set',
+    'setCategory' : 'set',
+    'refreshPostings' : 'set'
 };
 
 module.exports = Store;

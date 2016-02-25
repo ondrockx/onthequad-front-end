@@ -11,27 +11,21 @@ module.exports = ItemDisplay = React.createClass({
         if (this.props.userModel.userID) {
             data = _.map(this.props.categoryModel.postings, function (item) {
                 return (
-                    <Col xs={6} md={4} key={item.id}>
+                    <Col xs={6} sm={4} md={3} key={item.id}>
                         <Thumbnail src="/images/thumbnaildiv.png" alt="242x200">
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
-                            <p>
-                                <Button bsStyle="primary">${item.cost.toFixed(2)}</Button>
-                            </p>
-                            <small>Posted: {item.timestamp}</small>
+                            <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
+                            <p className="itemdisplay-title">{item.title}</p>
                         </Thumbnail>
                     </Col>
                 );
             });
         }
         return (
-            <div style={{marginTop: "158px"}}>
-                <Grid>
-                    <Row>
-                        {data}
-                    </Row>
-                </Grid>
-            </div>
+            <Grid fluid>
+                <Row>
+                    {data}
+                </Row>
+            </Grid>
         );
     }
 });

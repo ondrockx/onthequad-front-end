@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET posting page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'OnTheQuad - Login' });
+  res.render('posting', { title: 'OnTheQuad - Posting' });
 });
 
 module.exports = router;

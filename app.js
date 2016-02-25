@@ -9,8 +9,8 @@ var webpackDevMiddleware;
 var webpack;
 
 var home = require('./routes/index');
-var login = require('./routes/login');
-var users = require('./routes/users');
+var posting = require('./routes/posting');
+var account = require('./routes/account');
 
 var app = express();
 
@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', home);
 app.use('/browse', home);
 app.use('/browse/*', home);
-app.use('/login', login);
-app.use('/users', users);
+app.use('/account', account);
+app.use('/posting', posting);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

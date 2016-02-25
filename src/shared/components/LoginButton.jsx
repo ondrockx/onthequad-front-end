@@ -11,21 +11,25 @@ module.exports = LoginButton = React.createClass({
     goToLogin: function () {
         this.props.context.executeAction(UserActions.signIn);
     },
-    goToLogout: function () {
-        this.props.context.executeAction(UserActions.signOut);
+    // goToLogout: function () {
+    //     this.props.context.executeAction(UserActions.signOut);
+    // },
+    goToAccount: function () {
+        window.location = config.accountURL;
     },
     render: function () {
-        if(this.props.userModel.userID) {
+        if(this.props.userModel.name) {
             return (
-                <Button onClick={this.goToLogout} className="navbar-btn btn-user">
-                    <span className="glyphicon glyphicon-log-out" aria-hidden="true">
-                        &nbsp;{this.props.userModel.name}
-                    </span>
-                </Button>
+                <span>
+                    <p className="navbar-text nav-usertext hidden-xs">Welcome back<br />{this.props.userModel.name}</p>
+                    <Button onClick={this.goToAccount} className="navbar-btn btn-user">
+                        <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </Button>
+                </span>
             );
         } else {
             return (
-                <Button onClick={this.goToLogin} className="navbar-btn btn-user">
+                <Button onClick={this.goToLogin} className="navbar-btn btn-user pull-right">
                     <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                 </Button>
             );

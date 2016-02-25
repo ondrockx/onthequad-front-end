@@ -2,7 +2,9 @@
 
 var React = require('react');
 var NavFilters = require('./NavFilters');
+var {Row, Col} = require('react-bootstrap');
 var config = require('../../config');
+var OnOffSwitch = require('./OnOffSwitch');
 var DesktopNavFilters;
 
 module.exports = DesktopNavFilters = React.createClass({
@@ -10,20 +12,21 @@ module.exports = DesktopNavFilters = React.createClass({
     	var category = this.props.categoryModel ?
     		config.categories[this.props.categoryModel.category] : "";
         return (
-            <div className="hidden-md hidden-sm hidden-xs">
-            	<div className="container">
-	                <div className="col-lg-4">
-	                    <div className="navbar-brand">
-	                        <p className="category-title">{category}</p>
-	                    </div>
-	                </div>
-	                <div className="col-lg-8">
-	                    <NavFilters desktop {...this.props} />
-	                </div>
-                </div>
+        	<div className="container">
+                <Row>
+                    <Col md={2} lg={4}>
+                        <div className="navbar-brand navbar-category">
+                            <p className="category-title">{category}</p>
+                        </div>
+                    </Col>
+                    <Col md={2} lg={2}>
+                        <OnOffSwitch />
+                    </Col>
+                    <Col md={8} lg={6}>
+                        <NavFilters desktop {...this.props} />
+                    </Col>
+                </Row>
             </div>
         );
     }
 });
-
-//
