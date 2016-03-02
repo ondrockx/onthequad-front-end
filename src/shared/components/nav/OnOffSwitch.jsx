@@ -18,8 +18,8 @@ module.exports = DesktopNavFilters = React.createClass({
         return (
 	    	<div className="onoffswitch">
 	            <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox"
-	                id="myonoffswitch" checked={this.state.checked} onChange={this.toggleCheck} />
-	            <label className="onoffswitch-label" htmlFor="myonoffswitch">
+	                checked={this.state.checked} onChange={this.toggleCheck} />
+	            <label className="onoffswitch-label">
 	                <span className="onoffswitch-inner"></span>
 	                <span className="onoffswitch-switch"></span>
 	            </label>

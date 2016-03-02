@@ -9,36 +9,43 @@ var CategoryActions = module.exports = {
         actionContext.dispatch('startPosting');
     	var userStore = actionContext.getStore(UserStore);
         if (userStore.isSignedIn()) {
-            // $.ajax({
-            //     type: 'POST',
-            //     xhrFields: {
-            //         withCredentials: true
-            //     },
-            //     url: config.backendURL + '/api/postings/',
-            //     data: {
-            //         title: payload.title,
-            //         cost: payload.cost,
-            //         description: payload.description,
-            //         category: payload.category
-            //     },
-            //     success: (responseBody)=>{
-            //      console.log("COMPLETE");
-            //     },
-            //     error: (XMLHttpRequest, textStatus, errorThrown)=>{
-            //         if (XMLHttpRequest.status === 403) {
-            //             //Error action
-            //         }
-            //     }
-            // });
-            _.delay(function () {
-                console.log("Test Posted:");
-                console.log({
+            $.ajax({
+                type: 'POST',
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: config.backendURL + '/api/postings/',
+                data: {
                     title: payload.title,
                     cost: payload.cost,
                     description: payload.description,
-                    category: payload.category});
+                    category: payload.category
+                },
+                success: (responseBody)=>{
+                    actionContext.dispatch('setPostingMessage',{
+                        postingMessageType: config.alertSuccess,
+                        postingMessage: config.successfulPosting
+                    });
                     actionContext.dispatch('endPosting');
-            }, 5000)
+                },
+                error: (XMLHttpRequest, textStatus, errorThrown)=>{
+                    if (XMLHttpRequest.status === 403) {
+                        actionContext.dispatch('setPostingMessage',{
+                            postingMessageType: config.alertDanger,
+                            postingMessage: config.error403
+                        });
+                    } else {
+                        actionContext.dispatch('setPostingMessage',{
+                            postingMessageType: config.alertDanger,
+                            postingMessage: config.errorOther
+                        });
+                    }
+                    actionContext.dispatch('endPosting');
+                }
+            });
         }
+    },
+    dismissAlert(actionContext) {
+        actionContext.dispatch('unsetPostingMessage');
     }
 };

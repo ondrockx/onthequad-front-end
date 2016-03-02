@@ -4,11 +4,14 @@ var React = require('react');
 var _ = require('underscore');
 var PostingActions = require('../actions/PostingActions');
 var PostingStore = require('../stores/PostingStore');
-var {Input, ButtonInput} = require('react-bootstrap');
+var {Alert, Input, ButtonInput} = require('react-bootstrap');
 var connectToStores = require('fluxible-addons-react/connectToStores');
 var config = require('../config');
 
 var PostingBox = React.createClass({
+    handleAlertDismiss: function () {
+        this.props.context.executeAction(PostingActions.dismissAlert);
+    },
     submit: function (e) {
         if (e) {
             e.preventDefault();
@@ -22,9 +25,18 @@ var PostingBox = React.createClass({
         this.props.context.executeAction(PostingActions.makePosting, payload);
     },
     render: function () {
+        var alert = "";
+        var submitted = this.props.postingModel.postingMessage &&
+                        (this.props.postingModel.postingMessageType === config.alertSuccess);
+        if (this.props.postingModel.postingMessage) {
+            alert = <Alert bsStyle={this.props.postingModel.postingMessageType} onDismiss={this.handleAlertDismiss}>
+                <p>{this.props.postingModel.postingMessage}</p>
+            </Alert>
+        }
         return (
             <div className="row">
                 <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                    {alert}
                     <form>
                         <Input type="text" label="Title" placeholder="Item Name" ref="title" />
                         <Input type="text" label="Price" placeholder="2.00" ref="cost" />
@@ -35,7 +47,7 @@ var PostingBox = React.createClass({
                                 return <option value={id} key={id}>{itemName}</option>;
                             })}
                         </Input>
-                        <ButtonInput disabled={this.props.postingModel.isLoading} type="submit" value="Submit" onClick={this.submit} />
+                        <ButtonInput disabled={this.props.postingModel.isLoading || submitted} type="submit" value="Submit" onClick={this.submit} />
                     </form>
                 </div>
             </div>
