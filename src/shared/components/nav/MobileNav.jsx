@@ -3,7 +3,6 @@
 var React = require('react');
 var config = require('../../config');
 var {Row, Col} = require('react-bootstrap');
-var OnOffSwitch = require('./OnOffSwitch');
 var MobileNav;
 
 module.exports = MobileNav = React.createClass({
@@ -13,13 +12,10 @@ module.exports = MobileNav = React.createClass({
         return (
 	        <div className="mobile-nav hidden-lg hidden-md">
 	        	<Row>
-		        	<Col xs={6}>
+		        	<Col xs={12}>
 	                	<div className="navbar-brand navbar-category">
                             <p className="category-title">{category}</p>
                         </div>
-	                </Col>
-		        	<Col xs={6}>
-		        		<OnOffSwitch />
 	                </Col>
 	        	</Row>
 	        </div>
