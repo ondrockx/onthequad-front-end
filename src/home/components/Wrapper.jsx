@@ -8,8 +8,11 @@ var UserStore = require('../../shared/stores/UserStore');
 var GlobalActions = require('../../shared/actions/GlobalActions');
 var CategoryActions = require('../actions/CategoryActions');
 var Navigation = require('../../shared/components/nav/Navigation');
+var LandingPage = require('./LandingPage');
+var Loading = require('../../shared/components/Loading');
 var LoginMixin = require('../../shared/mixins/LoginMixin');
 var ItemDisplay = require('./ItemDisplay');
+var config = require('../config');
 var Wrapper;
 
 Wrapper = React.createClass({
@@ -24,11 +27,23 @@ Wrapper = React.createClass({
         this.props.context.executeAction(CategoryActions.setCategory, {category: id});
     },
     render: function () {
+        var content = (
+            <Navigation changeCategory={this.changeCategory} {...this.props}>
+                <Loading {...this.props} />
+            </Navigation>);
+        if (!this.props.globalModel.loading) {
+            if (this.props.userModel.userID && (this.props.userModel.userID === config.userIDDefault)) {
+                content = <LandingPage {...this.props} />;
+            } else {
+                content = (
+                    <Navigation changeCategory={this.changeCategory} {...this.props}>
+                        <ItemDisplay {...this.props} />
+                    </Navigation>);
+            }
+        }
         return (
             <div className="wrapper">
-                <Navigation changeCategory={this.changeCategory} {...this.props}>
-                    <ItemDisplay {...this.props} />
-                </Navigation>
+                {content}
             </div>
         );
     }

@@ -11,10 +11,12 @@ var GlobalActions = module.exports = {
         actionContext.dispatch('setApp', payload);
     },
     userChanged(actionContext) {
+        actionContext.dispatch('setLoading', true);
     	actionContext.dispatch('userChanged');
         var app = actionContext.getStore(GlobalStore).model.app;
         if (app === "home") {
     	   actionContext.executeAction(CategoryActions.refreshPostings);
         }
+        actionContext.dispatch('setLoading', false);
     }
 };

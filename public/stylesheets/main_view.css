@@ -12,6 +12,27 @@ body {
 	}
 }
 
+/* Landing Page Settings */
+.landing-page {
+	padding-right: 150px;
+}
+@media (max-width: 1199px) {
+	.landing-page {
+		padding-left: 80px;
+		padding-right: 80px;
+	}
+}
+
+.tagline {
+	font-style: italic;
+	font-size: 80%;
+}
+
+.spinner-container {
+	margin: auto;
+	padding-top: 100px;
+}
+
 /* Navigation Bar Components */
 .mybrand {
 	font-family: modak;
