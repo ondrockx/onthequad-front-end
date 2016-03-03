@@ -3,7 +3,7 @@
 var _ = require('underscore');
 
 var config = {
-	backendURL: 'https://onthequad-backend.herokuapp.com',
+	backendURL: 'https://otq.liamd.com',
 	loginURL: '/login',
 	browseURL: '/browse',
     postingURL: '/posting',
@@ -46,7 +46,10 @@ var config = {
             case 'other':
                 return 9;
         }
-    }
+    },
+    userIDDefault: 'USER',
+    nameDefault: 'USER',
+    emailDeafult: 'user@example.com'
 };
 
 module.exports = _.extend(config, {

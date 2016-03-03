@@ -7,7 +7,7 @@ module.exports = AmpersandState.extend({
     props: {
         userID: {
             'type': 'string',
-            'required': false
+            'required': true
         },
         name: {
         	'type': 'string',
