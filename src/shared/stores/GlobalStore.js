@@ -22,12 +22,25 @@ class GlobalStore extends BaseStore {
     setApp(payload) {
         this.set({app: payload});
     }
+
+    setLoading(bool) {
+        if (bool) {
+            this.model.set({loading: this.model.loading + 1});
+        } else {
+            if (this.model.loading - 1 >= 0) {
+                this.model.set({loading: this.model.loading - 1});
+            } else {
+                this.model.set({loading: 0});
+            }
+        }
+    }
 }
 
 GlobalStore.storeName = 'GlobalStore';
 GlobalStore.handlers = {
     'set' : 'set',
-    'setApp' : 'setApp'
+    'setApp' : 'setApp',
+    'setLoading' : 'setLoading'
 };
 
 module.exports = GlobalStore;

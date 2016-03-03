@@ -21,7 +21,11 @@ class UserStore extends BaseStore {
     }
 
     signOut(payload) {
-        this.model.unset(['userID','name','email']);
+        this.model.set({
+            userID: config.userIDDefault,
+            name: config.nameDefault,
+            email: config.emailDefault
+        });
     }
     
 	set(payload) {

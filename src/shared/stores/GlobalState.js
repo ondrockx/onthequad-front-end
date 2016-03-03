@@ -8,6 +8,11 @@ module.exports = AmpersandState.extend({
         app: {
             'type': 'string',
             'required': false
-        }
+        },
+        loading: {
+			'type': 'number',
+			'required': true,
+			'default': 0
+		}
     }
 });

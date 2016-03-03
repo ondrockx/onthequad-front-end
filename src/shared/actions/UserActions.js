@@ -13,6 +13,12 @@ var UserActions = module.exports = {
             gAuth.then(()=>{
                 if (gAuth.currentUser.get().isSignedIn()) {
                     actionContext.executeAction(UserActions.auth);
+                } else {
+                    actionContext.dispatch('signIn',{
+                        userID: config.userIDDefault,
+                        name: config.nameDefault,
+                        email: config.emailDefault,
+                    });
                 }
             }, (reason)=>{
                 console.error(reason);
@@ -20,11 +26,14 @@ var UserActions = module.exports = {
         });
 	},
     signIn(actionContext) {
+        actionContext.dispatch('setLoading', true);
     	gapi.auth2.getAuthInstance().signIn().then(()=>{
 	    	actionContext.executeAction(UserActions.auth);
+            actionContext.dispatch('setLoading', false);
     	});
     },
     auth(actionContext){
+        actionContext.dispatch('setLoading', true);
 		var gUser = gapi.auth2.getAuthInstance().currentUser.get();
         var profile = gUser.getBasicProfile();
         var id_token = gUser.getAuthResponse().id_token;
@@ -42,10 +51,15 @@ var UserActions = module.exports = {
                     email: profile.getEmail(),
                 });
                 actionContext.executeAction(GlobalActions.userChanged);
+                actionContext.dispatch('setLoading', false);
+            },
+            error: ()=>{
+                actionContext.dispatch('setLoading', false);
             }
         });
     },
     signOut(actionContext) {
+        actionContext.dispatch('setLoading', true);
     	gapi.auth2.getAuthInstance().signOut().then(()=>{
             $.ajax({
 	            type: 'GET',
@@ -56,7 +70,11 @@ var UserActions = module.exports = {
 	            success: ()=>{
 	                actionContext.dispatch('signOut');
                 	actionContext.executeAction(GlobalActions.userChanged);
-	            }
+                    actionContext.dispatch('setLoading', false);
+	            },
+                error: ()=>{
+                    actionContext.dispatch('setLoading', false);
+                }
 	        });
         });
     }
