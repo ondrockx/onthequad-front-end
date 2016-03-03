@@ -16,8 +16,7 @@ module.exports = NavCategories = React.createClass({
     render: function () {
         var category = this.props.categoryModel ? this.props.categoryModel.category : "";
         return (
-            <div className="container hidden-md">
-                <ul className="nav navbar-nav">
+                <ul className="nav navmenu-nav hamburger-menu">
                     {_.map(config.categories, (itemName, id)=>{
                         return (
                             <li key={id} className={category === id ? "active" : ""}>
@@ -28,7 +27,6 @@ module.exports = NavCategories = React.createClass({
                         );
                     })}
                 </ul>
-            </div>
         );
     }
 });
