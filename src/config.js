@@ -46,10 +46,7 @@ var config = {
             case 'other':
                 return 9;
         }
-    },
-    userIDDefault: 'USER',
-    nameDefault: 'USER',
-    emailDeafult: 'user@example.com'
+    }
 };
 
 export default _.extend(config, {

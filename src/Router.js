@@ -1,7 +1,6 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, Redirect, browserHistory, IndexRoute } from 'react-router';
 import LandingPage from './containers/LandingPage';
-import App from './components/App';
 import Browse from './components/Browse';
 
 const MainRouter = React.createClass({
@@ -9,9 +8,9 @@ const MainRouter = React.createClass({
 		return (
 			<Router history={browserHistory}>
 				<Route path='/' component={LandingPage}/>
-				<Route path='/browse(/:category)' component={App}>
-					<IndexRoute component={Browse}/>
-				</Route>
+				<Redirect from='/browse' to='/browse/all'/>
+				<Route path='/browse/:category' component={Browse}/>
+				<Route path='/account' component={Browse}/>
 			</Router>
 		);
 	}

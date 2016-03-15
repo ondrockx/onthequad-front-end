@@ -1,11 +1,11 @@
 import React from 'react';
 import Banner from './Banner';
-import DesktopFilters from './DesktopFilters';
-import MobileTitle from './MobileTitle';
+import DesktopCategory from '../../containers/nav/DesktopCategory';;
+import MobileCategory from '../../containers/nav/MobileCategory';
 import MobileFilters from './MobileFilters';
-import NavSlider from '../../containers/NavSlider';
+import NavSlider from '../../containers/nav/NavSlider';
 
-const Navigation = ({ category }) => (
+const Navigation = () => (
   <div>
     <div className="navmenu navmenu-default navmenu-fixed-left visible-lg" role="navigation">
       <NavSlider/>
@@ -13,9 +13,8 @@ const Navigation = ({ category }) => (
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="container-fluid">
         <Banner/>
-        {console.log(category)}
-        <DesktopFilters category={category}/>
-        <MobileTitle category={category}/>
+        <DesktopCategory/>
+        <MobileCategory/>
       </div>
     </nav>
     <MobileFilters/>
