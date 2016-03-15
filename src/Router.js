@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import LandingPage from './components/LandingPage';
+import LandingPage from './containers/LandingPage';
 import App from './components/App';
 import Browse from './components/Browse';
 
@@ -9,9 +9,8 @@ const MainRouter = React.createClass({
 		return (
 			<Router history={browserHistory}>
 				<Route path='/' component={LandingPage}/>
-				<Route path='/browse' component={App}>
+				<Route path='/browse(/:category)' component={App}>
 					<IndexRoute component={Browse}/>
-					<Route path='/browse/:category' component={Browse}/>
 				</Route>
 			</Router>
 		);

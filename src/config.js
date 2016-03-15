@@ -52,6 +52,6 @@ var config = {
     emailDeafult: 'user@example.com'
 };
 
-module.exports = _.extend(config, {
+export default _.extend(config, {
     categories: _.extend({all: "All Posts"}, config.submitCategories),
-})
+});
