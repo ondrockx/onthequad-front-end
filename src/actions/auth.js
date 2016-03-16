@@ -1,8 +1,10 @@
 import config from '../config';
 import $ from 'jquery';
+import { startLoading, stopLoading } from '../actions';
 
 const authenticate = () => {
   return (dispatch) => {
+    dispatch(startLoading());
     var gUser = gapi.auth2.getAuthInstance().currentUser.get();
     var profile = gUser.getBasicProfile();
     var id_token = gUser.getAuthResponse().id_token;
@@ -20,6 +22,11 @@ const authenticate = () => {
           name: profile.getName(),
           email: profile.getEmail()
         });
+        dispatch(stopLoading());
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown) => {
+        console.error(textStatus);
+        dispatch(stopLoading);
       }
     });
   };
@@ -27,22 +34,30 @@ const authenticate = () => {
 
 export const login = () => {
   return (dispatch) => {
+    dispatch(startLoading());
     gapi.auth2.getAuthInstance().signIn().then(() => {
       dispatch(authenticate());
+      dispatch(stopLoading());
     });
   };
 };
 
 export const logout = () => {
   return (dispatch) => {
-    $.ajax({
+    dispatch(startLoading());
+    return $.ajax({
       type: 'GET',
       xhrFields: {
         withCredentials: true
       },
       url: config.backendURL + '/api/logout/',
-      success: ()=>{
+      success: () => {
         dispatch({type: 'LOGOUT'});
+        dispatch(stopLoading());
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown) => {
+        console.error(textStatus);
+        dispatch(stopLoading());
       }
     });
   };
@@ -50,9 +65,11 @@ export const logout = () => {
 
 export const startGAuth = () => {
   return (dispatch) => {
-    gapi.load('auth2', ()=>{
+    dispatch(startLoading());
+    return gapi.load('auth2', ()=>{
       var gAuth = gapi.auth2.init({
         client_id: '441857043088-ujkkfjr5f66e1j4qq02iueink9d5fcj8.apps.googleusercontent.com',
+        hosted_domain: 'uconn.edu',
         scope: 'profile email'
       });
       gAuth.then(() => {
@@ -61,8 +78,10 @@ export const startGAuth = () => {
         } else {
           dispatch(login());
         }
+        dispatch(stopLoading());
       }, (reason) => {
         console.error(reason);
+        dispatch(stopLoading());
       });
     });
   };

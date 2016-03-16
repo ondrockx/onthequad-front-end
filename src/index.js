@@ -7,9 +7,9 @@ import app from './reducers';
 import Router from './Router'; 
 
 let store = createStore(app, compose(
-    applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  ));
+  applyMiddleware(thunkMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 render((
 	<Provider store={store}>

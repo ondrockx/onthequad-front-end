@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navigation from './nav/Navigation';
 import { changeCategory, startGAuth } from '../actions';
 
-class MainApp  extends Component {
+class BrowseApp extends Component {
   componentWillMount() {
     this.props.updateCategory(this.props.params.category);
     this.props.startGAuth();
@@ -19,7 +19,6 @@ class MainApp  extends Component {
         <Navigation/>
         
         { /* Load Main Page Components */ }
-        <div>Browse: { this.props.params.category }</div>
         { this.props.children }
       </div>
     );
@@ -37,9 +36,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const App = connect(
+const Browse = connect(
   () => ({}),
   mapDispatchToProps
-)(MainApp);
+)(BrowseApp);
 
-export default App;
+export default Browse;
