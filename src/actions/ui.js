@@ -15,3 +15,13 @@ export const closePostModal = () => {
   	dispatch(resetPosting());
   };
 };
+
+export const sortBy = (sort) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'SET_SORT',
+      sort
+    });
+    dispatch(getItemsIfApplicable());
+  };
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import NavFilters from './NavFilters';
+import NavFilterContainer from '../../containers/nav/NavFilterContainer';
 import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
 
 const MobileFilters = ({ onClickNewPost }) => (
@@ -11,7 +11,7 @@ const MobileFilters = ({ onClickNewPost }) => (
         </Button>       
       </Col>
       <Col xs={6} className="navbar-content">
-        <NavFilters/>
+        <NavFilterContainer/>
       </Col>
       <Col xs={3} className="navbar-content">
         <Button bsStyle="default"

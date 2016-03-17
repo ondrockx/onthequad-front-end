@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
-import NavFilters from './NavFilters';
+import NavFilterContainer from '../../containers/nav/NavFilterContainer';
 
 const DesktopFilters = ({ onClickNewPost, category }) => (
   <div className="hidden-xs hidden-sm container">
@@ -14,7 +14,7 @@ const DesktopFilters = ({ onClickNewPost, category }) => (
         <Row>
           <Col xs={6}>
             <ButtonToolbar>
-              <NavFilters/>
+              <NavFilterContainer/>
               <ButtonGroup>
                 <Button bsStyle="default" className="navbar-btn" onClick={onClickNewPost}>
                   <span>Create Post </span>
