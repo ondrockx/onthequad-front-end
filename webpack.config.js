@@ -6,14 +6,10 @@ var babelConfig = {
 
 module.exports = {
     context: __dirname + '/src/',
-    entry: {
-        home: './home/entry.js',
-        posting: './posting/entry.js',
-        account: './account/entry.js'
-    },
+    entry: ['./index.js'],
     output: {
         path: __dirname + '/public/javascripts/',
-        filename: '[name]-bundle.js'
+        filename: 'bundle.js'
     },
     resolve: {
         extensions: ['', '.js', '.json', '.jsx'],
@@ -22,7 +18,7 @@ module.exports = {
     devtool: 'source-map',
     module: {
         loaders: [
-            { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'},
+            { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react'},
             { test: /\.json$/, loader: 'json' }
         ]
     }
