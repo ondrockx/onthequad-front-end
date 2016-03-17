@@ -1,5 +1,5 @@
 import React from 'react';
-import UserStatus from '../../containers/UserStatus';
+import UserStatus from '../../containers/nav/UserStatus';
 
 const Banner = () => (
 	<div className="row navbar-cust1">

@@ -1,6 +1,6 @@
 import config from '../config';
 import $ from 'jquery';
-import { startLoading, stopLoading } from '../actions';
+import { getItemsIfApplicable, startLoading, stopLoading } from '../actions';
 
 const authenticate = () => {
   return (dispatch) => {
@@ -22,6 +22,7 @@ const authenticate = () => {
           name: profile.getName(),
           email: profile.getEmail()
         });
+        dispatch(getItemsIfApplicable());
         dispatch(stopLoading());
       },
       error: (XMLHttpRequest, textStatus, errorThrown) => {
@@ -45,20 +46,23 @@ export const login = () => {
 export const logout = () => {
   return (dispatch) => {
     dispatch(startLoading());
-    return $.ajax({
-      type: 'GET',
-      xhrFields: {
-        withCredentials: true
-      },
-      url: config.backendURL + '/api/logout/',
-      success: () => {
-        dispatch({type: 'LOGOUT'});
-        dispatch(stopLoading());
-      },
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error(textStatus);
-        dispatch(stopLoading());
-      }
+    const auth2 = gapi.auth2.getAuthInstance();
+    return auth2.signOut().then(() => {
+      $.ajax({
+        type: 'GET',
+        xhrFields: {
+          withCredentials: true
+        },
+        url: config.backendURL + '/api/logout/',
+        success: () => {
+          dispatch({type: 'LOGOUT'});
+          dispatch(stopLoading());
+        },
+        error: (XMLHttpRequest, textStatus, errorThrown) => {
+          console.error(textStatus);
+          dispatch(stopLoading());
+        }
+      });
     });
   };
 };
@@ -75,8 +79,6 @@ export const startGAuth = () => {
       gAuth.then(() => {
         if (gAuth.currentUser.get().isSignedIn()) {
           dispatch(authenticate());
-        } else {
-          dispatch(login());
         }
         dispatch(stopLoading());
       }, (reason) => {

@@ -11,7 +11,7 @@ import config from '../../config';
 
 const mapStateToProps = (state) => {
   return {
-    category: config.categories[state.category]
+    category: config.categories[state.category] || state.category
   };
 };
 

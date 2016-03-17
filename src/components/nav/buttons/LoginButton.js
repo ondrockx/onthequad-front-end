@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 const LoginButton = ({onClick}) => (
 	<span>
-	    <Button onClick={onClick} className="navbar-btn btn-user">
+	    <Button onClick={onClick} className="navbar-btn">
 	        <span className="glyphicon glyphicon-log-in" aria-hidden="true"></span>
 	    </Button>
 	</span>
@@ -11,6 +11,6 @@ const LoginButton = ({onClick}) => (
 
 LoginButton.propTypes = {
 	onClick: PropTypes.func.isRequired
-}
+};
 
 export default LoginButton;

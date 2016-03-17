@@ -1,51 +1,35 @@
 import config from '../config';
-import _ from 'underscore';
+import _ from 'lodash';
 import { startLoading, stopLoading } from './loading';
+import { getItemsIfApplicable } from './items';
 
-export { startLoading, stopLoading } from './loading';
-export { login, logout, startGAuth } from './auth';
+export * from './loading';
+export * from './auth';
+export * from './items';
+export * from './ui';
 
 export const changeCategory = (id) => {
-	return {
-		type: 'CHANGE_CATEGORY',
-		category: id
-	};
-};
-
-export const getItems = (category) => {
-  return (dispatch, getState) => {
-    category = category || getState().category;
-    const catNum = config.categoryToNum(category);
-    const catParam = catNum > 0 ? "?category=" + catNum : "";
-    return $.ajax({
-      type: 'GET',
-      xhrFields: {
-        withCredentials: true
-      },
-      url: config.backendURL + '/api/postings/' + catParam,
-      success: (response) => {
-        dispatch({
-          type: 'GET_ITEMS',
-          items: response.data
-        });
-      },
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error(textStatus);
-      }
+	return (dispatch, getState) => {
+    dispatch({
+      type: 'CHANGE_CATEGORY',
+      category: id
     });
+    dispatch(getItemsIfApplicable());
   };
 };
 
-export const openPostModal = () => {
-  return {
-    type: 'OPEN_POST_MODAL'
+export const setApp = (app) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'SET_APP',
+      app
+    });
+    dispatch(getItemsIfApplicable());
   };
 };
 
-export const closePostModal = () => {
-  return {
-    type: 'CLOSE_POST_MODAL'
-  };
+export const isSignedIn = (state) => {
+  return state.user.userId;
 };
 
 export const testAction = (text = "TEST_ACTION") => {

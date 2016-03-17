@@ -1,28 +1,55 @@
-const app = (state = {}, action) => {
-	switch (action.type) {
+import { combineReducers } from 'redux';
+import ui from './ui';
+
+const category = (state = "", action) => {
+  switch (action.type) {
     case 'CHANGE_CATEGORY':
-      return Object.assign({}, state, {category: action.category});
-    case 'CHANGE_USER':
-      const { userId, name, email } = action;
-      return Object.assign({}, state, {user: {userId, name, email}});
-    case 'GET_ITEMS':
-      const { items } = action;
-      return Object.assign({}, state, {items});
-    case 'CLEAR_ITEMS':
-      return Object.assign({}, state, {items: undefined});
-    case 'OPEN_POST_MODAL':
-      return Object.assign({}, state, {showPostModal: true});
-    case 'CLOSE_POST_MODAL':
-      return Object.assign({}, state, {showPostModal: false});
-    case 'LOGOUT':
-      return Object.assign({}, state, {user: undefined, items: undefined});
-    case 'SET_LOADING':
-      return Object.assign({}, state, {loading: state.loading ? state.loading+1 : 1});
-    case 'UNSET_LOADING':
-      return Object.assign({}, state, {loading: state.loading-1 > 0 ? state.loading-1 : 0});
-		default:
-			return state;
-	}
+      return action.category;
+    default:
+      return state;
+  }
 };
 
-export default app;
+const user = (state = {}, action) => {
+  switch (action.type) {
+    case 'CHANGE_USER':
+      const { userId, name, email } = action;
+      return { userId, name, email };
+    case 'LOGOUT':
+      return {};
+    default:
+      return state;
+  }
+};
+
+const items = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_ITEMS':
+      return action.items;
+    case 'CLEAR_ITEMS':
+      return [];
+    case 'LOGOUT':
+      return [];
+    default:
+      return state;
+  }
+};
+
+const app = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_APP':
+      return Object.assign({}, state, {name: action.app});
+    default:
+      return state;
+  }
+};
+
+const mainReducer = combineReducers({
+  category,
+  items,
+  user,
+  ui,
+  app
+});
+
+export default mainReducer;

@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore');
+var _ = require('lodash');
 
 var config = {
 	backendURL: 'https://otq.liamd.com',
@@ -46,8 +46,16 @@ var config = {
             case 'other':
                 return 9;
         }
+    },
+    decodeText: (html) => {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
     }
 };
+
+export const accountURL = '/account';
+export const browseURL = '/browse';
 
 export default _.extend(config, {
     categories: _.extend({all: "All Posts"}, config.submitCategories),

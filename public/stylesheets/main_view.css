@@ -48,10 +48,6 @@ body {
 	}
 }
 
-.btn-user {
-	background-color: white;
-}
-
 .category-title {
 	font-family: permanent marker;
 	color: white;
@@ -82,6 +78,11 @@ body {
 	margin-bottom: 5px;
 	font-size: 12px;
 	color: white !important;
+}
+
+.navbar-btn-half {
+	margin-top: 4px;
+	margin-bottom: 4px;
 }
 
 .navbar-category {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import _ from 'underscore';
-import config from '../../config';
+import _ from 'lodash';
+import config, { browseURL } from '../../config';
 
 class NavSlider extends Component {
   changeCategory(e, id) {
@@ -15,7 +15,7 @@ class NavSlider extends Component {
       {_.map(config.categories, (itemName, id) => {
           return (
             <li key={id} className={category === id ? "active" : ""}>
-              <a href={"/browse/" + id} onClick={(e) => this.changeCategory(e, id)} {...childrenProps}>
+              <a href={browseURL + "/" + id} onClick={(e) => this.changeCategory(e, id)} {...childrenProps}>
                 {itemName}
               </a>
             </li>

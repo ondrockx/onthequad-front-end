@@ -1,44 +1,54 @@
 import React, { Component } from 'react';
+import ItemsDisplay from '../components/ItemsDisplay';
+import LoadingContainer from './LoadingContainer';
+import { changeCategory, setApp } from '../actions';
 import { connect } from 'react-redux';
-import Navigation from './nav/Navigation';
-import { changeCategory, startGAuth } from '../actions';
+import { getItems } from '../actions';
+import SignInBox from './SignInBox';
 
-class BrowseApp extends Component {
-  componentWillMount() {
-    this.props.updateCategory(this.props.params.category);
-    this.props.startGAuth();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.props.updateCategory(nextProps.params.category);
-  }
-
-  render() {
-    return (
-      <div className="wrapper">
-        <Navigation/>
-        
-        { /* Load Main Page Components */ }
-        { this.props.children }
-      </div>
-    );
-  }
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+    loading: state.ui.loading,
+    category: state.category
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getItems: () => {
+      dispatch(getItems());
+    },
     updateCategory: (id) => {
       dispatch(changeCategory(id));
     },
-    startGAuth: () => {
-      dispatch(startGAuth());
+    setApp: () => {
+      dispatch(setApp('BROWSE'));
     }
   };
 };
 
-const Browse = connect(
-  () => ({}),
-  mapDispatchToProps
-)(BrowseApp);
+class Browse extends Component {
+  componentWillMount() {
+    this.props.updateCategory(this.props.params.category);
+    this.props.setApp();
+  }
 
-export default Browse;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.category && nextProps.params.category !== this.props.params.category){
+      this.props.updateCategory(nextProps.params.category);
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.updateCategory("");
+  };
+
+  render() {
+    const { items, loading } = this.props;
+    const content = loading ? <LoadingContainer/> : <ItemsDisplay {...items}/>;
+    return <SignInBox>{content}</SignInBox>;
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);
