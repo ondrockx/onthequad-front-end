@@ -3,7 +3,7 @@ import { changeCategory, setApp } from '../actions';
 import { connect } from 'react-redux';
 import LoadingContainer from '../components/LoadingContainer';
 import SignInBox from './SignInBox';
-import ItemsDisplay from '../components/ItemsDisplay';
+import AccountItemsDisplay from '../components/AccountItemsDisplay';
 
 const mapStateToProps = (state) => {
   return {
@@ -35,7 +35,7 @@ class Browse extends Component {
 
   render() {
     const { items, loading } = this.props;
-    const content = loading ? <LoadingContainer/> : <ItemsDisplay {...items}/>;
+    const content = loading ? <LoadingContainer/> : <AccountItemsDisplay {...items}/>;
     return <SignInBox>{content}</SignInBox>;
   }
 }
