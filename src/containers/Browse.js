@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemsDisplay from '../components/ItemsDisplay';
-import LoadingContainer from './LoadingContainer';
+import LoadingContainer from '../components/LoadingContainer';
 import { changeCategory, setApp } from '../actions';
 import { connect } from 'react-redux';
 import { getItems } from '../actions';

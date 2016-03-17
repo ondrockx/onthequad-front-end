@@ -39,6 +39,10 @@ const app = (state = {}, action) => {
   switch (action.type) {
     case 'SET_APP':
       return Object.assign({}, state, {name: action.app});
+    case 'GETTING_ITEMS':
+      return Object.assign({}, state, {gettingItems: true});
+    case 'GOT_ITEMS':
+      return Object.assign({}, state, {gettingItems: false});
     default:
       return state;
   }

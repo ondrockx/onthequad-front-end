@@ -5,10 +5,30 @@ import { isSignedIn, startLoading, stopLoading } from '../actions';
 export const getItemsIfApplicable = () => {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.app.name == 'BROWSE'
-      && isSignedIn(state)) {
-      dispatch(getItems());
+    if (config.categories[state.category]
+      && isSignedIn(state)
+      && !state.app.gettingItems) {
+      dispatch(gettingItems());
+      dispatch(getItems(gotItems));
     }
+    if (state.category === 'Account'
+      && isSignedIn(state)
+      && !state.app.gettingItems) {
+      dispatch(gettingItems());
+      dispatch(getAccountItems(gotItems));
+    }
+  };
+};
+
+export const gettingItems = () => {
+  return {
+    type: 'GETTING_ITEMS'
+  };
+};
+
+export const gotItems = () => {
+  return {
+    type: 'GOT_ITEMS'
   };
 };
 
@@ -57,7 +77,38 @@ export const addPosting = (payload) => {
   };
 };
 
-export const getItems = () => {
+const getAccountItems = (callback) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!isSignedIn(state)) {
+      return;
+    }
+    dispatch(startLoading());
+    const { userId } = state.user;
+    const param = "?owner=" + userId;
+    return $.ajax({
+      type: 'GET',
+      xhrFields: {
+        withCredentials: true
+      },
+      url: config.backendURL + '/api/postings/' + param,
+      success: (response) => {
+        dispatch({
+          type: 'GET_ITEMS',
+          items: response.data
+        });
+        dispatch(callback());
+        dispatch(stopLoading());
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown) => {
+        console.error(textStatus);
+        dispatch(stopLoading());
+      }
+    });
+  };
+};
+
+const getItems = (callback) => {
   return (dispatch, getState) => {
     const state = getState();
     if (!isSignedIn(state)) {
@@ -78,6 +129,7 @@ export const getItems = () => {
           type: 'GET_ITEMS',
           items: response.data
         });
+        dispatch(callback());
         dispatch(stopLoading());
       },
       error: (XMLHttpRequest, textStatus, errorThrown) => {

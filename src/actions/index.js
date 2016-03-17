@@ -29,7 +29,10 @@ export const setApp = (app) => {
 };
 
 export const isSignedIn = (state) => {
-  return state.user.userId;
+  if (state.user.userId) {
+    return true;
+  }
+  return false;
 };
 
 export const testAction = (text = "TEST_ACTION") => {

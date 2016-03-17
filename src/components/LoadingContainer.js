@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class Loading extends Component {
   render() {
@@ -7,6 +6,4 @@ class Loading extends Component {
   };
 };
 
-const LoadingContainer = connect()(Loading);
-
-export default LoadingContainer;
+export default Loading;
