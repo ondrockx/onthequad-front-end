@@ -32,10 +32,20 @@ const postStatus = (state = { status: 0, message: "" }, action) => {
   }
 };
 
+const filter = (state = {sort: 'newest'}, action) => {
+  switch (action.type) {
+    case 'SET_SORT':
+      return Object.assign({}, state, {sort: action.sort});
+    default:
+      return state;
+  }
+};
+
 const ui = combineReducers({
   loading,
   showPostModal,
-  postStatus
+  postStatus,
+  filter
 });
 
 export default ui;

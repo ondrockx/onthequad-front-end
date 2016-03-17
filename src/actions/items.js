@@ -9,13 +9,25 @@ export const getItemsIfApplicable = () => {
       && isSignedIn(state)
       && !state.app.gettingItems) {
       dispatch(gettingItems());
-      dispatch(getItems(gotItems));
+      dispatch(getItems()).done((response) => dispatch({
+          type: 'GET_ITEMS',
+          items: response.data
+        })).always(() => {
+          dispatch(gotItems());
+          dispatch(stopLoading());
+        });
     }
     if (state.category === 'Account'
       && isSignedIn(state)
       && !state.app.gettingItems) {
       dispatch(gettingItems());
-      dispatch(getAccountItems(gotItems));
+      dispatch(getAccountItems()).done((response) => dispatch({
+          type: 'GET_ITEMS',
+          items: response.data
+        })).always(() => {
+          dispatch(gotItems());
+          dispatch(stopLoading());
+        });
     }
   };
 };
@@ -77,7 +89,7 @@ export const addPosting = (payload) => {
   };
 };
 
-const getAccountItems = (callback) => {
+const getAccountItems = () => {
   return (dispatch, getState) => {
     const state = getState();
     if (!isSignedIn(state)) {
@@ -85,30 +97,22 @@ const getAccountItems = (callback) => {
     }
     dispatch(startLoading());
     const { userId } = state.user;
-    const param = "?owner=" + userId;
+    var param = "?owner=" + userId;
+    param += "&sort=" + state.ui.filter.sort;
     return $.ajax({
       type: 'GET',
       xhrFields: {
         withCredentials: true
       },
       url: config.backendURL + '/api/postings/' + param,
-      success: (response) => {
-        dispatch({
-          type: 'GET_ITEMS',
-          items: response.data
-        });
-        dispatch(callback());
-        dispatch(stopLoading());
-      },
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
-        dispatch(stopLoading());
       }
     });
   };
 };
 
-const getItems = (callback) => {
+const getItems = () => {
   return (dispatch, getState) => {
     const state = getState();
     if (!isSignedIn(state)) {
@@ -117,24 +121,16 @@ const getItems = (callback) => {
     dispatch(startLoading());
     const category = state.category;
     const catNum = config.categoryToNum(category);
-    const catParam = catNum > 0 ? "?category=" + catNum : "";
+    var param = "?sort=" + state.ui.filter.sort;
+    param += catNum > 0 ? "&category=" + catNum : "";
     return $.ajax({
       type: 'GET',
       xhrFields: {
         withCredentials: true
       },
-      url: config.backendURL + '/api/postings/' + catParam,
-      success: (response) => {
-        dispatch({
-          type: 'GET_ITEMS',
-          items: response.data
-        });
-        dispatch(callback());
-        dispatch(stopLoading());
-      },
+      url: config.backendURL + '/api/postings/' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
-        dispatch(stopLoading());
       }
     });
   };

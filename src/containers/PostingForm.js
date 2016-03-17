@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { Alert, Input, ButtonInput } from 'react-bootstrap';
+import { Alert, Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
 import { addPosting } from '../actions';
 import config from '../config';
 
@@ -29,8 +29,13 @@ class PostingProgressBox extends Component {
 };
 
 class PostingForm extends Component {
+  componentWillMount() {
+    this.setState({ tab: 0 });
+  }
+
   submitForm(e) {
     e.preventDefault();
+    // Need to put images here when back-end supports it.
     const payload = {
       title: this.refs.title.getValue(),
       cost: parseFloat(this.refs.cost.getValue()),
@@ -45,11 +50,20 @@ class PostingForm extends Component {
     if (status != 0) { // 0 is default
       return <PostingProgressBox {...this.props.postStatus}/>;
     }
+    var imageInput = <div className="form-image-upload"><Input type="file" capture="camera" accept="image/*" ref="picture"/></div>;
+    if (this.state.tab) {
+      imageInput = <Input type="text" placeholder="http://www.example.com/image.jpg" ref="picture"/>;
+    }
     return <div className="row">
       <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
         <form>
           <Input type="text" label="Title" placeholder="Item Name" ref="title"/>
-          <Input type="text" label="Price" placeholder="2.00" ref="cost"/>
+          <Nav bsStyle="tabs" justified activeKey={this.state.tab} onSelect={(key) => this.setState({tab: key})}>
+            <NavItem eventKey={0}>Upload Image</NavItem>
+            <NavItem eventKey={1}>Image URL</NavItem>
+          </Nav>
+          {imageInput}
+          <Input type="text" label="Price" addonBefore="$" placeholder="0.00" ref="cost"/>
           <Input type="textarea" label="Description" ref="description"/>
           <Input type="select" label="Category" placeholder="select" ref="category">
             {_.map(config.submitCategories, (itemName, itemId)=>{
