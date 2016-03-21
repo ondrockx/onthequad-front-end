@@ -56,6 +56,16 @@ var config = {
 
 export const accountURL = '/account';
 export const browseURL = '/browse';
+export const getAppURL = (app) => {
+    switch (app) {
+        case 'BROWSE':
+            return browseURL;
+        case 'ACCOUNT':
+            return accountURL;
+        default:
+            return '/';
+    }
+};
 
 export default _.extend(config, {
     categories: _.extend({all: "All Posts"}, config.submitCategories),

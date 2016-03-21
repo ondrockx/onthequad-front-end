@@ -4,7 +4,7 @@ import { DropdownButton, MenuItem, Button } from 'react-bootstrap';
 const AccountButton = ({accountClick, logoutClick, user}) => (
 	<span>
 	    <p className="navbar-text nav-usertext hidden-xs">Welcome back<br />{ user }</p>
-	    <DropdownButton pullRight title={
+    <DropdownButton pullRight title={
 	    	<span className="glyphicon glyphicon-user" aria-hidden="true"></span>
 	    } id="bg-nested-dropdown" className="navbar-btn-half">
 	      <MenuItem onClick={accountClick}>Account Settings</MenuItem>

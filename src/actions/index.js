@@ -8,13 +8,17 @@ export * from './auth';
 export * from './items';
 export * from './ui';
 
-export const changeCategory = (id) => {
-	return (dispatch, getState) => {
-    dispatch({
-      type: 'CHANGE_CATEGORY',
-      category: id
-    });
-    dispatch(getItemsIfApplicable());
+export const setCategory = (id) => {
+  return {
+    type: 'SET_CATEGORY',
+    category: id
+  };
+};
+
+export const setPage = (pageNum) => {
+  return {
+    type: 'SET_PAGE',
+    page: parseInt(pageNum) || 1
   };
 };
 
@@ -24,7 +28,6 @@ export const setApp = (app) => {
       type: 'SET_APP',
       app
     });
-    dispatch(getItemsIfApplicable());
   };
 };
 

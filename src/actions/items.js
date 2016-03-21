@@ -11,6 +11,7 @@ export const getItemsIfApplicable = () => {
       dispatch(gettingItems());
       dispatch(getItems()).done((response) => dispatch({
           type: 'GET_ITEMS',
+          num_pages: response.num_pages,
           items: response.data
         })).always(() => {
           dispatch(gotItems());
@@ -23,6 +24,7 @@ export const getItemsIfApplicable = () => {
       dispatch(gettingItems());
       dispatch(getAccountItems()).done((response) => dispatch({
           type: 'GET_ITEMS',
+          num_pages: response.num_pages,
           items: response.data
         })).always(() => {
           dispatch(gotItems());
@@ -51,6 +53,41 @@ export const resetPosting = () => {
     message: ""
   };
 };
+
+export const deleteItem = (id) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if(!isSignedIn(state)) {
+      return;
+    }
+    dispatch({
+      type: 'DELETE_ITEM',
+      status: -1,
+      message: 'Item Deleting...'
+    });
+    return $.ajax({
+      type: 'DELETE',
+      xhrFields: {
+        withCredentials: true
+      },
+      url: config.backendURL + '/api/postings?id=' + id,
+      success: (responseBody)=>{
+        dispatch({
+          type: 'DELETE_ITEM',
+          status: 1,
+          message: 'Item Successfully Deleted'
+        });
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown)=>{
+        console.error(textStatus);
+        dispatch({
+          type: 'DELETE_ITEM',
+          status: 2,
+          message: 'Item Failed to Delete: ' + textStatus 
+        });
+      }
+    });
+  };};
 
 export const addPosting = (payload) => {
   return (dispatch, getState) => {
@@ -99,6 +136,7 @@ const getAccountItems = () => {
     const { userId } = state.user;
     var param = "?owner=" + userId;
     param += "&sort=" + state.ui.filter.sort;
+    param += state.pages.page > 1 ? "&page=" + state.pages.page : "";
     return $.ajax({
       type: 'GET',
       xhrFields: {
@@ -123,6 +161,7 @@ const getItems = () => {
     const catNum = config.categoryToNum(category);
     var param = "?sort=" + state.ui.filter.sort;
     param += catNum > 0 ? "&category=" + catNum : "";
+    param += state.pages.page > 1 ? "&page=" + state.pages.page : "";
     return $.ajax({
       type: 'GET',
       xhrFields: {
