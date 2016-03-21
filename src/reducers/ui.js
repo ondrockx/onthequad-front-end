@@ -25,7 +25,10 @@ const showPostModal = (state = false, action) => {
 const postStatus = (state = { status: 0, message: "" }, action) => {
   switch (action.type) {
     case 'POST_ITEM':
-      const { status, message } = action;
+      var { status, message } = action;
+      return { status, message };
+    case 'DELETE_ITEM':
+      var { status, message } = action;
       return { status, message };
     default:
       return state;
