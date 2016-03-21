@@ -5,7 +5,7 @@ import { startGAuth } from './actions';
 import LandingPage from './containers/LandingPage';
 import Browse from './containers/Browse';
 import Account from './containers/Account';
-import PostingForm from './containers/PostingForm';
+import Posting from './containers/Posting';
 import App from './containers/App';
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,7 +35,7 @@ class MainRouter extends Component {
 					<IndexRoute component={Account}/>
 				</Route>
 				<Route path='/posting' component={App}>
-					<IndexRoute component={PostingForm}/>
+					<IndexRoute component={Posting}/>
 				</Route>
 			</Router>
 		);
