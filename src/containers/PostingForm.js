@@ -37,7 +37,8 @@ class PostingForm extends Component {
       <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
         <form>
           <Input type="text" label="Title" placeholder="Item Name" ref="title"/>
-          <Nav bsStyle="tabs" justified activeKey={this.state.tab} onSelect={(key) => this.setState({tab: key})}>
+          <label className="control-label">Image</label>
+          <Nav bsStyle="pills" activeKey={this.state.tab} onSelect={(key) => this.setState({tab: key})}>
             <NavItem eventKey={0}>Upload Image</NavItem>
             <NavItem eventKey={1}>Image URL</NavItem>
           </Nav>

@@ -5,7 +5,8 @@ import { sortBy } from '../../actions';
 
 const mapStateToProps = (state) => {
 	return {
-		sort: state.ui.filter.sort
+		sort: state.ui.filter.sort,
+		app: state.app.name
 	};
 };
 
