@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { changeCategory, setApp } from '../actions';
+import { getItemsIfApplicable, setPage, setCategory, setApp } from '../actions';
 import { connect } from 'react-redux';
 import LoadingContainer from '../components/LoadingContainer';
 import SignInBox from './SignInBox';
 import AccountItemsDisplay from '../components/AccountItemsDisplay';
+import AppPager from './AppPager';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,28 +15,31 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateCategory: (id) => {
-      dispatch(changeCategory(id));
-    },
-    setApp: () => {
-      dispatch(setApp('ACCOUNT'));
-    }
+    getItems: () => dispatch(getItemsIfApplicable()),
+    setCategory: (id) => dispatch(setCategory(id)),
+    setPage: (pageNum) => dispatch(setPage(pageNum)),
+    setApp: () => dispatch(setApp('ACCOUNT'))
   };
 };
 
 class Browse extends Component {
   componentWillMount() {
-    this.props.updateCategory("Account");
+    this.props.setCategory("Account");
+    this.props.setPage(this.props.location.query.page);
     this.props.setApp();
+    this.props.getItems();
   }
 
-  componentWillUnmount() {
-    this.props.updateCategory("");
-  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.query.page !== this.props.location.query.page) {
+      this.props.setPage(nextProps.location.query.page);
+      this.props.getItems();
+    }
+  }
 
   render() {
     const { items, loading } = this.props;
-    const content = loading ? <LoadingContainer/> : <AccountItemsDisplay {...items}/>;
+    const content = loading ? <LoadingContainer/> : <AppPager><AccountItemsDisplay {...items}/></AppPager>;
     return <SignInBox>{content}</SignInBox>;
   }
 }

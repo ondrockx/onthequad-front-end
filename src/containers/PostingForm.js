@@ -2,31 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import { Alert, Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
+import { Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
 import { addPosting } from '../actions';
+import ProgressBox from '../components/ProgressBox';
 import config from '../config';
-
-class PostingProgressBox extends Component {
-  render() {
-    const { status, message } = this.props;
-    var style;
-    console.log(this.props);
-    switch (status) {
-      case -1: // loading
-        style = "warning";
-        break;
-      case 1: // submitted
-        style = "success";
-        break;
-      default: // error/other
-        style = "danger";
-        break;
-    }
-    return <Alert bsStyle={style}>
-        <strong>{message}</strong>
-      </Alert>;
-  }
-};
 
 class PostingForm extends Component {
   componentWillMount() {
@@ -48,7 +27,7 @@ class PostingForm extends Component {
   render() {
     const { status, message } = this.props.postStatus;
     if (status != 0) { // 0 is default
-      return <PostingProgressBox {...this.props.postStatus}/>;
+      return <ProgressBox {...this.props.postStatus}/>;
     }
     var imageInput = <div className="form-image-upload"><Input type="file" capture="camera" accept="image/*" ref="picture"/></div>;
     if (this.state.tab) {
