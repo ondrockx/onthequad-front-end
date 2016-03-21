@@ -108,6 +108,10 @@ body {
 	margin: 0px;
 }
 
+.bottom-nav {
+	height: 50px;
+}
+
 .navbar-cust1 {
 	background-color: #245580;
 }

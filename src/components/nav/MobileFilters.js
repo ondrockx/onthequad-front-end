@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import NavFilterContainer from '../../containers/nav/NavFilterContainer';
-import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
+import { Input, ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
 
-const MobileFilters = ({ onClickNewPost }) => (
-	<nav className="navbar navbar-inverse navbar-fixed-bottom hidden-md hidden-lg" role="navigation">  
-		<Row>
+class MobileFilters extends Component {
+  componentWillMount() {
+    this.setState({searchSelected: false});
+  }
+
+  render() {
+    var nav = <Row>
       <Col xs={3} className="navbar-content">
-        <Button className="navbar-btn pull-left navbar-left-button">
+        <Button
+          onClick={() => this.setState({searchSelected: true})}
+          className="navbar-btn pull-left navbar-left-button">
           <span className="glyphicon glyphicon-search"></span>
-        </Button>       
+        </Button>     
       </Col>
       <Col xs={6} className="navbar-content">
         <NavFilterContainer/>
@@ -16,12 +22,38 @@ const MobileFilters = ({ onClickNewPost }) => (
       <Col xs={3} className="navbar-content">
         <Button bsStyle="default"
           className="navbar-btn pull-right navbar-right-button"
-          onClick={onClickNewPost}>
+          onClick={this.props.onClickNewPost}>
           <span className="glyphicon glyphicon-plus" />
         </Button>
       </Col>
-    </Row>
-	</nav>
-);
+    </Row>;
+
+    if (this.state.searchSelected) {
+      nav = <Row style={{marginTop: "8px"}}>
+        <Col xs={3} className="navbar-content">
+          <Button onClick={() => this.setState({searchSelected: false})}>
+            <span className="glyphicon glyphicon-remove"></span>
+          </Button>
+        </Col>
+        <Col xs={6} className="navbar-content">
+          <Input type="text" placeholder="Search"/>
+        </Col>
+        <Col xs={3} className="navbar-content">
+          <Button>
+            <span className="glyphicon glyphicon-search"></span>
+          </Button>
+        </Col>
+      </Row>;
+    }
+
+    return <nav className="navbar navbar-inverse navbar-fixed-bottom hidden-md hidden-lg bottom-nav" role="navigation">  
+        {nav}
+  	</nav>;
+  }
+}
+
+MobileFilters.propTypes = {
+  onClickNewPost: PropTypes.func.isRequired
+};
 
 export default MobileFilters;
