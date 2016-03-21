@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setApp, setCategory } from '../actions';
+import { setApp, setCategory, resetPosting } from '../actions';
 import { Row, Col } from 'react-bootstrap';
 import PostingForm from './PostingForm';
 
@@ -8,6 +8,10 @@ class Posting extends Component {
   componentWillMount() {
     this.props.setCategory(),
     this.props.setApp();
+  }
+
+  componentWillUnmount() {
+    this.props.resetPosting();
   }
 
   render() {
@@ -21,7 +25,8 @@ class Posting extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     setCategory: (id) => dispatch(setCategory('Posting')),
-    setApp: () => dispatch(setApp('POSTING'))
+    setApp: () => dispatch(setApp('POSTING')),
+    resetPosting: () => dispatch(resetPosting())
   };
 };
 

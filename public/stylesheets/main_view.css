@@ -145,6 +145,14 @@ body {
 }
 
 /* Item Display */
+.top-pagination {
+	margin: 0 0 0 0;
+	list-style-type: square;
+}
+
+.top-pagination li>a, .top-pagination li>span {
+	border-radius: 0;
+}
 
 .itemdisplay-title {
 	white-space: nowrap;
@@ -180,8 +188,6 @@ body {
 }
 
 /* Sidebar Navigation */
-
-
 .hamburger-menu {
 	padding-top: 110px;
 	padding-bottom: 50px;
