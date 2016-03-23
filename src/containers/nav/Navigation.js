@@ -9,45 +9,6 @@ import MobileFilters from '../../components/nav/MobileFilters';
 import PostingModalContainer from './PostingModalContainer';
 import config, { searchURL } from '../../config';
 
-const mapStateToProps = (state) => {
-  return {
-    category: config.categories[state.category] || state.category
-  };
-};
-
-const MobileCategory = connect(
-  mapStateToProps
-)(MobileTitle);
-
-let desktopMapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClickNewPost: () => dispatch(openPostModal()),
-    search: (e) => {
-      e.preventDefault();
-      ownProps.search();
-    }
-  };
-};
-const DesktopFilterBar = connect(
-  mapStateToProps, desktopMapDispatchToProps
-)(DesktopFilters);
-
-let mobileMapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClickNewPost: (e) => {
-      e.preventDefault();
-      ownProps.onClickNewPost();
-    },
-    search: (e) => {
-      e.preventDefault();
-      ownProps.search();
-    }
-  };
-};
-const MobileFilterBar = connect(
-  ()=>({}), mobileMapDispatchToProps
-)(MobileFilters);
-
 const Navigation = (props, context) => (
   <div>
     <div className="navmenu navmenu-default navmenu-fixed-left offcanvas-md hidden-lg" role="navigation">
@@ -59,18 +20,45 @@ const Navigation = (props, context) => (
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="container-fluid">
         <Banner/>
-        <DesktopFilterBar search={() => context.router.push(searchURL + '/' + category)}/>
-        <MobileCategory/>
+        <DesktopFilters
+          onClickNewPost={props.desktopOnClickNewPost}
+          search={() => context.router.push(searchURL + '/' + props.category)}
+          category={props.displayCategory}
+        />
+        <MobileTitle category={props.displayCategory}/>
       </div>
     </nav>
     <PostingModalContainer/>
-    <MobileFilterBar onClickNewPost={() => {
-      context.router.push('/posting');
-    }} search={() => context.router.push(searchURL + '/' + category)}/>
+    <MobileFilters
+      onClickNewPost={(e) => {
+        e.preventDefault();
+        context.router.push('/posting');
+      }}
+      search={() => context.router.push(searchURL + '/' + props.category)}
+      category={props.displayCategory}
+    />
 	</div>
 );
 Navigation.contextTypes = {
   router: PropTypes.object.isRequired
 };
+Navigation.propTypes = {
+  desktopOnClickNewPost: PropTypes.func.isRequired,
+  category: PropTypes.string,
+  displayCategory: PropTypes.string
+}
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    category: state.category,
+    displayCategory: config.categories[state.category]  || state.category
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    desktopOnClickNewPost: () => dispatch(openPostModal())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

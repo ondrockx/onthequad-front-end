@@ -7,12 +7,12 @@ import { searchURL } from '../../config';
 
 class DesktopFilters extends Component {
   render() {
-    const { onClickNewPost, search, categoryTitle } = this.props;
+    const { onClickNewPost, search, category } = this.props;
     return <div className="hidden-xs hidden-sm container">
       <Row>
         <Col md={4} lg={6}>
           <div className="navbar-brand navbar-category">
-            <p className="category-title">{ categoryTitle }</p>
+            <p className="category-title">{ category }</p>
           </div>
         </Col>
         <Col md={8} lg={6}>
