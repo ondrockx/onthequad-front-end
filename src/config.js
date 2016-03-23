@@ -56,12 +56,15 @@ var config = {
 
 export const accountURL = '/account';
 export const browseURL = '/browse';
+export const searchURL = '/search';
 export const getAppURL = (app) => {
     switch (app) {
         case 'BROWSE':
             return browseURL;
         case 'ACCOUNT':
             return accountURL;
+        case 'SEARCH':
+            return searchURL;
         default:
             return '/';
     }

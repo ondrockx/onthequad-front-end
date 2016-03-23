@@ -44,11 +44,21 @@ const filter = (state = {sort: 'newest'}, action) => {
   }
 };
 
+const search = (state = '', action) => {
+  switch (action.type) {
+    case 'SEARCH':
+      return action.search;
+    default:
+      return state;
+  }
+};
+
 const ui = combineReducers({
   loading,
   showPostModal,
   postStatus,
-  filter
+  filter,
+  search
 });
 
 export default ui;

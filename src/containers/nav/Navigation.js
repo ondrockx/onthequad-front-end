@@ -7,7 +7,7 @@ import MobileTitle from '../../components/nav/MobileTitle';
 import DesktopFilters from '../../components/nav/DesktopFilters';
 import MobileFilters from '../../components/nav/MobileFilters';
 import PostingModalContainer from './PostingModalContainer';
-import config from '../../config';
+import config, { searchURL } from '../../config';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,9 +19,13 @@ const MobileCategory = connect(
   mapStateToProps
 )(MobileTitle);
 
-let desktopMapDispatchToProps = (dispatch) => {
+let desktopMapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClickNewPost: () => dispatch(openPostModal())
+    onClickNewPost: () => dispatch(openPostModal()),
+    search: (e) => {
+      e.preventDefault();
+      ownProps.search();
+    }
   };
 };
 const DesktopFilterBar = connect(
@@ -33,6 +37,10 @@ let mobileMapDispatchToProps = (dispatch, ownProps) => {
     onClickNewPost: (e) => {
       e.preventDefault();
       ownProps.onClickNewPost();
+    },
+    search: (e) => {
+      e.preventDefault();
+      ownProps.search();
     }
   };
 };
@@ -51,14 +59,14 @@ const Navigation = (props, context) => (
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="container-fluid">
         <Banner/>
-        <DesktopFilterBar/>
+        <DesktopFilterBar search={() => context.router.push(searchURL + '/' + category)}/>
         <MobileCategory/>
       </div>
     </nav>
     <PostingModalContainer/>
     <MobileFilterBar onClickNewPost={() => {
       context.router.push('/posting');
-    }}/>
+    }} search={() => context.router.push(searchURL + '/' + category)}/>
 	</div>
 );
 Navigation.contextTypes = {
