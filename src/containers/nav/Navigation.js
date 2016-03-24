@@ -46,7 +46,7 @@ Navigation.propTypes = {
   desktopOnClickNewPost: PropTypes.func.isRequired,
   category: PropTypes.string,
   displayCategory: PropTypes.string
-}
+};
 
 const mapStateToProps = (state) => {
   return {
