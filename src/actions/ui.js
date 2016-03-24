@@ -1,4 +1,4 @@
-import { getItemsIfApplicable, resetPosting } from '../actions';
+import { searchItemsIfApplicable, getItemsIfApplicable, resetPosting } from '../actions';
 
 export const openPostModal = () => {
   return {
@@ -23,5 +23,15 @@ export const sortBy = (sort) => {
       sort
     });
     dispatch(getItemsIfApplicable());
+  };
+};
+
+export const search = (search) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'SEARCH',
+      search
+    });
+    dispatch(searchItemsIfApplicable());
   };
 };

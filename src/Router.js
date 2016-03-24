@@ -31,6 +31,8 @@ class MainRouter extends Component {
 				<Route path='/browse/:category' component={App}>
 					<IndexRoute component={Browse}/>
 				</Route>
+				<Route path='/search/:category' component={App}>
+				</Route>
 				<Route path='/account' component={App}>
 					<IndexRoute component={Account}/>
 				</Route>

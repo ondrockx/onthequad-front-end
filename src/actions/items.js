@@ -34,6 +34,26 @@ export const getItemsIfApplicable = () => {
   };
 };
 
+export const searchItemsIfApplicable = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (config.categories[state.category]
+      && isSignedIn(state)
+      && !state.app.gettingItems
+      && state.ui.search) {
+      dispatch(gettingItems());
+      dispatch(searchItems()).done((response) => dispatch({
+          type: 'GET_ITEMS',
+          num_pages: response.num_pages,
+          items: response.data
+        })).always(() => {
+          dispatch(gotItems());
+          dispatch(stopLoading());
+        });
+    }
+  };
+};
+
 export const gettingItems = () => {
   return {
     type: 'GETTING_ITEMS'
@@ -168,6 +188,32 @@ const getItems = () => {
         withCredentials: true
       },
       url: config.backendURL + '/api/postings/' + param,
+      error: (XMLHttpRequest, textStatus, errorThrown) => {
+        console.error(textStatus);
+      }
+    });
+  };
+};
+
+const searchItems = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!isSignedIn(state)) {
+      return;
+    }
+    dispatch(startLoading());
+    const category = state.category;
+    const catNum = config.categoryToNum(category);
+    var param = "?sort=" + state.ui.filter.sort;
+    param += catNum > 0 ? "&category=" + catNum : "";
+    param += state.pages.page > 1 ? "&page=" + state.pages.page : "";
+    param += state.ui.search !== "" ? "&keywords=" + state.ui.search : "";
+    return $.ajax({
+      type: 'GET',
+      xhrFields: {
+        withCredentials: true
+      },
+      url: config.backendURL + '/api/search/' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
       }
