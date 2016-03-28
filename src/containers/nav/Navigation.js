@@ -22,7 +22,9 @@ const Navigation = (props, context) => (
         <Banner/>
         <DesktopFilters
           onClickNewPost={props.desktopOnClickNewPost}
-          search={() => context.router.push(searchURL + '/' + props.category)}
+          search={(searchString) => {
+            context.router.push(searchURL + '/' + props.category + '/?search=' + searchString);
+          }}
           category={props.displayCategory}
         />
         <MobileTitle category={props.displayCategory}/>
@@ -34,7 +36,9 @@ const Navigation = (props, context) => (
         e.preventDefault();
         context.router.push('/posting');
       }}
-      search={() => context.router.push(searchURL + '/' + props.category)}
+      search={(searchString) => {
+        context.router.push(searchURL + '/' + props.category + '/?search=' + searchString);
+      }}
       category={props.displayCategory}
     />
 	</div>
@@ -57,6 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setSearch: (searchString) => dispatch(setSearch(searchString)),
     desktopOnClickNewPost: () => dispatch(openPostModal())
   };
 };

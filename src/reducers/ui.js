@@ -47,7 +47,7 @@ const filter = (state = {sort: 'newest'}, action) => {
 const search = (state = '', action) => {
   switch (action.type) {
     case 'SEARCH':
-      return action.search;
+      return action.search || state;
     default:
       return state;
   }

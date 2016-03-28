@@ -26,7 +26,7 @@ export const sortBy = (sort) => {
   };
 };
 
-export const search = (search) => {
+export const setSearch = (search) => {
   return (dispatch, getState) => {
     dispatch({
       type: 'SEARCH',

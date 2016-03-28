@@ -2,12 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ButtonToolbar, ButtonGroup, Button, Row, Col } from 'react-bootstrap';
 import NavFilterContainer from '../../containers/nav/NavFilterContainer';
-import { search } from '../../actions';
 import { searchURL } from '../../config';
 
 class DesktopFilters extends Component {
+  constructor(props) {
+    super(props);
+    this.search = this.search.bind(this);
+  }
+
+  search(e) {
+    e.preventDefault();
+    this.props.search(this.refs.search.value);
+  }
+
   render() {
-    const { onClickNewPost, search, category } = this.props;
+    const { onClickNewPost, category } = this.props;
     return <div className="hidden-xs hidden-sm container">
       <Row>
         <Col md={4} lg={6}>
@@ -29,11 +38,11 @@ class DesktopFilters extends Component {
               </ButtonToolbar>
             </Col>
             <Col xs={6}>
-              <form className="navbar-form" role="search" onSubmit={ search }>
+              <form className="navbar-form" role="search" onSubmit={ this.search }>
                 <div className="input-group">
                   <input type="text" className="form-control" placeholder="Search" ref="search" />
                   <div className="input-group-btn">
-                    <Button onClick={ search }><span className="glyphicon glyphicon-search" /></Button>
+                    <Button onClick={ this.search }><span className="glyphicon glyphicon-search" /></Button>
                   </div>
                 </div>
               </form>
