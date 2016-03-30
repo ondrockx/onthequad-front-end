@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { isSignedIn } from '../../actions';
+import { isSignedIn, navigate } from '../../actions';
 import config, { browseURL, accountURL } from '../../config';
 
 var AccountCategory = ({category, childrenProps}, context) => (
@@ -24,7 +24,7 @@ AccountCategory = connect()(AccountCategory);
 class NavSlider extends Component {
   changeCategory(e, id) {
     e.preventDefault();
-    this.context.router.push(browseURL + '/' + id);
+    this.props.navigate(this.context.router, {app: 'BROWSE', category: id});
   }
 
   render() {
@@ -51,6 +51,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  navigate: (router, props) => dispatch(navigate(router, props))
+});
+
 NavSlider.propTypes = {
   category: PropTypes.string,
   childrenProps: PropTypes.object
@@ -60,6 +64,6 @@ NavSlider.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-NavSlider = connect(mapStateToProps)(NavSlider);
+NavSlider = connect(mapStateToProps, mapDispatchToProps)(NavSlider);
 
 export default NavSlider;

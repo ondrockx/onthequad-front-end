@@ -5,9 +5,10 @@ import { isSignedIn, startLoading, stopLoading } from '../actions';
 export const getItemsIfApplicable = () => {
   return (dispatch, getState) => {
     const state = getState();
-    if (config.categories[state.category]
-      && isSignedIn(state)
-      && !state.app.gettingItems) {
+    if (!isSignedIn(state) || state.app.gettingItems) {
+      return;
+    }
+    if (state.app.name === 'BROWSE') {
       dispatch(gettingItems());
       dispatch(getItems()).done((response) => dispatch({
           type: 'GET_ITEMS',
@@ -18,9 +19,7 @@ export const getItemsIfApplicable = () => {
           dispatch(stopLoading());
         });
     }
-    if (state.category === 'Account'
-      && isSignedIn(state)
-      && !state.app.gettingItems) {
+    if (state.app.name === 'ACCOUNT') {
       dispatch(gettingItems());
       dispatch(getAccountItems()).done((response) => dispatch({
           type: 'GET_ITEMS',
@@ -31,16 +30,7 @@ export const getItemsIfApplicable = () => {
           dispatch(stopLoading());
         });
     }
-  };
-};
-
-export const searchItemsIfApplicable = () => {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (config.categories[state.category]
-      && isSignedIn(state)
-      && !state.app.gettingItems
-      && state.ui.search) {
+    if (state.app.name === 'SEARCH') {
       dispatch(gettingItems());
       dispatch(searchItems()).done((response) => dispatch({
           type: 'GET_ITEMS',

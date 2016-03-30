@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemsDisplay from '../components/ItemsDisplay';
 import LoadingContainer from '../components/LoadingContainer';
-import { setPage, changePage, setCategory, changeCategory, setApp, setSearch, searchItemsIfApplicable } from '../actions';
+import { setPage, changePage, setCategory, changeCategory, setApp, setSearch, getItemsIfApplicable } from '../actions';
 import { connect } from 'react-redux';
 import SignInBox from './SignInBox';
 import AppPager from './AppPager';
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchItems: () => dispatch(searchItemsIfApplicable()),
+    getItems: () => dispatch(getItemsIfApplicable()),
     setCategory: (id) => dispatch(setCategory(id)),
     setApp: () => dispatch(setApp('SEARCH')),
     setPage: (page) => dispatch(setPage(page)),
@@ -30,7 +30,7 @@ class Search extends Component {
     this.props.setPage(this.props.location.query.page);
     this.props.setSearch(this.props.location.query.search);
     this.props.setApp();
-    this.props.searchItems();
+    this.props.getItems();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +48,7 @@ class Search extends Component {
       changed = true;
     }
     if (changed) {
-      this.props.searchItems();
+      this.props.getItems();
     }
   }
 
