@@ -177,7 +177,7 @@ const getItems = () => {
       xhrFields: {
         withCredentials: true
       },
-      url: config.backendURL + '/api/postings/' + param,
+      url: config.backendURL + '/api/postings' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
       }
@@ -203,7 +203,7 @@ const searchItems = () => {
       xhrFields: {
         withCredentials: true
       },
-      url: config.backendURL + '/api/search/' + param,
+      url: config.backendURL + '/api/search' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
       }

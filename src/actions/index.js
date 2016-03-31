@@ -33,7 +33,7 @@ export const setApp = (app) => {
   };
 };
 
-export const navigate = (router, props) => {
+export const navigate = (router, props = {}) => {
   return (dispatch, getState) => {
     const state = getState();
     const app = props.app || state.app.name;
