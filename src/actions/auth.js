@@ -36,7 +36,7 @@ const authenticate = () => {
 export const login = () => {
   return (dispatch) => {
     dispatch(startLoading());
-    gapi.auth2.getAuthInstance().signIn().then(() => {
+    return gapi.auth2.getAuthInstance().signIn().then(() => {
       dispatch(authenticate());
       dispatch(stopLoading());
     });

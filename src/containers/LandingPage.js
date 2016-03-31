@@ -29,8 +29,7 @@ class LandingPage extends Component {
 
   login(e, id) {
     e.preventDefault();
-    this.props.login();
-    this.props.navigate(this.context.router, {app: 'BROWSE'});
+    this.props.login(this.context.router, {app: 'BROWSE'});
   }
 
   render() {
@@ -146,8 +145,7 @@ LandingPage.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  login: () => dispatch(login()),
-  navigate: (router, props) => dispatch(navigate(router, props))
+  login: (router, props) => dispatch(login()).then(()=>dispatch(navigate(router, props)))
 });
 
 export default connect(()=>({}), mapDispatchToProps)(LandingPage);
