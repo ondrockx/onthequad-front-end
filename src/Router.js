@@ -7,6 +7,7 @@ import Browse from './containers/Browse';
 import Account from './containers/Account';
 import Posting from './containers/Posting';
 import App from './containers/App';
+import Search from './containers/Search';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -31,7 +32,9 @@ class MainRouter extends Component {
 				<Route path='/browse/:category' component={App}>
 					<IndexRoute component={Browse}/>
 				</Route>
+				<Redirect from='/search' to='/search/all'/>
 				<Route path='/search/:category' component={App}>
+					<IndexRoute component={Search}/>
 				</Route>
 				<Route path='/account' component={App}>
 					<IndexRoute component={Account}/>

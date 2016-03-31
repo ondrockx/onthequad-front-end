@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Pager, PageItem, Pagination } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { navigate } from '../actions';
 import config, { getAppURL } from '../config';
 
-var AppPager = ({page, num_pages, appURL}, context) => (
+var AppPager = ({page, num_pages, app, navigate}, context) => (
 	<div>
 		<Pager>
 	    <PageItem previous
@@ -11,7 +12,7 @@ var AppPager = ({page, num_pages, appURL}, context) => (
 	    	href={"?page="+(page-1)}
 	    	onClick={page <= 1 ? () => ({}) : (e) => {
 		    		e.preventDefault();
-		    		context.router.push(appURL + '?page='+(page-1));
+    				navigate(context.router, {app, page: page-1});
 		    	}
 	    	}>
 	    	&larr; Previous
@@ -25,14 +26,14 @@ var AppPager = ({page, num_pages, appURL}, context) => (
 	      activePage={page}
 	      onSelect={(e, selectedEvent) => {
 	      	e.preventDefault();
-	    		context.router.push(appURL + '?page='+(selectedEvent.eventKey));
+  				navigate(context.router, {app, page: selectedEvent.eventKey});
 	      }} />
 	    <PageItem next
 	    	disabled={page >= num_pages}
 	    	href={"?page="+(page+1)}
 	    	onClick={page >= num_pages ? () => ({}) : (e) => {
 	    			e.preventDefault();
-		    		context.router.push(appURL + '?page='+(page+1));
+  					navigate(context.router, {app, page: page+1});
 		    	}
 		    }>
 	    	Next &rarr;
@@ -49,11 +50,15 @@ const mapStateToProps = (state) => {
 	return {
 		page: state.pages.page,
 		num_pages: state.pages.num_pages,
-		appURL: getAppURL(state.app.name)
+		app: state.app.name
 	};
 };
 
-AppPager = connect(mapStateToProps)(AppPager);
+const mapDispatchToProps = (dispatch) => ({
+	navigate: (router, props) => dispatch(navigate(router, props))
+});
+
+AppPager = connect(mapStateToProps, mapDispatchToProps)(AppPager);
 
 const PagerWrapper = ({children}) => (
 	<div>

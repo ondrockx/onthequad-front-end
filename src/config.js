@@ -57,6 +57,7 @@ var config = {
 export const accountURL = '/account';
 export const browseURL = '/browse';
 export const searchURL = '/search';
+export const postingURL = '/posting';
 export const getAppURL = (app) => {
     switch (app) {
         case 'BROWSE':
@@ -65,6 +66,8 @@ export const getAppURL = (app) => {
             return accountURL;
         case 'SEARCH':
             return searchURL;
+        case 'POSTING':
+            return postingURL;
         default:
             return '/';
     }

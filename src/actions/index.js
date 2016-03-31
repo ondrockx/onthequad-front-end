@@ -2,6 +2,8 @@ import config from '../config';
 import _ from 'lodash';
 import { startLoading, stopLoading } from './loading';
 import { getItemsIfApplicable } from './items';
+import { browseURL, accountURL, searchURL, postingURL } from '../config';
+import queryString from 'query-string';
 
 export * from './loading';
 export * from './auth';
@@ -28,6 +30,33 @@ export const setApp = (app) => {
       type: 'SET_APP',
       app
     });
+  };
+};
+
+export const navigate = (router, props) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const app = props.app || state.app.name;
+    const category = props.category || state.category;
+    const page = props.page;
+    const search = props.search;
+    const params = { page, search };
+    var query = queryString.stringify(params);
+    query = query ? '?' + query : '';
+    switch (app) {
+      case 'BROWSE':
+        router.push(browseURL + '/' + category + query);
+        break;
+      case 'ACCOUNT':
+        router.push(accountURL + query);
+        break;
+      case 'SEARCH':
+        router.push(searchURL + '/' + category + query);
+        break;
+      case 'POSTING':
+        router.push(postingURL + query);
+        break;
+    }
   };
 };
 

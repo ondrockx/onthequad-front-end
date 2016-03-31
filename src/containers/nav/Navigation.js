@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import NavSlider from './NavSlider';
-import { openPostModal, closePostModal } from '../../actions';
+import { openPostModal, closePostModal, navigate } from '../../actions';
 import Banner from '../../components/nav/Banner';
 import MobileTitle from '../../components/nav/MobileTitle';
 import DesktopFilters from '../../components/nav/DesktopFilters';
@@ -22,7 +22,9 @@ const Navigation = (props, context) => (
         <Banner/>
         <DesktopFilters
           onClickNewPost={props.desktopOnClickNewPost}
-          search={() => context.router.push(searchURL + '/' + props.category)}
+          search={(searchString) => {
+            props.navigate(context.router, { app: 'SEARCH', search: searchString });
+          }}
           category={props.displayCategory}
         />
         <MobileTitle category={props.displayCategory}/>
@@ -32,9 +34,11 @@ const Navigation = (props, context) => (
     <MobileFilters
       onClickNewPost={(e) => {
         e.preventDefault();
-        context.router.push('/posting');
+        props.navigate(context.router, { app: 'POSTING' });
       }}
-      search={() => context.router.push(searchURL + '/' + props.category)}
+      search={(searchString) => {
+        props.navigate(context.router, { app: 'SEARCH', search: searchString });
+      }}
       category={props.displayCategory}
     />
 	</div>
@@ -57,7 +61,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    desktopOnClickNewPost: () => dispatch(openPostModal())
+    setSearch: (searchString) => dispatch(setSearch(searchString)),
+    desktopOnClickNewPost: () => dispatch(openPostModal()),
+    navigate: (router, props) => dispatch(navigate(router, props))
   };
 };
 
