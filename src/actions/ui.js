@@ -16,6 +16,21 @@ export const closePostModal = () => {
   };
 };
 
+export const openItemModal = (item) => {
+  return {
+    type: 'OPEN_ITEM_MODAL',
+    item
+  };
+};
+
+export const closeItemModal = () => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: 'CLOSE_ITEM_MODAL'
+    });
+  };
+};
+
 export const sortBy = (sort) => {
   return (dispatch, getState) => {
     dispatch({

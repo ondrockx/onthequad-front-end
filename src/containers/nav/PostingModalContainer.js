@@ -5,7 +5,7 @@ import PostingModal from '../../components/PostingModal';
 
 const mapStateToProps = (state) => {
   return {
-    show: state.ui.showPostModal
+    show: state.ui.postModal
   };
 };
 

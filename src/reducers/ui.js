@@ -11,12 +11,23 @@ const loading = (state = 0, action) => {
   }
 };
 
-const showPostModal = (state = false, action) => {
+const postModal = (state = false, action) => {
   switch (action.type) {
     case 'OPEN_POST_MODAL':
       return true;
     case 'CLOSE_POST_MODAL':
       return false;
+    default:
+      return state;
+  }
+};
+
+const itemModal = (state = 0, action) => {
+  switch (action.type) {
+    case 'OPEN_ITEM_MODAL':
+      return action.item;
+    case 'CLOSE_ITEM_MODAL':
+      return 0;
     default:
       return state;
   }
@@ -55,7 +66,8 @@ const search = (state = '', action) => {
 
 const ui = combineReducers({
   loading,
-  showPostModal,
+  postModal,
+  itemModal,
   postStatus,
   filter,
   search

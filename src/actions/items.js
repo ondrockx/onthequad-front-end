@@ -10,33 +10,27 @@ export const getItemsIfApplicable = () => {
     }
     if (state.app.name === 'BROWSE') {
       dispatch(gettingItems());
-      dispatch(getItems()).done((response) => dispatch({
-          type: 'GET_ITEMS',
-          num_pages: response.num_pages,
-          items: response.data
-        })).always(() => {
+      dispatch(getItems())
+        .done((response) => dispatch(receivedItems(response)))
+        .always(() => {
           dispatch(gotItems());
           dispatch(stopLoading());
         });
     }
     if (state.app.name === 'ACCOUNT') {
       dispatch(gettingItems());
-      dispatch(getAccountItems()).done((response) => dispatch({
-          type: 'GET_ITEMS',
-          num_pages: response.num_pages,
-          items: response.data
-        })).always(() => {
+      dispatch(getAccountItems())
+        .done((response) => dispatch(receivedItems(response)))
+        .always(() => {
           dispatch(gotItems());
           dispatch(stopLoading());
         });
     }
     if (state.app.name === 'SEARCH') {
       dispatch(gettingItems());
-      dispatch(searchItems()).done((response) => dispatch({
-          type: 'GET_ITEMS',
-          num_pages: response.num_pages,
-          items: response.data
-        })).always(() => {
+      dispatch(searchItems())
+        .done((response) => dispatch(receivedItems(response)))
+        .always(() => {
           dispatch(gotItems());
           dispatch(stopLoading());
         });
@@ -44,25 +38,25 @@ export const getItemsIfApplicable = () => {
   };
 };
 
-export const gettingItems = () => {
-  return {
-    type: 'GETTING_ITEMS'
-  };
-};
+export const receivedItems = (response) => ({
+  type: 'GET_ITEMS',
+  num_pages: response.num_pages,
+  items: response.data
+});
 
-export const gotItems = () => {
-  return {
-    type: 'GOT_ITEMS'
-  };
-};
+export const gettingItems = () => ({
+  type: 'GETTING_ITEMS'
+});
 
-export const resetPosting = () => {
-  return {
-    type: 'POST_ITEM',
-    status: 0,
-    message: ""
-  };
-};
+export const gotItems = () => ({
+  type: 'GOT_ITEMS'
+});
+
+export const resetPosting = () => ({
+  type: 'POST_ITEM',
+  status: 0,
+  message: ""
+});
 
 export const deleteItem = (id) => {
   return (dispatch, getState) => {
@@ -116,6 +110,8 @@ export const addPosting = (payload) => {
         withCredentials: true
       },
       url: config.backendURL + '/api/postings/',
+      contentType: false,
+      processData: false,
       data: payload,
       success: (responseBody)=>{
         dispatch({

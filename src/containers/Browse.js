@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemsDisplay from '../components/ItemsDisplay';
+import ItemsDisplay from './ItemsDisplay';
 import LoadingContainer from '../components/LoadingContainer';
 import { setPage, changePage, setCategory, changeCategory, setApp, getItemsIfApplicable } from '../actions';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class Browse extends Component {
 
   render() {
     const { items, loading } = this.props;
-    const content = loading ? <LoadingContainer/> : <AppPager><ItemsDisplay {...items}/></AppPager>;
+    const content = loading ? <LoadingContainer/> : <AppPager><ItemsDisplay items={items}/></AppPager>;
     return <SignInBox>{content}</SignInBox>;
   }
 }

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, Thumbnail, Col } from 'react-bootstrap';
 import { getItemsIfApplicable, resetPosting, deleteItem } from '../actions';
-import config from '../config';
+import config, { decodeText } from '../config';
 import ProgressBox from '../components/ProgressBox';
 
 class AccountItem extends Component {
@@ -30,7 +30,7 @@ class AccountItem extends Component {
 		const { postStatus, item } = this.props;
 		var modalBody = <div>
 			<p>Are you sure you want to delete posting:</p>
-	  	<p style={{textAlign: "center"}}>{config.decodeText(item.title)}</p>
+	  	<p style={{textAlign: "center"}}>{decodeText(item.title)}</p>
 	  	<Button onClick={this.closeDeleteModal}>Cancel</Button>
 	  	<div className="pull-right">
 	  		<Button bsStyle="danger" onClick={() => this.props.deleteItem(item.id)}>Delete</Button>
@@ -58,7 +58,7 @@ class AccountItem extends Component {
 	      	<span className="glyphicon glyphicon-remove"/>
 	      </Button>
 	      <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
-	      <p className="itemdisplay-title">{config.decodeText(item.title)}</p>
+	      <p className="itemdisplay-title">{decodeText(item.title)}</p>
 	    </Thumbnail>
 	  </Col>;
 	}
