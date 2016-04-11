@@ -49,6 +49,7 @@ var config = {
     }
 };
 
+export const defaultImage = '/images/thumbnaildiv.png';
 export const accountURL = '/account';
 export const browseURL = '/browse';
 export const searchURL = '/search';
