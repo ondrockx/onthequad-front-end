@@ -1,10 +1,10 @@
 import React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import SignInBox from '../containers/SignInBox';
 import config, { numToCategory, decodeText, defaultImage } from '../config';
 import { Row, Col } from 'react-bootstrap';
 
-const ItemModal = ({ item, show, onHide }) => (
+const ItemModal = ({ item, show, onHide, user }) => (
   <Modal show={show} onHide={onHide}>
 		<Modal.Header closeButton>
 	    <Modal.Title>{decodeText(item.title)}</Modal.Title>
@@ -20,6 +20,11 @@ const ItemModal = ({ item, show, onHide }) => (
 		    	Cost: ${item.cost}
 				</Col>
 		  </Row>
+		  {user.userId == item.owner ? <Button bsStyle="warning"
+	      bsSize="small"
+	      className="pull-right edit-item-button">
+      	<span className="glyphicon glyphicon glyphicon-pencil"/>
+      </Button> : ""}
 	  </Modal.Body>
 	  <Modal.Footer>
 	    <div className="pull-left">

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { login, logout } from '../../actions';
 import AccountButton from '../../components/nav/buttons/AccountButton';
 import LoginButton from '../../components/nav/buttons/LoginButton';
-import { accountURL } from '../../config';
+import { accountURL, landingURL } from '../../config';
 
 class UserStatus extends Component {
 	render() {
@@ -18,6 +18,7 @@ class UserStatus extends Component {
 				logoutClick={e => {
 					e.preventDefault();
 					logout();
+					this.context.router.push(landingURL);
 				}}/>;
 		} else {
 			return <LoginButton onClick={e => {

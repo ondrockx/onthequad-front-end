@@ -54,6 +54,7 @@ export const accountURL = '/account';
 export const browseURL = '/browse';
 export const searchURL = '/search';
 export const postingURL = '/posting';
+export const landingURL = '/';
 export const getAppURL = (app) => {
     switch (app) {
         case 'BROWSE':

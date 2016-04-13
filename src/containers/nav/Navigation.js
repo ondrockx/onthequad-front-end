@@ -39,7 +39,6 @@ const Navigation = (props, context) => (
       search={(searchString) => {
         props.navigate(context.router, { app: 'SEARCH', search: searchString });
       }}
-      category={props.displayCategory}
     />
 	</div>
 );

@@ -3,17 +3,17 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Row, Grid } from 'react-bootstrap';
 import { openItemModal, closeItemModal } from '../actions';
-import Item from '../components/Item';
+import Item from './Item';
 import ItemModal from '../components/ItemModal';
 
-const ItemsDisplay = ({items, closeItemModal, onClickItem, itemModal}) => (
+const ItemsDisplay = ({items, closeItemModal, onClickItem, itemModal, user}) => (
   <div>
-    <ItemModal show={itemModal ? true : false} onHide={closeItemModal} item={itemModal} />
+    <ItemModal user={user} show={itemModal ? true : false} onHide={closeItemModal} item={itemModal} />
     <Grid fluid>
       <Row>
-        {_.map(items, (item) => {
+        {_.map(items, (item={}) => {
           if(item) {
-            return <Item key={item.id} item={item || {}} onClickItem={onClickItem} />;
+            return <Item key={item.id} item={item} onClickItem={onClickItem} />;
           }
         })}
         { _.isEmpty(items) ? <div>No items found.</div> : "" }
@@ -23,7 +23,8 @@ const ItemsDisplay = ({items, closeItemModal, onClickItem, itemModal}) => (
 );
 
 const mapStateToProps = (state) => ({
-  itemModal: state.ui.itemModal
+  itemModal: state.ui.itemModal,
+  user: state.user
 });
 
 const mapDispatchToProps = (dispatch) => ({
