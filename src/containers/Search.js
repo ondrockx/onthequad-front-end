@@ -4,7 +4,7 @@ import LoadingContainer from '../components/LoadingContainer';
 import { setPage, changePage, setCategory, changeCategory, setApp, setSearch, getItemsIfApplicable } from '../actions';
 import { connect } from 'react-redux';
 import SignInBox from './SignInBox';
-import AppPager from './AppPager';
+import AppPagerWrapper from './AppPagerWrapper';
 
 const mapStateToProps = (state) => {
   return {
@@ -54,7 +54,7 @@ class Search extends Component {
 
   render() {
     const { items, loading } = this.props;
-    const content = loading ? <LoadingContainer/> : <AppPager><ItemsDisplay items={items}/></AppPager>;
+    const content = loading ? <LoadingContainer/> : <AppPagerWrapper><ItemsDisplay items={items}/></AppPagerWrapper>;
     return <SignInBox>{content}</SignInBox>;
   }
 }

@@ -41,6 +41,8 @@ const postStatus = (state = { status: 0, message: "" }, action) => {
     case 'DELETE_ITEM':
       var { status, message } = action;
       return { status, message };
+    case 'RESET_STATUS':
+      return { status: 0, message: "" };
     default:
       return state;
   }

@@ -53,9 +53,7 @@ export const gotItems = () => ({
 });
 
 export const resetPosting = () => ({
-  type: 'POST_ITEM',
-  status: 0,
-  message: ""
+  type: 'RESET_STATUS'
 });
 
 export const deleteItem = (id) => {

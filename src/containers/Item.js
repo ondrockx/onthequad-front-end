@@ -3,67 +3,43 @@ import { connect } from 'react-redux';
 import { Modal, Button, Thumbnail, Col } from 'react-bootstrap';
 import { getItemsIfApplicable, resetPosting, deleteItem } from '../actions';
 import config, { decodeText } from '../config';
-import ProgressBox from '../components/ProgressBox';
+import ItemEditModal from '../components/ItemEditModal';
 
 class Item extends Component {
-	constructor(props) {
-		super(props);
-		this.openDeleteModal = this.openDeleteModal.bind(this);
-		this.closeDeleteModal = this.closeDeleteModal.bind(this);
-	}
-
 	componentWillMount() {
 		this.setState({modal: false});
 	}
 
-	openDeleteModal() {
-		this.setState({modal: true});
-	}
-
-	closeDeleteModal() {
-		this.setState({modal: false});
-		this.props.getItemsIfApplicable();
-		this.props.resetPosting();
-	}
-
 	render() {
-		const { postStatus, item, onClickItem, user } = this.props;
+		const { postStatus, item, onClickItem, user, deleteItem } = this.props;
 		var removeButton;
-		var modalBody = <div>
-			<p>Are you sure you want to delete posting:</p>
-	  	<p style={{textAlign: "center"}}>{decodeText(item.title)}</p>
-	  	<Button onClick={this.closeDeleteModal}>Cancel</Button>
-	  	<div className="pull-right">
-	  		<Button bsStyle="danger" onClick={() => this.props.deleteItem(item.id)}>Delete</Button>
-	  	</div>
-  	</div>;
-
-  	if (postStatus.status != 0) { // 0 is default
-      modalBody = <ProgressBox {...postStatus}/>;
-    }
-
     if (user.userId == item.owner) {
     	removeButton = <Button bsStyle="warning"
 	      bsSize="small"
 	      className="itemdisplay-button"
 	      onClick={(e) => {
 						e.stopPropagation();
-		      	this.openDeleteModal();
+		      	this.setState({modal: true});
 		      }}>
 	      	<span className="glyphicon glyphicon-pencil"/>
 	      </Button>;
     }
-
+		// TODO: Move ItemEditModal to be a single instance that loads the information from
+		// the 'selected' item.
  	  return <Col xs={6} sm={4} md={3}>
 	    <Thumbnail src="/images/thumbnaildiv.png" alt="242x200" onClick={() => onClickItem(item)}>
-	    	<Modal show={this.state.modal} onHide={this.closeDeleteModal}>
-					<Modal.Header closeButton>
-				    <Modal.Title>Delete Posting</Modal.Title>
-				  </Modal.Header>
-				  <Modal.Body>
-				  	{modalBody}
-				  </Modal.Body>
-			  </Modal>
+	    	<ItemEditModal
+					item={item}
+					user={user}
+					show={this.state.modal}
+					deleteItem={deleteItem}
+					closeModal={()=>{
+						this.setState({modal: false});
+						this.props.getItemsIfApplicable();
+						this.props.resetPosting();
+					}}
+					postStatus={postStatus}
+				/>
 	      {removeButton}
 	      <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
 	      <p className="itemdisplay-title">{decodeText(item.title)}</p>

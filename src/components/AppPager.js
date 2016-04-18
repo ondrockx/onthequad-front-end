@@ -1,8 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Pager, PageItem, Pagination } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { navigate } from '../actions';
-import config, { getAppURL } from '../config';
 
 var AppPager = ({page, num_pages, app, navigate}, context) => (
 	<div>
@@ -46,26 +43,4 @@ AppPager.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => {
-	return {
-		page: state.pages.page,
-		num_pages: state.pages.num_pages,
-		app: state.app.name
-	};
-};
-
-const mapDispatchToProps = (dispatch) => ({
-	navigate: (router, props) => dispatch(navigate(router, props))
-});
-
-AppPager = connect(mapStateToProps, mapDispatchToProps)(AppPager);
-
-const PagerWrapper = ({children}) => (
-	<div>
-		<AppPager/>
-			{children}
-		<AppPager/>
-	</div>
-);
-
-export default PagerWrapper;
+export default AppPager;
