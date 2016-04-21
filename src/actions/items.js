@@ -8,7 +8,8 @@ export const getItemsIfApplicable = () => {
     if (!isSignedIn(state) || state.app.gettingItems) {
       return;
     }
-    if (state.app.name === 'BROWSE') {
+    if (state.app.name === 'BROWSE' ||
+        state.app.name === 'SEARCH') {
       dispatch(gettingItems());
       dispatch(getItems())
         .done((response) => dispatch(receivedItems(response)))
@@ -20,15 +21,6 @@ export const getItemsIfApplicable = () => {
     if (state.app.name === 'ACCOUNT') {
       dispatch(gettingItems());
       dispatch(getAccountItems())
-        .done((response) => dispatch(receivedItems(response)))
-        .always(() => {
-          dispatch(gotItems());
-          dispatch(stopLoading());
-        });
-    }
-    if (state.app.name === 'SEARCH') {
-      dispatch(gettingItems());
-      dispatch(searchItems())
         .done((response) => dispatch(receivedItems(response)))
         .always(() => {
           dispatch(gotItems());
@@ -210,38 +202,13 @@ const getItems = () => {
     var param = "?sort=" + state.ui.filter.sort;
     param += catNum > 0 ? "&category=" + catNum : "";
     param += state.pages.page > 1 ? "&page=" + state.pages.page : "";
-    return $.ajax({
-      type: 'GET',
-      xhrFields: {
-        withCredentials: true
-      },
-      url: config.backendURL + '/api/postings' + param,
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error(textStatus);
-      }
-    });
-  };
-};
-
-const searchItems = () => {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (!isSignedIn(state)) {
-      return;
-    }
-    dispatch(startLoading());
-    const category = state.category;
-    const catNum = config.categoryToNum(category);
-    var param = "?sort=" + state.ui.filter.sort;
-    param += catNum > 0 ? "&category=" + catNum : "";
-    param += state.pages.page > 1 ? "&page=" + state.pages.page : "";
     param += state.ui.search !== "" ? "&keywords=" + state.ui.search : "";
     return $.ajax({
       type: 'GET',
       xhrFields: {
         withCredentials: true
       },
-      url: config.backendURL + '/api/search' + param,
+      url: config.backendURL + '/api/postings' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
         console.error(textStatus);
       }
