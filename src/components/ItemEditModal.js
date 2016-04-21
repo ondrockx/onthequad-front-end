@@ -1,37 +1,26 @@
 import React, { PropTypes } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { deleteItem } from '../actions';
 import { decodeText } from '../config';
 import ProgressBox from './ProgressBox';
+import EditForm from '../containers/EditForm';
 
-const ModalBody = ({item, closeModal, deleteItem}) => (
-	<div>
-		<p>Are you sure you want to delete posting:</p>
-		<p style={{textAlign: "center"}}>{decodeText(item.title)}</p>
-		<Button onClick={closeModal}>Cancel</Button>
-		<div className="pull-right">
-			<Button bsStyle="danger" onClick={() => deleteItem(item.id)}>Delete</Button>
-		</div>
-	</div>
-);
-
-const ItemEditModal = ({ item, show, deleteItem, closeModal, postStatus }) => (
+const ItemEditModal = ({ show, closeModal, postStatus }) => (
 	<Modal show={show} onHide={closeModal}>
 		<Modal.Header closeButton>
-	    <Modal.Title>Delete Posting</Modal.Title>
+	    <Modal.Title>Edit Posting</Modal.Title>
 	  </Modal.Header>
 	  <Modal.Body>
 			{postStatus.status ?
 				<ProgressBox {...postStatus}/> :
-				<ModalBody item={item} closeModal={closeModal} deleteItem={deleteItem}/>}
+				<EditForm closeModal={closeModal} />}
 		</Modal.Body>
 	</Modal>
 );
 
 ItemEditModal.propTypes = {
-	item: PropTypes.object.isRequired,
 	show: PropTypes.bool.isRequired,
-	deleteItem: PropTypes.func.isRequired
+	closeModal: PropTypes.func.isRequired,
+	postStatus: PropTypes.object.isRequired
 };
 
 export default ItemEditModal;

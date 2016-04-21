@@ -3,7 +3,6 @@ import _ from 'lodash';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
-import { addPosting } from '../actions';
 import ProgressBox from '../components/ProgressBox';
 import config, { allTrue, allFalse } from '../config';
 
@@ -38,7 +37,7 @@ class PostingForm extends Component {
       data.append('cost', cost);
       data.append('description', description);
       data.append('category', category);
-      this.props.addPosting(data);
+      this.props.submit(data);
     });
   }
 
@@ -139,15 +138,12 @@ class PostingForm extends Component {
     </div>;
   }
 };
+PostingForm.propTypes = {
+  submit: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
   return { postStatus: state.ui.postStatus };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addPosting: (payload) => dispatch(addPosting(payload))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostingForm);
+export default connect(mapStateToProps)(PostingForm);

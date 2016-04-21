@@ -8,7 +8,6 @@ import AppPagerWrapper from './AppPagerWrapper';
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items,
     loading: state.ui.loading,
     category: state.category
   };
@@ -47,8 +46,7 @@ class Browse extends Component {
   }
 
   render() {
-    const { items, loading } = this.props;
-    const content = loading ? <LoadingContainer/> : <AppPagerWrapper><ItemsDisplay items={items}/></AppPagerWrapper>;
+    const content = this.props.loading ? <LoadingContainer/> : <AppPagerWrapper><ItemsDisplay/></AppPagerWrapper>;
     return <SignInBox>{content}</SignInBox>;
   }
 }

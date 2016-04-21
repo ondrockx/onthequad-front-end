@@ -1,8 +1,11 @@
 import { getItemsIfApplicable, resetPosting } from '../actions';
 
 export const openPostModal = () => {
-  return {
-    type: 'OPEN_POST_MODAL'
+  return (dispatch, getState) => {
+    dispatch(resetPosting());
+    dispatch({
+      type: 'OPEN_POST_MODAL'
+    });
   };
 };
 
@@ -12,14 +15,16 @@ export const closePostModal = () => {
     	type: 'CLOSE_POST_MODAL'
   	});
   	dispatch(getItemsIfApplicable());
-  	dispatch(resetPosting());
   };
 };
 
-export const openItemModal = (item) => {
-  return {
-    type: 'OPEN_ITEM_MODAL',
-    item
+export const openItemModal = (view) => {
+  return (dispatch, getState) => {
+    dispatch(resetPosting());
+    dispatch({
+      type: 'OPEN_ITEM_MODAL',
+      view
+    });
   };
 };
 

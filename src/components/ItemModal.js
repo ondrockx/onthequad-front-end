@@ -4,7 +4,7 @@ import SignInBox from '../containers/SignInBox';
 import config, { numToCategory, decodeText, defaultImage } from '../config';
 import { Row, Col } from 'react-bootstrap';
 
-const ItemModal = ({ item, show, onHide, user }) => (
+const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
   <Modal show={show} onHide={onHide}>
 		<Modal.Header closeButton>
 	    <Modal.Title>{decodeText(item.title)}</Modal.Title>
@@ -22,7 +22,8 @@ const ItemModal = ({ item, show, onHide, user }) => (
 		  </Row>
 		  {user.userId == item.owner ? <Button bsStyle="warning"
 	      bsSize="small"
-	      className="pull-right edit-item-button">
+	      className="pull-right edit-item-button"
+	      onClick={onClickEdit}>
       	<span className="glyphicon glyphicon glyphicon-pencil"/>
       </Button> : ""}
 	  </Modal.Body>

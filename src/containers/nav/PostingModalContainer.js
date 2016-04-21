@@ -1,21 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { openPostModal, closePostModal } from '../../actions';
+import { closePostModal, addPosting } from '../../actions';
 import PostingModal from '../../components/PostingModal';
 
-const mapStateToProps = (state) => {
-  return {
-    show: state.ui.postModal
-  };
-};
+const mapStateToProps = (state) => ({
+   show: state.ui.postModal
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onHide: () => {
-      dispatch(closePostModal());
-    }
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  onHide: () => dispatch(closePostModal()),
+  onSubmit: () => dispatch(addPosting())
+});
 
 const PostingModalContainer = connect(
   mapStateToProps, mapDispatchToProps

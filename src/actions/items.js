@@ -56,6 +56,11 @@ export const resetPosting = () => ({
   type: 'RESET_STATUS'
 });
 
+export const setSelectedItem = (item) => ({
+  type: 'SET_SELECTED_ITEM',
+  item: item
+});
+
 export const deleteItem = (id) => {
   return (dispatch, getState) => {
     const state = getState();
@@ -90,6 +95,45 @@ export const deleteItem = (id) => {
       }
     });
   };};
+
+export const editItem = (payload) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    if(!isSignedIn(state)) {
+      return;
+    }
+    dispatch({
+      type: 'POST_ITEM',
+      status: -1,
+      message: 'Item Editing...'
+    });
+    return $.ajax({
+      type: 'PUT',
+      xhrFields: {
+        withCredentials: true
+      },
+      url: config.backendURL + '/api/postings/',
+      contentType: false,
+      processData: false,
+      data: payload,
+      success: (responseBody)=>{
+        dispatch({
+          type: 'POST_ITEM',
+          status: 1,
+          message: 'Item Successfully Edited!'
+        });
+      },
+      error: (XMLHttpRequest, textStatus, errorThrown)=>{
+        console.error(textStatus);
+        dispatch({
+          type: 'POST_ITEM',
+          status: 2,
+          message: 'Item Failed to Edit: ' + errorThrown 
+        });
+      }
+    });
+  };
+};
 
 export const addPosting = (payload) => {
   return (dispatch, getState) => {

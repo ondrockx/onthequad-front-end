@@ -21,7 +21,7 @@ const Navigation = (props, context) => (
       <div className="container-fluid">
         <Banner/>
         <DesktopFilters
-          onClickNewPost={props.desktopOnClickNewPost}
+          onClickNewPost={() => props.desktopOnClickNewPost()}
           search={(searchString) => {
             props.navigate(context.router, { app: 'SEARCH', search: searchString });
           }}
