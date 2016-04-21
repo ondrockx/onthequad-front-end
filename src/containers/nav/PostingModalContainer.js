@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { closePostModal, addPosting } from '../../actions';
+import { closePostModal } from '../../actions';
 import PostingModal from '../../components/PostingModal';
 
 const mapStateToProps = (state) => ({
@@ -8,8 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onHide: () => dispatch(closePostModal()),
-  onSubmit: () => dispatch(addPosting())
+  onHide: () => dispatch(closePostModal())
 });
 
 const PostingModalContainer = connect(
