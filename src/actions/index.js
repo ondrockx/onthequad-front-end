@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { startLoading, stopLoading } from './loading';
 import { getItemsIfApplicable } from './items';
 import { browseURL, accountURL, searchURL, postingURL } from '../config';
+import { setSearch } from './ui';
 import queryString from 'query-string';
 
 export * from './loading';
@@ -39,7 +40,8 @@ export const navigate = (router, props = {}) => {
     const app = props.app || state.app.name;
     const category = props.category || state.category;
     const page = props.page;
-    const search = props.search;
+    const search = props.search || undefined;
+    dispatch(setSearch());
     const params = { page, search };
     var query = queryString.stringify(params);
     query = query ? '?' + query : '';

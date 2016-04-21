@@ -57,7 +57,7 @@ class PostingForm extends Component {
     var valid;
     switch(ref){
       case 'image':
-        valid = this.refs.image.refs.input.files[0];
+        valid = true;
         break;
       case 'title':
         valid = this.refs.title.getValue();
