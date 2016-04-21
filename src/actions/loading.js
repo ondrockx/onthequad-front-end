@@ -1,11 +1,7 @@
-export const startLoading = () => {
-	return {
-		type: 'SET_LOADING'
-	};
-};
+export const startLoading = () => ({
+	type: 'SET_LOADING'
+});
 
-export const stopLoading = () => {
-	return {
-		type: 'UNSET_LOADING'
-	};
-};
+export const stopLoading = () => ({
+	type: 'UNSET_LOADING'
+});
