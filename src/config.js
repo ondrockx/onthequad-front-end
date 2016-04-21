@@ -46,18 +46,15 @@ var config = {
             case 'other':
                 return 9;
         }
-    },
-    decodeText: (html) => {
-        var txt = document.createElement("textarea");
-        txt.innerHTML = html;
-        return txt.value;
     }
 };
 
+export const defaultImage = '/images/thumbnaildiv.png';
 export const accountURL = '/account';
 export const browseURL = '/browse';
 export const searchURL = '/search';
 export const postingURL = '/posting';
+export const landingURL = '/';
 export const getAppURL = (app) => {
     switch (app) {
         case 'BROWSE':
@@ -71,6 +68,49 @@ export const getAppURL = (app) => {
         default:
             return '/';
     }
+};
+export const decodeText = (html) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+};
+export const numToCategory = (num) => {
+    switch (num) {
+        case -1:
+            return 'all';
+        case 1:
+            return 'textbooks';
+        case 2:
+            return 'tickets';
+        case 3:
+            return 'lostandfound';
+        case 4:
+            return 'furniture';
+        case 5:
+            return 'electronics';
+        case 10:
+            return 'clothing';
+        case 6:
+            return 'vehicles';
+        case 7:
+            return 'supplies';
+        case 8:
+            return 'media';
+        case 9:
+            return 'other';
+    }
+};
+
+export const allFalse = (obj) => {
+  for(var o in obj)
+    if(obj[o]) return false;
+  return true;
+};
+
+export const allTrue = (obj) => {
+  for(var o in obj)
+    if(!obj[o]) return false;
+  return true;
 };
 
 export default _.extend(config, {
