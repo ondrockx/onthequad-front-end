@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import $ from 'jquery';
 import { connect } from 'react-redux';
+import { addPosting } from '../actions';
 import { Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
 import ProgressBox from '../components/ProgressBox';
 import config, { allTrue, allFalse } from '../config';
@@ -29,15 +30,17 @@ class PostingForm extends Component {
       const cost = parseFloat(this.refs.cost.getValue());
       const description = this.refs.description.getValue();
       const category = parseInt(this.refs.category.getValue());
-      const file = this.refs.image.refs.input.files[0];
+      const file = this.refs.image.refs.input.files[0] || null;
       const payload = { file, title, cost, description, category };
       const data = new FormData();
-      data.append('image', file, file.name);
+      if (file != null) {
+        data.append('image', file, file.name);
+      }
       data.append('title', title);
       data.append('cost', cost);
       data.append('description', description);
       data.append('category', category);
-      this.props.submit(data);
+      this.props.addPosting(data);
     });
   }
 
@@ -138,12 +141,13 @@ class PostingForm extends Component {
     </div>;
   }
 };
-PostingForm.propTypes = {
-  submit: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state) => {
   return { postStatus: state.ui.postStatus };
 };
 
-export default connect(mapStateToProps)(PostingForm);
+const mapDispatchToProps = (dispatch) => ({
+  addPosting: (payload) => dispatch(addPosting(payload))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostingForm);

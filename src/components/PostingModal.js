@@ -3,14 +3,14 @@ import { Modal } from 'react-bootstrap';
 import PostingForm from '../containers/PostingForm';
 import SignInBox from '../containers/SignInBox';
 
-const PostingModal = ({ show, onHide, onSubmit }) => (
+const PostingModal = ({ show, onHide }) => (
   <Modal show={show} onHide={onHide}>
 		<Modal.Header closeButton>
 	    <Modal.Title>New Posting</Modal.Title>
 	  </Modal.Header>
 	  <Modal.Body>
 	    <SignInBox>
-	    	<PostingForm submit={onSubmit}/>
+	    	<PostingForm/>
 	    </SignInBox>
 	  </Modal.Body>
   </Modal>
