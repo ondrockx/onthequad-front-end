@@ -20,8 +20,7 @@ class PostingForm extends Component {
     });
   }
 
-  submitForm(e) {
-    e.preventDefault();
+  submitForm() {
     this.validateAll(() => {
       if (!allFalse(this.state.invalid)) {
         return;
@@ -30,11 +29,10 @@ class PostingForm extends Component {
       const cost = parseFloat(this.refs.cost.getValue());
       const description = this.refs.description.getValue();
       const category = parseInt(this.refs.category.getValue());
-      const file = this.refs.image.refs.input.files[0] || null;
-      const payload = { file, title, cost, description, category };
+      const files = this.refs.image.refs.input.files || [];
       const data = new FormData();
-      if (file != null) {
-        data.append('image', file, file.name);
+      for (var i = 0; i < files.length; i++) {
+        data.append('images[]', files[i], files[i].name);
       }
       data.append('title', title);
       data.append('cost', cost);
@@ -84,6 +82,7 @@ class PostingForm extends Component {
   render() {
     const { status, message } = this.props.postStatus;
     const { invalid } = this.state;
+    const item = this.props.item || {};
     if (status != 0) { // 0 is default
       return <ProgressBox {...this.props.postStatus}/>;
     }
@@ -95,7 +94,8 @@ class PostingForm extends Component {
         label="Image"
         capture="camera"
         accept="image/*"
-        ref="image"/>
+        ref="image"
+        multiple/>
     </div>;
     return <div className="row">
       <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
@@ -106,6 +106,7 @@ class PostingForm extends Component {
             type="text"
             label="Title"
             placeholder="Item Name"
+            defaultValue={item.title || null}
             ref="title"/>
           {imageInput}
           <Input
@@ -115,12 +116,14 @@ class PostingForm extends Component {
             label="Price"
             addonBefore="$"
             placeholder="0.00"
+            defaultValue={item.cost || null}
             ref="cost"/>
           <Input
             bsStyle={ invalid['description'] ? "error" : null }
             onChange={ () => this.validate('description') }
             type="textarea"
             label="Description"
+            defaultValue={item.description || null}
             ref="description"/>
           <Input
               bsStyle={ invalid['category'] ? "error" : null }
@@ -128,6 +131,7 @@ class PostingForm extends Component {
               type="select"
               label="Category"
               placeholder="select"
+              defaultValue={item.category || null}
               ref="category">
             <option value={0} key={0}></option>
             {_.map(config.submitCategories, (itemName, itemId)=>{
@@ -135,11 +139,19 @@ class PostingForm extends Component {
               return <option value={id} key={id}>{itemName}</option>;
             })}
           </Input>
-          <ButtonInput disabled={status !== 0 || !allFalse(invalid)} type="submit" value="Submit" onClick={(e) => this.submitForm(e)}/>
+          <ButtonInput disabled={status !== 0 || !allFalse(invalid)}
+            type="submit" value="Submit"
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.alternateSubmit ? this.props.alternateSubmit(this.refs) : this.submitForm();
+            }}/>
         </form>
       </div>
     </div>;
   }
+};
+PostingForm.propTypes = {
+  alternateSubmit: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
