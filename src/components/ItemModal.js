@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import SignInBox from '../containers/SignInBox';
-import config, { numToCategory, decodeText, defaultImage } from '../config';
+import config, { numToCategory, decodeText, categoryImage, defaultImage } from '../config';
 import { Row, Col } from 'react-bootstrap';
 
 const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
@@ -12,7 +12,7 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 	  <Modal.Body>
 			<Row>
 				<Col md={6}>
-					<img src={ item.url || defaultImage } alt="242x200" />
+					<img src={item.url || categoryImage(config.categories[numToCategory(item.category)])} />
 				</Col>
 				<Col md={6}>
 					{decodeText(item.description)}
