@@ -12,7 +12,7 @@ var AppPager = ({page, num_pages, app, navigate}, context) => (
     				navigate(context.router, {app, page: page-1});
 		    	}
 	    	}>
-	    	&larr; Previous
+	    	&larr; Prev
 	    </PageItem>
 		  <Pagination
 				className="hidden-sm hidden-xs clearfix top-pagination"
