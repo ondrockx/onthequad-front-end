@@ -31,7 +31,9 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 	      <Button bsStyle="primary"
 			  	bsSize="small"
 			  	className="pull-right edit-item-button"
-			  	href={"mailto:" + item.email + "?subject="}>
+			  	href={"mailto:" + item.email +
+				  	"?subject=OnTheQuad%20Request%20for%20" + item.title +
+				  	"&body=Request%20for%20" + item.title + "(" + item.id + ")"}>
 			  	<span className="glyphicon glyphicon-envelope"/>
 			  </Button>
 			}
