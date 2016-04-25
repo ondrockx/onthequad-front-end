@@ -7,7 +7,7 @@ const AppPagerWrapper = ({children, page, num_pages, app, navigate}) => (
 	<div>
 		<AppPager page={page} num_pages={num_pages} app={app} navigate={navigate} />
 			{children}
-		<AppPager/>
+		<AppPager page={page} num_pages={num_pages} app={app} navigate={navigate} />
 	</div>
 );
 

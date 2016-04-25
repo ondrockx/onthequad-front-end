@@ -34,7 +34,7 @@ class PostingForm extends Component {
       const payload = { file, title, cost, description, category };
       const data = new FormData();
       if (file != null) {
-        data.append('image', file, file.name);
+        data.append('images[]', file, file.name);
       }
       data.append('title', title);
       data.append('cost', cost);
@@ -140,6 +140,9 @@ class PostingForm extends Component {
       </div>
     </div>;
   }
+};
+PostingForm.propTypes = {
+  alternateSubmit: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

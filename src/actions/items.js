@@ -155,11 +155,11 @@ export const addPosting = (payload) => {
         });
       },
       error: (XMLHttpRequest, textStatus, errorThrown)=>{
-        console.error(textStatus);
+        console.error(errorThrown);
         dispatch({
           type: 'POST_ITEM',
           status: 2,
-          message: 'Item Failed to Post: ' + textStatus 
+          message: 'Item Failed to Post: ' + errorThrown 
         });
       }
     });
@@ -184,7 +184,7 @@ const getAccountItems = () => {
       },
       url: config.backendURL + '/api/postings/' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error(textStatus);
+        console.error(errorThrown);
       }
     });
   };
@@ -210,7 +210,7 @@ const getItems = () => {
       },
       url: config.backendURL + '/api/postings' + param,
       error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error(textStatus);
+        console.error(errorThrown);
       }
     });
   };

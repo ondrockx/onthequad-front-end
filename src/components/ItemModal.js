@@ -20,12 +20,21 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 		    	Cost: ${item.cost}
 				</Col>
 		  </Row>
-		  {user.userId == item.owner ? <Button bsStyle="warning"
-	      bsSize="small"
-	      className="pull-right edit-item-button"
-	      onClick={onClickEdit}>
-      	<span className="glyphicon glyphicon glyphicon-pencil"/>
-      </Button> : ""}
+		  {
+		  	user.userId == item.owner ?
+			  <Button bsStyle="warning"
+		      bsSize="small"
+		      className="pull-right edit-item-button"
+		      onClick={onClickEdit}>
+	      	<span className="glyphicon glyphicon-pencil"/>
+	      </Button> :
+	      <Button bsStyle="primary"
+			  	bsSize="small"
+			  	className="pull-right edit-item-button"
+			  	href={"mailto:" + item.email + "?subject="}>
+			  	<span className="glyphicon glyphicon-envelope"/>
+			  </Button>
+			}
 	  </Modal.Body>
 	  <Modal.Footer>
 	    <div className="pull-left">

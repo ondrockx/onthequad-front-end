@@ -217,6 +217,11 @@ a {
     margin-right: -10px;
 }
 
+.email-item-button {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
 .thumbnail {
 	margin: auto auto 20px auto;
 	max-width: 250px;
