@@ -50,6 +50,16 @@ var config = {
 };
 
 export const defaultImage = '/images/thumbnaildiv.png';
+export const cat_textbooks = '/images/category1.png';
+export const cat_uconntickets = '/images/category2.png';
+export const cat_lostandfound = '/images/category3.png';
+export const cat_furniture = '/images/category4.png';
+export const cat_electronics = '/images/category5.png';
+export const cat_clothing = '/images/category6.png';
+export const cat_vehicles = '/images/category7.png';
+export const cat_schoolsupplies = '/images/category8.png';
+export const cat_moviesandgames = '/images/category9.png';
+export const cat_other = '/images/category10.png';
 export const accountURL = '/account';
 export const browseURL = '/browse';
 export const searchURL = '/search';
@@ -67,6 +77,21 @@ export const getAppURL = (app) => {
             return postingURL;
         default:
             return '/';
+    }
+};
+export const categoryImage = (title) => {
+    switch (title) {
+            case "Textbooks": return cat_textbooks;
+            case "UConn Tickets": return cat_uconntickets;
+            case "Lost and Found": return cat_lostandfound;
+            case "Furniture": return cat_furniture;
+            case "Electronics": return cat_electronics;
+            case "Clothing": return cat_clothing;
+            case "Vehicles": return cat_vehicles;
+            case "School Supplies": return cat_schoolsupplies;
+            case "Movies and Games": return cat_moviesandgames;
+            case "Other": return cat_other;
+            default: return defaultImage;
     }
 };
 export const decodeText = (html) => {
