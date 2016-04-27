@@ -1,9 +1,10 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import _ from 'lodash';
+import { Modal, Button, Row, Col } from 'react-bootstrap';
 import SignInBox from '../containers/SignInBox';
-import config, { numToCategory, decodeText, categoryImage, defaultImage, imgUrl } from '../config';
-import { Row, Col } from 'react-bootstrap';
-import EmailButton from '../containers/EmailButton';
+import config, { numToCategory, decodeText, categoryImage, imgUrl, imgUrls } from '../config';
+import EmailButton from './EmailButton';
+import ImageCarousel from './ImageCarousel';
 
 const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
   <Modal show={show} onHide={onHide}>
@@ -13,10 +14,7 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 	  <Modal.Body>
 			<Row>
 				<Col md={5}>
-					<img
-					width={242}
-					height={200}
-					src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} />
+					<ImageCarousel item={item}/>
 				</Col>
 				<Col md={7} className="modal-text">
 					{decodeText(item.description)}

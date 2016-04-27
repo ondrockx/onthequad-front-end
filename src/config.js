@@ -94,11 +94,25 @@ export const categoryImage = (title) => {
             default: return defaultImage;
     }
 };
-export const imgUrl = (item) => {
-    if (item.image) {
-        return item.image[0] ? config.backendURL + '/api/images/' + item.image[0] : false;
+export const imgUrl = (item = {}) => {
+    if (item.image && item.image[0]) {
+        const imageName = item.image[0].split('.')[0];
+        return item.image[0] ?
+            config.backendURL + '/api/images/' + imageName + '_thumb.png':
+            false;
     }
     return false
+};
+export const imgUrls = (item = {}) => {
+    if (item.image && item.image[0]) {
+        const urls = [];
+        for (var i in item.image) {
+            const imageName = item.image[i].split('.')[0];
+            urls.push(config.backendURL + '/api/images/' + imageName + '_thumb.png');
+        }
+        return urls;
+    }
+    return [];
 };
 export const decodeText = (html) => {
     var txt = document.createElement("textarea");
