@@ -207,6 +207,10 @@ a {
 	margin-top: -35px;
 	color: white;
 	font-size: 120%;
+	background: rgba(0,0,0, 0.2);
+	border-radius: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 .itemdisplay-button {
