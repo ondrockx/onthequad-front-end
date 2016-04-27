@@ -19,7 +19,10 @@ const Navigation = (props, context) => (
     </div>
     <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div className="container-fluid">
-        <Banner/>
+        <Banner goToBrowse={(e) => {
+          e.preventDefault();
+          props.navigate(context.router, { app: 'BROWSE', category: 'all' })
+        }}/>
         <DesktopFilters
           onClickNewPost={() => props.desktopOnClickNewPost()}
           search={(searchString) => {
@@ -31,15 +34,17 @@ const Navigation = (props, context) => (
       </div>
     </nav>
     <PostingModalContainer/>
-    <MobileFilters
-      onClickNewPost={(e) => {
-        e.preventDefault();
-        props.navigate(context.router, { app: 'POSTING' });
-      }}
-      search={(searchString) => {
-        props.navigate(context.router, { app: 'SEARCH', search: searchString });
-      }}
-    />
+    { props.category === 'Posting' ? "" : 
+      <MobileFilters
+        onClickNewPost={(e) => {
+          e.preventDefault();
+          props.navigate(context.router, { app: 'POSTING' });
+        }}
+        search={(searchString) => {
+          props.navigate(context.router, { app: 'SEARCH', search: searchString });
+        }}
+      />
+    }
 	</div>
 );
 Navigation.contextTypes = {
@@ -54,8 +59,8 @@ Navigation.propTypes = {
 const mapStateToProps = (state) => {
   return {
     category: state.category,
-    displayCategory: config.categories[state.category]  || state.category
-  };
+    displayCategory: state.category === 'Account' ? 'Your Items' : config.categories[state.category] || state.category
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {

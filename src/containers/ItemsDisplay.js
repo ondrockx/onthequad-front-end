@@ -30,8 +30,8 @@ class ItemsDisplay extends Component {
       />
       <Grid fluid>
         <Row>
-          {_.map(items, (item={}) => {
-            if(item) {
+          {_.map(items, (item = {}) => {
+            if (item && item.id) {
               return <Item key={item.id} item={item} />;
             }
           })}
