@@ -38,7 +38,7 @@ const Navigation = (props, context) => (
       <MobileFilters
         onClickNewPost={(e) => {
           e.preventDefault();
-          props.navigate(context.router, { app: 'POSTING' });
+          props.navigate(context.router, { app: 'POSTING', search: '' });
         }}
         search={(searchString) => {
           props.navigate(context.router, { app: 'SEARCH', search: searchString });
