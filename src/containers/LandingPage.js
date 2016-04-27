@@ -43,7 +43,7 @@ class LandingPage extends Component {
       </div>
       <div className="div_class jumbotron center-block" id="intro">
         <div className="div_class container center-block">
-          <p id="head" className="jumbotxt">On the Quad is a free tool dedicated to enpowering UConn students with the ability to buy or sell items amongst other students effectively and efficiently. We here at On the Quad believe our service put preforms popular buy/sell avenues of the past by making our service exclusive to UConn students and offering solutions to common problems.</p>
+          <p id="head" className="jumbotxt">On the Quad is a free tool dedicated to empowering UConn students with the ability to buy or sell items amongst other students effectively and efficiently. We here at On the Quad believe our service out preforms popular buy/sell avenues of the past by making our service exclusive to UConn students and offering solutions to common problems.</p>
         </div>
       </div>
       <div className="div_class container-fluid" id="caro">
@@ -100,7 +100,7 @@ class LandingPage extends Component {
       <div className="div_class jumbotron" id="apart">
         <h1 className="h1_class">What Sets Us Apart</h1>
         <div className="div_class row addmargins">
-          <div className="div_class col-lg-1"/>
+          <div className="div_class col-lg-2"/>
           <div className="div_class col-lg-2">
             <h4 className="h4_class"> Exclusivity</h4>
             <p id="print_class"> Must have a UConn Gmail account to join</p>
@@ -109,10 +109,7 @@ class LandingPage extends Component {
             <h4 className="h4_class"> Easy to find what you want</h4>
             <p id="print_class"> All posts are organized, filterable, and searchable</p>
           </div>
-          <div className="div_class col-lg-2">
-            <h4 className="h4_class"> Looking for something that isn't posted?</h4>
-            <p id="print_class">Create "looking for" posts to advertise your needs</p>
-          </div>
+ 
           <div className="div_class col-lg-2">
             <h4 className="h4_class"> Easy to use Interface</h4>
             <p id="print_class"> Users are able to manage their posts more easily and spend less time scrolling while searching</p>
@@ -121,7 +118,7 @@ class LandingPage extends Component {
             <h4 className="h4_class"> Created for UConn students, by UConn students</h4>
             <p id="print_class"> Our team is dedicated to continuously updating and improving onthequad based on student feedback</p>
           </div>
-          <div className="div_class col-lg-1"/>
+          <div className="div_class col-lg-2"/>
         </div>
       </div>
 
@@ -131,8 +128,8 @@ class LandingPage extends Component {
           <img src="images/Price-Compare.png" id="future"/>
         </div>
         <div className="div_class col-lg-7"/>
-        <p id="future" className="futuretxt1"> When starting onthequad, one of the main goals was to improve the way UConn students buy textbooks. <br/>
-          In the coming future, we plan on implementing a way to populate textbook post fields with only the ISBN number. We also plan on making the listed price of textbooks from Amazon and the UConn coop readily available to both buyers and sellers.
+        <p id="future" className="futuretxt1"> When starting On the Quad, one of the main goals was to improve the way UConn students buy and sell textbooks. <br/>
+          In the coming future, we plan on implementing a way to populate textbook post fields with only the ISBN number. We also plan on making the listed price of textbooks from Amazon and the UConn COOP readily available to both buyers and sellers.
         </p>
       </div>
       <div className="div_class row spacing">
@@ -141,7 +138,7 @@ class LandingPage extends Component {
           <img src="images/test.gif" id="future"/>
         </div>
         <div className="div_class col-lg-7">
-          <p id="future" className="futuretxt2"> The way UConn students buy and sell UConn tickets is something that drastically needs to change. In the future, students will be able to be sure they are not overpaying for tickets (as well as textbooks) with our up to date snapshot of the ticket marketplace. Onthequad will provide information of average, lowest, and highest ticket price posts over the past 7 days as well as the original cost of the ticket.</p>
+          <p id="future" className="futuretxt2"> The way UConn students buy and sell UConn tickets is something that drastically needs to change. In the future, students will be able to be sure they are not overpaying for tickets (as well as textbooks) with our up to date snapshot of the ticket marketplace. On the Quad will provide information of average, lowest, and highest ticket price posts over the past 7 days as well as the original cost of the ticket.</p>
         </div>
       </div>
 

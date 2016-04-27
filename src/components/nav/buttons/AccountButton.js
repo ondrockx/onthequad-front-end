@@ -7,7 +7,7 @@ const AccountButton = ({accountClick, logoutClick, user}) => (
     <DropdownButton pullRight title={
 	    	<span className="glyphicon glyphicon-user" aria-hidden="true"></span>
 	    } id="bg-nested-dropdown" className="navbar-btn-half">
-	      <MenuItem onClick={accountClick}>Account Settings</MenuItem>
+	      <MenuItem onClick={accountClick}>Your Items</MenuItem>
 	      <MenuItem divider/>
 	      <MenuItem onClick={logoutClick}>Logout</MenuItem>
     </DropdownButton>

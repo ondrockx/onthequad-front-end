@@ -35,7 +35,7 @@ class ItemsDisplay extends Component {
               return <Item key={item.id} item={item} />;
             }
           })}
-          { _.isEmpty(items) ? <div>No items found.</div> : "" }
+          { _.isEmpty(items) ? <div className="centertxt">No items found.</div> : "" }
         </Row>
       </Grid>
     </div>;
