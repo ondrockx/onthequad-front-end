@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button, Thumbnail, Col } from 'react-bootstrap';
 import { setSelectedItem, openItemModal } from '../actions';
-import config, { decodeText, categoryImage, numToCategory } from '../config';
+import config, { decodeText, categoryImage, numToCategory, imgUrl } from '../config';
 
 class Item extends Component {
 	render() {
@@ -19,8 +19,8 @@ class Item extends Component {
 	      	<span className="glyphicon glyphicon-pencil"/>
 	      </Button>;
     }
- 	  return <Col xs={6} sm={4} md={3}>
-	    <Thumbnail src={categoryImage(config.categories[numToCategory(item.category)])} alt="242x200" onClick={() => onClickItem(item)}>
+ 	  return <Col xs={6} sm={4} md={3} lg={2}>
+	    <Thumbnail src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} alt="242x200" onClick={() => onClickItem(item)}>
 	      {removeButton}
 	      <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
 	      <p className="itemdisplay-title">{decodeText(item.title)}</p>
