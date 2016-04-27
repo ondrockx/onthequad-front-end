@@ -7,32 +7,33 @@ import PostingForm from './PostingForm';
 class EditForm extends Component {
 	componentWillMount() {
 		this.setState({ delError: false });
+		this.submitEditForm = this.submitEditForm.bind(this);
 	}
 
   submitEditForm(refs) {
-    this.validateAll(() => {
-      const title = refs.title.getValue();
-      const cost = parseFloat(refs.cost.getValue());
-      const description = refs.description.getValue();
-      const category = parseInt(refs.category.getValue());
-      const files = refs.image.refs.input.files || [];
-      const data = new FormData();
-      for (var i = 0; i < files.length; i++) {
-        data.append('images[]', files[i], files[i].name);
-      }
-      data.append('title', title);
-      data.append('cost', cost);
-      data.append('description', description);
-      data.append('category', category);
-      this.props.editItem(data);
-    });
+    const title = refs.title.getValue();
+    const cost = parseFloat(refs.cost.getValue());
+    const description = refs.description.getValue();
+    const category = parseInt(refs.category.getValue());
+    const files = refs.image.refs.input.files || [];
+    const data = new FormData();
+    for (var i = 0; i < files.length; i++) {
+      data.append('images[]', files[i], files[i].name);
+    }
+    const id = parseInt(this.props.item.id);
+    data.append('id', id);
+    data.append('title', title);
+    data.append('cost', cost);
+    data.append('description', description);
+    data.append('category', category);
+    this.props.editItem(data);
   }
 
 	render() {
 		const { item, deleteItem, editItem, closeModal } = this.props;
 		const { delError } = this.state;
 		return <div>
-			<PostingForm item={item}/>
+			<PostingForm alternateSubmit={this.submitEditForm} item={item}/>
 			<hr />
 			<Row>
 				<Col xs={6} xsOffset={3}>

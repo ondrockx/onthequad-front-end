@@ -99,6 +99,7 @@ export const editItem = (payload) => {
       status: -1,
       message: 'Item Editing...'
     });
+    console.log(payload);
     return $.ajax({
       type: 'PUT',
       xhrFields: {
