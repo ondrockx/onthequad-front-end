@@ -64,10 +64,11 @@ class PostingForm extends Component {
         valid = this.refs.title.getValue();
         break;
       case 'cost':
-        valid = !isNaN(parseFloat(this.refs.cost.getValue()));
+        valid = !isNaN(this.refs.cost.getValue());
         break;
       case 'description':
-        valid = this.refs.description.getValue();
+        valid = this.refs.description.getValue() ?
+          this.refs.description.getValue().length < 1000 : false;
         break;
       case 'category':
         valid = parseInt(this.refs.category.getValue());
@@ -119,10 +120,11 @@ class PostingForm extends Component {
             defaultValue={item.cost || null}
             ref="cost"/>
           <Input
+            className="description-input"
             bsStyle={ invalid['description'] ? "error" : null }
             onChange={ () => this.validate('description') }
             type="textarea"
-            label="Description"
+            label="Description (1000 character limit)"
             defaultValue={item.description || null}
             ref="description"/>
           <Input
@@ -139,7 +141,7 @@ class PostingForm extends Component {
               return <option value={id} key={id}>{itemName}</option>;
             })}
           </Input>
-          <ButtonInput disabled={status !== 0 || !allFalse(invalid)}
+          <ButtonInput bsStyle="primary" disabled={status !== 0 || !allFalse(invalid)}
             type="submit" value="Submit"
             onClick={(e) => {
               e.preventDefault();
