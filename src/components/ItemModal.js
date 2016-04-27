@@ -1,8 +1,9 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import SignInBox from '../containers/SignInBox';
-import config, { numToCategory, decodeText, categoryImage, defaultImage } from '../config';
+import config, { numToCategory, decodeText, categoryImage, defaultImage, imgUrl } from '../config';
 import { Row, Col } from 'react-bootstrap';
+import EmailButton from '../containers/EmailButton';
 
 const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
   <Modal show={show} onHide={onHide}>
@@ -11,10 +12,13 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 	  </Modal.Header>
 	  <Modal.Body>
 			<Row>
-				<Col md={6}>
-					<img src={item.url || categoryImage(config.categories[numToCategory(item.category)])} />
+				<Col md={5}>
+					<img
+					width={242}
+					height={200}
+					src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} />
 				</Col>
-				<Col md={6}>
+				<Col md={7} className="modal-text">
 					{decodeText(item.description)}
 					<br />
 		    	Cost: ${item.cost}
@@ -28,14 +32,7 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 		      onClick={onClickEdit}>
 	      	<span className="glyphicon glyphicon-pencil"/>
 	      </Button> :
-	      <Button bsStyle="primary"
-			  	bsSize="small"
-			  	className="pull-right edit-item-button"
-			  	href={"mailto:" + item.email +
-				  	"?subject=OnTheQuad%20Request%20for%20" + item.title +
-				  	"&body=Request%20for%20" + item.title + "(" + item.id + ")"}>
-			  	<span className="glyphicon glyphicon-envelope"/>
-			  </Button>
+	      <EmailButton email={item.email}/>
 			}
 	  </Modal.Body>
 	  <Modal.Footer>

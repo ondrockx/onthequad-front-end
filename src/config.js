@@ -94,6 +94,12 @@ export const categoryImage = (title) => {
             default: return defaultImage;
     }
 };
+export const imgUrl = (item) => {
+    if (item.image) {
+        return item.image[0] ? config.backendURL + '/api/images/' + item.image[0] : false;
+    }
+    return false
+};
 export const decodeText = (html) => {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;

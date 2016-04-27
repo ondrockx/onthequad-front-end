@@ -70,6 +70,10 @@ body {
 		font-size: 20px;
 	}
 }
+
+.modal-text {
+	word-wrap: break-word;
+}
 	
 .navbar-center
 {
@@ -212,14 +216,13 @@ a {
 	margin-left: -4px;
 }
 
+.email-display-box {
+	margin-top: -17px;
+}
+
 .edit-item-button {
 	margin-top: -20px;
     margin-right: -10px;
-}
-
-.email-item-button {
-	margin-left: 10px;
-	margin-top: 10px;
 }
 
 .thumbnail {
