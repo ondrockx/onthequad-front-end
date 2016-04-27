@@ -4,7 +4,7 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 class Filters extends Component {
   render() {
     const { app, sort, sortBy } = this.props;
-    if (this.props.app == "BROWSE" || this.props.app == "ACCOUNT") {
+    if (this.props.app == "BROWSE" || this.props.app == "ACCOUNT" || this.props.app == "SEARCH") {
       return <ButtonGroup>
         <Button bsStyle="default"
         className="navbar-btn"
