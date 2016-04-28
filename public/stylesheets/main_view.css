@@ -108,7 +108,7 @@ body {
 }
 
 .navbar-btn-half {
-	margin-top: 4px;
+	margin-top: 8px;
 	margin-bottom: 4px;
 }
 
@@ -221,7 +221,7 @@ a {
 	margin-top: -35px;
 	color: white;
 	font-size: 120%;
-	background: rgba(0,0,0, 0.2);
+	background: black;
 	border-radius: 5px;
 	padding-left: 3px;
 	padding-right: 3px;
@@ -262,6 +262,11 @@ a {
 .pager {
 	margin-left:4%;
 	margin-right:4%;
+}
+
+.twopixelsam {
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .centertxt {
