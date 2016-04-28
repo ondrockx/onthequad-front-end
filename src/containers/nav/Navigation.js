@@ -36,10 +36,7 @@ const Navigation = (props, context) => (
     <PostingModalContainer/>
     { props.category === 'Posting' ? "" : 
       <MobileFilters
-        onClickNewPost={(e) => {
-          e.preventDefault();
-          props.navigate(context.router, { app: 'POSTING', search: '' });
-        }}
+        onClickNewPost={() => props.desktopOnClickNewPost()}
         search={(searchString) => {
           props.navigate(context.router, { app: 'SEARCH', search: searchString });
         }}

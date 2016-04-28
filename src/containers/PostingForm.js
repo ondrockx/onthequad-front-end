@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addPosting } from '../actions';
 import { Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
 import ProgressBox from '../components/ProgressBox';
-import config, { allTrue, allFalse } from '../config';
+import config, { allTrue, allFalse, decodeText } from '../config';
 
 class PostingForm extends Component {
   componentWillMount() {
@@ -85,7 +85,7 @@ class PostingForm extends Component {
     const { invalid } = this.state;
     const item = this.props.item || {};
     if (status != 0) { // 0 is default
-      return <ProgressBox {...this.props.postStatus}/>;
+      return <div className="row"><ProgressBox {...this.props.postStatus}/></div>;
     }
     var imageInput = <div className="form-image-upload">
       <Input
@@ -107,7 +107,7 @@ class PostingForm extends Component {
             type="text"
             label="Title"
             placeholder="Item Name"
-            defaultValue={item.title || null}
+            defaultValue={decodeText(item.title) || null}
             ref="title"/>
           {imageInput}
           <Input
@@ -117,7 +117,7 @@ class PostingForm extends Component {
             label="Price"
             addonBefore="$"
             placeholder="0.00"
-            defaultValue={item.cost || null}
+            defaultValue={decodeText(item.cost) || null}
             ref="cost"/>
           <Input
             className="description-input"
@@ -125,7 +125,7 @@ class PostingForm extends Component {
             onChange={ () => this.validate('description') }
             type="textarea"
             label="Description (1000 character limit)"
-            defaultValue={item.description || null}
+            defaultValue={decodeText(item.description) || null}
             ref="description"/>
           <Input
               bsStyle={ invalid['category'] ? "error" : null }
@@ -133,7 +133,7 @@ class PostingForm extends Component {
               type="select"
               label="Category"
               placeholder="select"
-              defaultValue={item.category || null}
+              defaultValue={decodeText(item.category) || null}
               ref="category">
             <option value={0} key={0}></option>
             {_.map(config.submitCategories, (itemName, itemId)=>{

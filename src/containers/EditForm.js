@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Input } from 'react-bootstrap';
-import { deleteItem, editItem } from '../actions';
+import { deleteItem, editItem, decodeText } from '../actions';
 import PostingForm from './PostingForm';
 
 class EditForm extends Component {
@@ -50,7 +50,7 @@ class EditForm extends Component {
 	      </Col>
 	      <Col xs={4}>
 					<Button bsStyle="danger" onClick={() => {
-						if (this.refs.delete.getValue() == 'DELETE') {
+						if (this.refs.delete.getValue().trim() == 'DELETE') {
 							deleteItem(item.id);
 						} else {
 							this.setState({ delError: true });
