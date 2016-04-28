@@ -47,8 +47,11 @@ body {
 	font-family: modak;
 	color: black !important;
 	font-size: 36px;
-	-webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
+	  text-shadow:
+   		-1px -1px 0 #FFFFFF,  
+    	1px -1px 0 #FFFFFF,
+    	-1px 1px 0 #FFFFFF,
+     	1px 1px 0 #FFFFFF !important; 
 }
 @media (max-width: 480px) {
 	.mybrand {
@@ -108,7 +111,7 @@ body {
 }
 
 .navbar-btn-half {
-	margin-top: 8px;
+	margin-top: 4px;
 	margin-bottom: 4px;
 }
 
@@ -279,6 +282,11 @@ a {
 	background-color: #48C9CB;
 }
 
+.imagepadding {
+	padding-left: 9px;
+	padding-right: 9px;
+	padding-top: 9px;
+}
 /* ------------------------------- Landing Page ------------------------------------ */
 
 

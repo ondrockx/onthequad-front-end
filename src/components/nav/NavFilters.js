@@ -7,12 +7,14 @@ class Filters extends Component {
     if (this.props.app == "BROWSE" || this.props.app == "ACCOUNT" || this.props.app == "SEARCH") {
       return <ButtonGroup>
         <Button bsStyle="default"
-        className="navbar-btn"
+        title="newest posts"
+        className="navbar-btn newpost"
         active={sort === 'newest'}
         onClick={() => sortBy('newest')}>
           <span className="glyphicon glyphicon-calendar" />
         </Button>
         <Button
+        title="low to high"
         bsStyle="default"
         className="navbar-btn"
         active={sort === 'lowest_cost'}
@@ -20,6 +22,7 @@ class Filters extends Component {
           <span className="glyphicon glyphicon-sort-by-attributes"/>
         </Button>
         <Button
+        title="high to low"
         bsStyle="default"
         className="navbar-btn"
         active={sort === 'highest_cost'}

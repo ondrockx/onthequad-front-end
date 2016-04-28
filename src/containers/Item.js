@@ -20,7 +20,7 @@ class Item extends Component {
 	      </Button>;
     // }
  	  return <Col xs={6} sm={4} md={3} lg={2}>
-	    <Thumbnail src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} alt="242x200" onClick={() => onClickItem(item)}>
+	    <Thumbnail className="imagepadding" src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} alt="242x200" onClick={() => onClickItem(item)}>
 	      {removeButton}
 	      <div className="itemdisplay-price">${item.cost.toFixed(2)}</div>
 	      <p className="itemdisplay-title">{decodeText(item.title)}</p>
