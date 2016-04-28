@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { addPosting } from '../actions';
 import { Input, ButtonInput, Nav, NavItem } from 'react-bootstrap';
 import ProgressBox from '../components/ProgressBox';
-import config, { allTrue, allFalse, decodeText } from '../config';
+import config, { numToCategory, allTrue, allFalse, decodeText } from '../config';
 
 class PostingForm extends Component {
   componentWillMount() {
+    const item = this.props.item || {}
     this.setState({
       invalid: {
         image: false,
@@ -16,7 +17,8 @@ class PostingForm extends Component {
         cost: false,
         description: false,
         category: false
-      }
+      },
+      category: item.category
     });
   }
 
@@ -68,9 +70,11 @@ class PostingForm extends Component {
         break;
       case 'description':
         valid = this.refs.description.getValue() ?
-          this.refs.description.getValue().length < 1000 : false;
+        this.refs.description.getValue().length < 1000 : false;
         break;
       case 'category':
+        console.log(this.refs.category.getValue());
+        this.setState({category: parseInt(this.refs.category.getValue())});
         valid = parseInt(this.refs.category.getValue());
         break;
       default:
@@ -98,6 +102,20 @@ class PostingForm extends Component {
         ref="image"
         multiple/>
     </div>;
+    var costInput = this.state.category !== 3 ?
+      <Input
+        bsStyle={ invalid['cost'] ? "error" : null }
+        onChange={ () => this.validate('cost') }
+        type="text"
+        label="Price"
+        addonBefore="$"
+        placeholder="0.00"
+        defaultValue={decodeText(item.cost) || 0.00}
+        ref="cost"/> :
+      <Input
+        type="hidden"
+        defaultValue={0.00}
+        ref="cost"/>;
     return <div className="row">
       <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
         <form>
@@ -110,15 +128,7 @@ class PostingForm extends Component {
             defaultValue={decodeText(item.title) || null}
             ref="title"/>
           {imageInput}
-          <Input
-            bsStyle={ invalid['cost'] ? "error" : null }
-            onChange={ () => this.validate('cost') }
-            type="text"
-            label="Price"
-            addonBefore="$"
-            placeholder="0.00"
-            defaultValue={decodeText(item.cost) || null}
-            ref="cost"/>
+          {costInput}
           <Input
             className="description-input"
             bsStyle={ invalid['description'] ? "error" : null }
@@ -156,9 +166,9 @@ PostingForm.propTypes = {
   alternateSubmit: PropTypes.func
 };
 
-const mapStateToProps = (state) => {
-  return { postStatus: state.ui.postStatus };
-};
+const mapStateToProps = (state) => ({
+  postStatus: state.ui.postStatus
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addPosting: (payload) => dispatch(addPosting(payload))
