@@ -115,9 +115,12 @@ export const imgUrls = (item = {}) => {
     return [];
 };
 export const decodeText = (html) => {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
+    if (html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+    return "";
 };
 export const numToCategory = (num) => {
     switch (num) {
