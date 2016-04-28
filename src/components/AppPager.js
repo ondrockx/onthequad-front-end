@@ -21,8 +21,9 @@ var AppPager = ({page, num_pages, app, navigate}, context) => (
 	      items={num_pages}
 	      maxButtons={5}
 	      activePage={page}
-	      onSelect={(eventKey) => {
-  				navigate(context.router, {app, page: eventKey});
+	      onSelect={(e, selectedEvent) => {
+	      	e.preventDefault();
+	      	navigate(context.router, {app, page: selectedEvent.eventKey});
 	      }} />
 	    <PageItem next
 	    	disabled={page >= num_pages}

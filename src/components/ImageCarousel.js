@@ -25,10 +25,6 @@ class ImageCarousel extends Component {
 					<img width={242} height={200}
 						src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} />
 				</CarouselItem>
-				<Carousel.Caption>
-	        <h3>Second slide label</h3>
-	        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </Carousel.Caption>
 			</Carousel>;
 		}
 	}

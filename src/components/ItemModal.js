@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Modal, Button, Row, Col } from 'react-bootstrap';
+import { Label, Modal, Button, Row, Col } from 'react-bootstrap';
 import SignInBox from '../containers/SignInBox';
 import config, { numToCategory, decodeText, categoryImage, imgUrl, imgUrls } from '../config';
 import EmailButton from './EmailButton';
@@ -15,11 +15,12 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 			<Row>
 				<Col md={5}>
 					<ImageCarousel item={item}/>
+					<div className="price-tag">
+						<Label bsStyle="primary">${parseFloat(item.cost).toFixed(2)}</Label>
+					</div>
 				</Col>
-				<Col md={7} className="modal-text">
+				<Col md={7} className="modal-text modal-description-body">
 					{decodeText(item.description)}
-					<br />
-		    	Cost: ${item.cost}
 				</Col>
 		  </Row>
 		  { user.userId == item.owner ?
