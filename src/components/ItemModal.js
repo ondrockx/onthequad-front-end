@@ -22,15 +22,14 @@ const ItemModal = ({ item, show, onHide, user, onClickEdit }) => (
 		    	Cost: ${item.cost}
 				</Col>
 		  </Row>
-		  {
-		  	user.userId == item.owner ?
+		  { user.userId == item.owner ?
 			  <Button bsStyle="warning"
 		      bsSize="small"
 		      className="pull-right edit-item-button"
 		      onClick={onClickEdit}>
-	      	<span className="glyphicon glyphicon-pencil"/>
-	      </Button> :
-	      <EmailButton email={item.email}/>
+	      	  <span className="glyphicon glyphicon-pencil"/>
+	      	  </Button> :
+	      	<EmailButton email={item.email}/>
 			}
 	  </Modal.Body>
 	  <Modal.Footer>
