@@ -910,3 +910,18 @@ footer {
 	height: auto;
 }
 
+/* File Drop CSS */
+
+.center-wrapper {
+	text-align: center;
+}
+
+.center-wrapper div {
+	display: inline-block;
+}
+
+.upload-text {
+	text-align: center;
+	height: 200px;
+	line-height: 200px;
+}
