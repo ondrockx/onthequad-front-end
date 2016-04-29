@@ -12,10 +12,12 @@ class Posting extends Component {
   }
 
   render() {
-    return <Row>
-      <Col mdOffset={3} md={6} xsOffset={1} xs={10}><h2 className="centertxt">New Posting</h2></Col>
-      <Col><PostingForm/></Col>
-    </Row>;
+    return <div>
+      <Row>
+        <Col mdOffset={3} md={6} xsOffset={1} xs={10}><h2 className="centertxt">New Posting</h2></Col>
+      </Row>
+      <PostingForm/>
+    </div>;
   }
 };
 

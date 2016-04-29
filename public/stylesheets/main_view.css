@@ -47,8 +47,11 @@ body {
 	font-family: modak;
 	color: black !important;
 	font-size: 36px;
-	-webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
+	  text-shadow:
+   		-1px -1px 0 #FFFFFF,  
+    	1px -1px 0 #FFFFFF,
+    	-1px 1px 0 #FFFFFF,
+     	1px 1px 0 #FFFFFF !important; 
 }
 @media (max-width: 480px) {
 	.mybrand {
@@ -76,7 +79,7 @@ body {
 }
 
 .modal-description-body {
-	height: 300px;
+	height: 180px;
 	overflow-y: auto;
 }
 
@@ -221,17 +224,17 @@ a {
 	margin-top: -35px;
 	color: white;
 	font-size: 120%;
-	background: rgba(0,0,0, 0.2);
+	background: #48C9CB;
 	border-radius: 5px;
 	padding-left: 3px;
 	padding-right: 3px;
 }
 
 .itemdisplay-button {
-	position: relative;
-	float: left;
-	margin-top: -45px;
-	margin-left: -4px;
+	position: absolute;
+	top:0;
+	margin-top:5%;
+	margin-left:-1%;
 }
 
 .email-display-box {
@@ -264,6 +267,11 @@ a {
 	margin-right:4%;
 }
 
+.twopixelsam {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
 .centertxt {
 	text-align: center;
 }
@@ -274,6 +282,11 @@ a {
 	background-color: #48C9CB;
 }
 
+.imagepadding {
+	padding-left: 9px;
+	padding-right: 9px;
+	padding-top: 9px;
+}
 /* ------------------------------- Landing Page ------------------------------------ */
 
 
@@ -897,3 +910,18 @@ footer {
 	height: auto;
 }
 
+/* File Drop CSS */
+
+.center-wrapper {
+	text-align: center;
+}
+
+.center-wrapper div {
+	display: inline-block;
+}
+
+.upload-text {
+	text-align: center;
+	height: 200px;
+	line-height: 200px;
+}
