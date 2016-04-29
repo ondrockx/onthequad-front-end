@@ -112,20 +112,15 @@ class PostingForm extends Component {
         ref="image"
         multiple/>
     </div>;
-    var costInput = this.state.category !== 3 ?
-      <Input
-        bsStyle={ invalid['cost'] ? "error" : null }
-        onChange={ () => this.validate('cost') }
-        type="text"
-        label="Price"
-        addonBefore="$"
-        placeholder="0.00"
-        defaultValue={decodeText(item.cost) || 0.00}
-        ref="cost"/> :
-      <Input
-        type="hidden"
-        defaultValue={0.00}
-        ref="cost"/>;
+    var costInput = <Input
+      bsStyle={ invalid['cost'] ? "error" : null }
+      onChange={ () => this.validate('cost') }
+      type="text"
+      label="Price"
+      addonBefore="$"
+      placeholder="0.00"
+      defaultValue={decodeText(item.cost) || 0.00}
+      ref="cost"/>;
     return <div className="row">
       <div className="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
         <form>
