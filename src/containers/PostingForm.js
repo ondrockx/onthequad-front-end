@@ -32,7 +32,7 @@ class PostingForm extends Component {
     });
   }
 
-  submitForm() {
+  submitForm(files) {
     this.validateAll(() => {
       if (!allFalse(this.state.invalid)) {
         return;
@@ -41,7 +41,6 @@ class PostingForm extends Component {
       const cost = parseFloat(this.refs.cost.getValue()) || 0.0;
       const description = this.refs.description.getValue();
       const category = parseInt(this.refs.category.getValue());
-      const files = this.state.files;
       const data = new FormData();
       for (var i = 0; i < files.length; i++) {
         data.append('images[]', files[i], files[i].name);
@@ -191,7 +190,7 @@ class PostingForm extends Component {
             type="submit" value="Submit"
             onClick={(e) => {
               e.preventDefault();
-              this.props.alternateSubmit ? this.props.alternateSubmit(this.refs) : this.submitForm();
+              this.props.alternateSubmit ? this.props.alternateSubmit(this.refs, files) : this.submitForm(files);
             }}/>
         </form>
       </div>
