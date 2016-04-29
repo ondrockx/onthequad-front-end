@@ -15,12 +15,12 @@ class EmailButton extends Component {
 			maxSize={30}
 			readOnly="readonly"
 			ref='emailbox'
-			className={hidden + "pull-right email-display-box"}
+			className={hidden + "pull-right"}
 			value={email}/>;
-		return <div>
+		return <div className="row email-row">
 			<Button bsStyle="primary"
 		  	bsSize="small"
-		  	className="pull-right edit-item-button"
+		  	className="pull-right"
 			  onClick={()=>{
 			  	if (!this.state.on) {
 			  		_.delay(()=>{

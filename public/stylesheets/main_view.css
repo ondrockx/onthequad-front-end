@@ -237,6 +237,11 @@ a {
 	margin-left:-1%;
 }
 
+.email-row {
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
 .email-display-box {
 	margin-top: -17px;
 }
