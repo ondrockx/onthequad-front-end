@@ -8,7 +8,7 @@ class Item extends Component {
 	render() {
 		const { item, onClickItem, onClickEdit, user } = this.props;
 		var removeButton;
-    // if (user.userId == item.owner) {
+    if (user.userId == item.owner) {
     	removeButton = <Button bsStyle="warning"
 	      bsSize="small"
 	      className="itemdisplay-button"
@@ -18,7 +18,7 @@ class Item extends Component {
 		      }}>
 	      	<span className="glyphicon glyphicon-pencil"/>
 	      </Button>;
-    // }
+    }
  	  return <Col xs={6} sm={4} md={3} lg={2}>
 	    <Thumbnail className="imagepadding" src={imgUrl(item) || categoryImage(config.categories[numToCategory(item.category)])} alt="242x200" onClick={() => onClickItem(item)}>
 	      {removeButton}
