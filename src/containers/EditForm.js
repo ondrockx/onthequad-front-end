@@ -10,12 +10,11 @@ class EditForm extends Component {
 		this.submitEditForm = this.submitEditForm.bind(this);
 	}
 
-  submitEditForm(refs) {
+  submitEditForm(refs, files) {
     const title = refs.title.getValue();
     const cost = parseFloat(refs.cost.getValue());
     const description = refs.description.getValue();
     const category = parseInt(refs.category.getValue());
-    const files = refs.image.refs.input.files || [];
     const data = new FormData();
     for (var i = 0; i < files.length; i++) {
       data.append('images[]', files[i], files[i].name);
