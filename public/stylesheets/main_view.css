@@ -292,6 +292,34 @@ a {
 	padding-right: 9px;
 	padding-top: 9px;
 }
+
+.btn-primary {
+	color: #FFFFFF; 
+  background-color: #48C9CB; 
+  border-color: #48C9CB; 
+  background-image: none;
+}
+
+.btn-primary:hover {
+		color: #FFFFFF; 
+  background-color: #48C9CB; 
+  border-color: #48C9CB; 
+  background-image: none;
+}
+
+.btn-primary:active {
+		color: #FFFFFF; 
+  background-color: #48C9CB; 
+  border-color: #48C9CB; 
+  background-image: none;
+}
+
+.btn-primary:focus {
+		color: #FFFFFF; 
+  background-color: #48C9CB; 
+  border-color: #48C9CB; 
+  background-image: none;
+}
 /* ------------------------------- Landing Page ------------------------------------ */
 
 
