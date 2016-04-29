@@ -43,7 +43,7 @@ class LandingPage extends Component {
       </div>
       <div className="div_class jumbotron center-block" id="intro">
         <div className="div_class container center-block">
-          <p id="head" className="jumbotxt">On the Quad is a free tool dedicated to empowering UConn students with the ability to buy or sell items amongst other students effectively and efficiently. We here at On the Quad believe our service out preforms popular buy/sell avenues of the past by making our service exclusive to UConn students and offering solutions to common problems.</p>
+          <p id="head" className="jumbotxt">On the Quad is a free tool dedicated to empowering UConn students with the ability to buy or sell items amongst other students effectively and efficiently. We here at On the Quad believe our service outperforms popular buy/sell avenues of the past by making our service exclusive to UConn students and offering solutions to common problems.</p>
         </div>
       </div>
       <div className="div_class container-fluid" id="caro">

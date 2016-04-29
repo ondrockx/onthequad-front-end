@@ -114,6 +114,16 @@ export const imgUrls = (item = {}) => {
     }
     return [];
 };
+export const imgRawUrls = (item = {}) => {
+    if (item.image && item.image[0]) {
+        const urls = [];
+        for (var i in item.image) {
+            urls.push(config.backendURL + '/api/images/' + item.image[i]);
+        }
+        return urls;
+    }
+    return [];
+};
 export const decodeText = (html) => {
     if (html) {
         var txt = document.createElement("textarea");

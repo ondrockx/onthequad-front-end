@@ -12,7 +12,7 @@ class EditForm extends Component {
 
   submitEditForm(refs, files) {
     const title = refs.title.getValue();
-    const cost = parseFloat(refs.cost.getValue());
+    const cost = parseFloat(refs.cost.getValue()) || 0.0;
     const description = refs.description.getValue();
     const category = parseInt(refs.category.getValue());
     const data = new FormData();
